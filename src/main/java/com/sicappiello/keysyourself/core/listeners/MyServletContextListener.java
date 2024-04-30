@@ -1,7 +1,6 @@
 package com.sicappiello.keysyourself.core.listeners;
 
 import com.sicappiello.keysyourself.core.database.Database;
-import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;

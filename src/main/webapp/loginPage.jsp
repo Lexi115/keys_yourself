@@ -16,7 +16,10 @@
 
 <%if(session.getAttribute("info")!=null){%>
 <p style="color:green;"><%=((String) session.getAttribute("info"))%></p>
-<%}%>
+<%session.removeAttribute("info");
+}%>
+
+
 
 <fieldset>
     <legend>Login</legend>
@@ -26,9 +29,10 @@
         <input type="submit"><input type="reset">
     </form>
 
-    <%if(session.getAttribute("error")!=null){%>
-    <p style="color:red;"><%=((String) session.getAttribute("error"))%></p>
-    <%}%>
+    <%if(session.getAttribute("LoginError")!=null){%>
+    <p style="color:red;"><%=((String) session.getAttribute("LoginError"))%></p>
+    <%session.removeAttribute("LoginError");
+    }%>
 
 </fieldset>
 
@@ -42,6 +46,12 @@
         Phone number<input type="tel" name="tel" required>
         <input type="submit"><input type="reset">
     </form>
+
+    <%if(session.getAttribute("RegError")!=null){%>
+    <p style="color:red;"><%=((String) session.getAttribute("RegError"))%></p>
+    <%session.removeAttribute("RegError");
+    }%>
+
 </fieldset>
 
 

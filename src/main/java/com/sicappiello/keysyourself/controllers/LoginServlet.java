@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class LoginServlet extends HttpServlet {
         Database db = Functions.getContextDatabase(this);
         UserDAO userDAO = new UserDAO(db);
         User user;
+        HttpSession session = request.getSession();
 
         try {
             // Cerca utente con quella mail
@@ -34,11 +36,11 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/");
                     return;
                 } else {
-                    request.setAttribute("error", "Password errata!");
+                    session.setAttribute("LoginError", "Password errata!");
                 }
 
             } else {
-                request.setAttribute("error", "Utente non trovato!");
+                session.setAttribute("LoginError", "Utente non trovato!");
             }
 
             doGet(request, response);

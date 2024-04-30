@@ -1,5 +1,7 @@
 package com.sicappiello.keysyourself.models.beans;
 
+import com.sicappiello.keysyourself.core.enums.Role;
+
 public class User {
     private int uid;
     private String email;
@@ -83,6 +85,10 @@ public class User {
 
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
+    }
+
+    public boolean isAdmin() {
+        return (roleId == Role.ADMIN);
     }
 }
 

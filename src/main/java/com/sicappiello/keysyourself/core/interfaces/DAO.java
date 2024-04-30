@@ -16,6 +16,8 @@ public interface DAO<T> {
 
     int update(T entity);
 
+    int saveOrUpdate(T entity);
+
     int delete(T entity);
 
     int delete(long id);

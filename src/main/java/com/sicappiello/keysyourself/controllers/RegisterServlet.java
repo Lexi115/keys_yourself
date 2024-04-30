@@ -39,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
                 return;
             } else {
                 //Utente esiste
-                request.getSession().setAttribute("error", "Utente già esistente!");
+                request.getSession().setAttribute("RegError", "Utente già esistente!");
             }
 
             doGet(request, response);

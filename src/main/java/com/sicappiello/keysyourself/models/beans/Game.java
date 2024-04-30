@@ -1,5 +1,8 @@
 package com.sicappiello.keysyourself.models.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     private int id;
     private String name;
@@ -7,6 +10,11 @@ public class Game {
     private int availableQuantity;
     private String description;
     private String producer;
+    private List<Genre> genres;
+
+    public List<Genre> getGenres() { return genres;}
+
+    public void setGenres(List<Genre> genres) { this.genres = genres;}
 
     public Game() {}
 

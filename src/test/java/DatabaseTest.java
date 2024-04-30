@@ -2,6 +2,7 @@ import com.sicappiello.keysyourself.core.database.Database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class DatabaseTest {
 
@@ -55,7 +56,12 @@ public class DatabaseTest {
 
 
     public static void main(String[] args) throws SQLException {
-        queryTest();
-        insertTest();
+        //queryTest();
+        //insertTest();
+
+        LocalDate date = LocalDate.of(2020, 1, 25);
+        System.out.println(date);
+
+
     }
 }

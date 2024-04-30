@@ -121,6 +121,17 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
+    public int saveOrUpdate(User entity) {
+        database.connect();
+
+        if (this.getById(entity.getUid()) == null) {
+            return this.save(entity);
+        } else {
+            return this.update(entity);
+        }
+    }
+
+    @Override
     public int delete(User entity) {
         return delete(entity.getUid());
     }
