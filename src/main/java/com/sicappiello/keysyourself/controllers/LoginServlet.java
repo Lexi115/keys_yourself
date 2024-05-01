@@ -30,9 +30,11 @@ public class LoginServlet extends HttpServlet {
             user = userDAO.getByEmail(email);
             if (user != null) {
 
-                // TODO: sostituire con hashed password!!!!!!
-                if (user.getPassword().equals(password)) {
-                    request.getSession().setAttribute("user", user);
+                // Verifica password inserita con quella salvata nel database
+                if (Functions.passwordVerify(password,user)) {
+                    session.setAttribute("user", user);
+                    user.setAuthToken(Functions.sendAuthenticationToken(response,user));
+                    userDAO.update(user);
                     response.sendRedirect(request.getContextPath() + "/");
                     return;
                 } else {

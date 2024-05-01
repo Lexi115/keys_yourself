@@ -7,6 +7,7 @@ public class User {
     private String email;
     private String password;
     private String name;
+    private String surname;
     private String address;
     private String phoneNumber;
     private int roleId;
@@ -45,6 +46,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getAddress() {
@@ -89,6 +98,22 @@ public class User {
 
     public boolean isAdmin() {
         return (roleId == Role.ADMIN);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                ", authToken='" + authToken + '\'' +
+                '}';
     }
 }
 

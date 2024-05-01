@@ -19,6 +19,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("tel");
 
@@ -31,7 +32,7 @@ public class RegisterServlet extends HttpServlet {
             user = userDAO.getByEmail(email);
             if (user == null) {
                 //Utente non esiste, si può salvare
-                User u = createUser(email, password, name, address, phoneNumber);
+                User u = createUser(email, password, name, surname, address, phoneNumber);
                 userDAO.save(u);
 
                 request.getSession().setAttribute("info", "Registrazione effettuata correttamente!");
@@ -53,22 +54,22 @@ public class RegisterServlet extends HttpServlet {
         rd.forward(req,res);
     }
 
-    private User createUser(String email, String password, String name, String address, String phoneNumber) {
+    private User createUser(String email, String password, String name, String surname, String address, String phoneNumber) {
         User u = new User();
 
         u.setEmail(email);
 
-        // TODO: sostituire con hashed password!!!!!!
-        u.setPassword(password);
+        // Fai hash della password
+        String hashedPassword = Functions.hash(password);
+        u.setPassword(hashedPassword);
 
         u.setName(name);
+        u.setSurname(surname);
         u.setAddress(address);
         u.setPhoneNumber(phoneNumber);
 
         // Imposta ruolo default (utente)
         u.setRoleId(0);
-
-        u.setAuthToken("xxxxxxxx");
 
         return u;
     }

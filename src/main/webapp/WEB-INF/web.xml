@@ -9,11 +9,21 @@
         <servlet-class>com.sicappiello.keysyourself.core.Main</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>AutoLoginFilter</filter-name>
+        <filter-class>com.sicappiello.keysyourself.core.AutoLoginFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AutoLoginFilter</filter-name>
+        <url-pattern>/*</url-pattern> <!-- Apply to all URLs -->
+    </filter-mapping>
 
     <!-- Credenziali per accesso al database -->
     <context-param>

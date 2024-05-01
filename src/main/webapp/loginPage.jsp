@@ -42,6 +42,7 @@
         E-mail<input type="email" name="email" required>
         Password<input type="password" name="password" required>
         Name<input type="text" name="name" required>
+        Surname<input type="text" name="surname" required>
         Address<input type="text" name="address" required>
         Phone number<input type="tel" name="tel" required>
         <input type="submit"><input type="reset">

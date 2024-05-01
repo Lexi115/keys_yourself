@@ -3,6 +3,7 @@ package com.sicappiello.keysyourself.models.dao;
 import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.core.interfaces.DAO;
 import com.sicappiello.keysyourself.models.beans.User;
+import com.sicappiello.keysyourself.util.Functions;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,6 +54,26 @@ public class UserDAO implements DAO<User> {
         return user;
     }
 
+    public User getByToken(String token) {
+        database.connect();
+        User user = null;
+        Functions.hash(token);
+        String query = "SELECT * FROM utenti u JOIN ruoli r ON u.ruolo = r.id WHERE u.auth_token= ?";
+        try {
+            ResultSet rs = database.executeQuery(query, token);
+            List<User> users = fetch(rs);
+            if (!users.isEmpty()) {
+                user = users.get(0);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
+
+
     @Override
     public List<User> getAll() {
         database.connect();
@@ -72,13 +93,14 @@ public class UserDAO implements DAO<User> {
     @Override
     public int save(User entity) {
         database.connect();
-        String query = "INSERT INTO utenti(email,password,nome,indirizzo," +
-                "telefono,ruolo,auth_token) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO utenti(email,password,nome,cognome,indirizzo," +
+                "telefono,ruolo,auth_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         Object[] params = new Object[]{
                 entity.getEmail(),
                 entity.getPassword(),
                 entity.getName(),
+                entity.getSurname(),
                 entity.getAddress(),
                 entity.getPhoneNumber(),
                 entity.getRoleId(),
@@ -97,13 +119,14 @@ public class UserDAO implements DAO<User> {
     @Override
     public int update(User entity) {
         database.connect();
-        String query = "UPDATE utenti SET email = ?, password = ?, nome = ?," +
+        String query = "UPDATE utenti SET email = ?, password = ?, nome = ?, cognome = ?," +
                 " indirizzo = ?, telefono = ?, ruolo = ?, auth_token = ? WHERE uid = ?";
 
         Object[] params = new Object[]{
                 entity.getEmail(),
                 entity.getPassword(),
                 entity.getName(),
+                entity.getSurname(),
                 entity.getAddress(),
                 entity.getPhoneNumber(),
                 entity.getRoleId(),
@@ -159,6 +182,7 @@ public class UserDAO implements DAO<User> {
 
             user.setUid(rs.getInt("uid"));
             user.setName(rs.getString("nome"));
+            user.setSurname(rs.getString("cognome"));
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));
             user.setAddress(rs.getString("indirizzo"));
