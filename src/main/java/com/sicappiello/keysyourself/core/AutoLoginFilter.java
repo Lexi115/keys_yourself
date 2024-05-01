@@ -8,7 +8,6 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.util.logging.LogRecord;
 
 public class AutoLoginFilter implements Filter {
 
