@@ -1,4 +1,6 @@
 import com.sicappiello.keysyourself.core.database.Database;
+import com.sicappiello.keysyourself.core.enums.Regex;
+import com.sicappiello.keysyourself.util.Functions;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,7 +63,5 @@ public class DatabaseTest {
 
         LocalDate date = LocalDate.of(2020, 1, 25);
         System.out.println(date);
-
-
     }
 }

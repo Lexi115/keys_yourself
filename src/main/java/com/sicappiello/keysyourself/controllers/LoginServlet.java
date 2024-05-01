@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -24,6 +26,7 @@ public class LoginServlet extends HttpServlet {
         UserDAO userDAO = new UserDAO(db);
         User user;
         HttpSession session = request.getSession();
+        List<String> errors = new ArrayList<>();
 
         try {
             // Cerca utente con quella mail
@@ -35,16 +38,18 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("user", user);
                     user.setAuthToken(Functions.sendAuthenticationToken(response,user));
                     userDAO.update(user);
+
                     response.sendRedirect(request.getContextPath() + "/");
                     return;
                 } else {
-                    session.setAttribute("LoginError", "Password errata!");
+                    errors.add("Password errata!");
                 }
 
             } else {
-                session.setAttribute("LoginError", "Utente non trovato!");
+                errors.add("Utente non trovato!");
             }
 
+            session.setAttribute("error", errors);
             doGet(request, response);
         } catch (IOException | ServletException e) {
             throw new RuntimeException(e);

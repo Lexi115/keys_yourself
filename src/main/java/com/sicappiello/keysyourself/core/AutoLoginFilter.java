@@ -37,7 +37,8 @@ public class AutoLoginFilter implements Filter {
                 }
             }
         }
-            //Continua la chain di filter
-            chain.doFilter(req, res);
+
+        //Continua la chain di filter
+        chain.doFilter(req, res);
     }
 }

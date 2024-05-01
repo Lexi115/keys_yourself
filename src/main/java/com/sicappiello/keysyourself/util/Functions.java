@@ -12,6 +12,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Functions {
     public static Database getContextDatabase(HttpServlet servlet) {
@@ -54,22 +56,19 @@ public class Functions {
     }
 
     public static String getFullURL(HttpServletRequest request) {
+        // Ottieni URL (senza parametri GET)
         StringBuilder fullURL = new StringBuilder(request.getRequestURL().toString());
+
+        // Ottieni parametri GET
         String queryString = request.getQueryString();
 
         if (queryString != null && !queryString.isEmpty()) {
-            try {
-                // Encode the query string to handle special characters properly
-                queryString = URLEncoder.encode(queryString, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                // Handle encoding exception if necessary
-                e.printStackTrace();
-            }
-            // Append the encoded query string
+            queryString = URLEncoder.encode(queryString, StandardCharsets.UTF_8);
+
+            // Combinali nell'URL completo
             fullURL.append('?').append(queryString);
         }
 
         return fullURL.toString();
     }
-
 }
