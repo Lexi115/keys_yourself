@@ -46,8 +46,4 @@
         <param-name>dbPort</param-name>
         <param-value>3306</param-value>
     </context-param>
-
-    <listener>
-        <listener-class>com.sicappiello.keysyourself.core.listeners.MyServletContextListener</listener-class>
-    </listener>
 </web-app>
