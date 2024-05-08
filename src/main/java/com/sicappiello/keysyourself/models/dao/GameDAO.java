@@ -37,22 +37,19 @@ public class GameDAO implements DAO<Game> {
         return game;
     }
 
-    public Game getByName(String name) {
+    public List<Game> getByName(String name) {
         database.connect();
-        Game game = null;
+        List<Game> games = new ArrayList<>();
 
-        String query = "SELECT * FROM giochi g JOIN giochi_generi gg ON gg.gioco = g.id JOIN generi ge ON gg.genere = ge.id WHERE g.nome LIKE '%?%'";
+        String query = "SELECT * FROM giochi g JOIN giochi_generi gg ON gg.gioco = g.id JOIN generi ge ON gg.genere = ge.id WHERE g.nome LIKE ?";
+
         try {
-            ResultSet rs = database.executeQuery(query, name);
-            List<Game> games = fetch(rs);
-            if (!games.isEmpty()) {
-                game = games.get(0);
-            }
+            ResultSet rs = database.executeQuery(query, "%" + name + "%");
+            games = fetch(rs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return game;
+        return games;
     }
 
     @Override

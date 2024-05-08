@@ -65,4 +65,17 @@ public class Game {
     public void setProducer(String producer) {
         this.producer = producer;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", availableQuantity=" + availableQuantity +
+                ", description='" + description + '\'' +
+                ", producer='" + producer + '\'' +
+                ", genres=" + genres +
+                '}';
+    }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 01, 2024 at 12:21 PM
+-- Generation Time: May 08, 2024 at 06:08 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -41,7 +41,7 @@ CREATE TABLE `carrelli` (
 
 CREATE TABLE `generi` (
   `id` int NOT NULL,
-  `nome` varchar(30) COLLATE utf8mb4_general_ci NOT NULL
+  `nome` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -88,11 +88,11 @@ INSERT INTO `generi` (`id`, `nome`) VALUES
 
 CREATE TABLE `giochi` (
   `id` int NOT NULL,
-  `nome` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `prezzo` decimal(10,2) NOT NULL,
   `quantita_disponibile` int NOT NULL DEFAULT '0',
-  `descrizione` varchar(2000) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `produttore` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `descrizione` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `produttore` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -161,6 +161,200 @@ CREATE TABLE `giochi_generi` (
   `genere` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `giochi_generi`
+--
+
+INSERT INTO `giochi_generi` (`gioco`, `genere`) VALUES
+(1, 204),
+(1, 205),
+(1, 206),
+(2, 204),
+(2, 206),
+(2, 208),
+(2, 217),
+(2, 218),
+(3, 204),
+(3, 206),
+(4, 204),
+(4, 206),
+(4, 228),
+(5, 205),
+(5, 206),
+(5, 211),
+(6, 205),
+(6, 220),
+(6, 226),
+(7, 207),
+(7, 220),
+(8, 207),
+(8, 220),
+(9, 204),
+(9, 205),
+(9, 215),
+(9, 227),
+(10, 205),
+(10, 211),
+(10, 220),
+(10, 227),
+(11, 216),
+(11, 227),
+(12, 208),
+(12, 217),
+(12, 228),
+(13, 205),
+(13, 227),
+(14, 204),
+(14, 205),
+(15, 208),
+(15, 217),
+(15, 218),
+(16, 205),
+(16, 206),
+(16, 216),
+(17, 206),
+(17, 215),
+(17, 216),
+(18, 204),
+(18, 205),
+(18, 214),
+(18, 215),
+(19, 210),
+(19, 220),
+(19, 226),
+(20, 204),
+(20, 208),
+(20, 214),
+(20, 215),
+(21, 204),
+(21, 208),
+(21, 214),
+(21, 215),
+(22, 204),
+(22, 208),
+(22, 214),
+(22, 215),
+(24, 204),
+(24, 208),
+(24, 214),
+(24, 215),
+(25, 204),
+(25, 208),
+(25, 214),
+(25, 215),
+(26, 207),
+(26, 209),
+(26, 212),
+(27, 204),
+(27, 205),
+(27, 206),
+(27, 216),
+(28, 204),
+(28, 205),
+(28, 210),
+(28, 216),
+(29, 204),
+(29, 205),
+(29, 218),
+(29, 220),
+(29, 227),
+(30, 204),
+(30, 205),
+(30, 206),
+(30, 216),
+(30, 227),
+(31, 204),
+(31, 205),
+(31, 208),
+(31, 212),
+(31, 217),
+(31, 227),
+(32, 204),
+(32, 208),
+(32, 212),
+(32, 217),
+(33, 205),
+(33, 209),
+(33, 211),
+(33, 220),
+(33, 227),
+(34, 212),
+(34, 213),
+(34, 220),
+(35, 205),
+(35, 207),
+(35, 212),
+(35, 222),
+(35, 227),
+(36, 205),
+(36, 206),
+(36, 209),
+(36, 216),
+(36, 219),
+(37, 204),
+(37, 216),
+(37, 221),
+(38, 204),
+(38, 205),
+(38, 210),
+(38, 216),
+(38, 219),
+(38, 227),
+(39, 205),
+(39, 208),
+(39, 214),
+(39, 215),
+(39, 218),
+(39, 228),
+(40, 205),
+(40, 206),
+(40, 210),
+(40, 216),
+(41, 204),
+(41, 205),
+(41, 208),
+(41, 215),
+(41, 217),
+(41, 227),
+(42, 205),
+(42, 206),
+(42, 209),
+(42, 216),
+(43, 205),
+(43, 206),
+(43, 209),
+(43, 210),
+(43, 216),
+(43, 221),
+(43, 227),
+(44, 204),
+(44, 208),
+(44, 210),
+(44, 217),
+(44, 228),
+(45, 204),
+(45, 208),
+(45, 214),
+(45, 217),
+(45, 228),
+(46, 205),
+(46, 206),
+(46, 210),
+(46, 211),
+(46, 221),
+(47, 204),
+(47, 205),
+(48, 204),
+(48, 205),
+(48, 206),
+(48, 211),
+(48, 216),
+(48, 228),
+(49, 204),
+(49, 205),
+(49, 213),
+(49, 223);
+
 -- --------------------------------------------------------
 
 --
@@ -185,8 +379,8 @@ CREATE TABLE `ordini` (
 --
 
 CREATE TABLE `ruoli` (
-  `id` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `nome_ruolo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+  `id` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nome_ruolo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -205,14 +399,14 @@ INSERT INTO `ruoli` (`id`, `nome_ruolo`) VALUES
 
 CREATE TABLE `utenti` (
   `uid` int NOT NULL,
-  `email` varchar(320) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(320) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nome` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `cognome` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `indirizzo` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `telefono` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
-  `ruolo` varchar(10) COLLATE utf8mb4_general_ci DEFAULT 'default',
-  `auth_token` char(64) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `nome` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `cognome` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `indirizzo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `telefono` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ruolo` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'default',
+  `auth_token` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

@@ -14,7 +14,7 @@
             <form action="search" method="get">
                 <div class="row">
                     <div class="col-lg-11">
-                        <input type="text" class="searchbar center">
+                        <input type="text" name="query" class="searchbar center">
                     </div>
                     <div class="col-lg-1">
                         <button class="searchbutton" type="submit"><i class="bi bi-search"></i></button>

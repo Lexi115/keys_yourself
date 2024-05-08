@@ -203,6 +203,11 @@ body {
     justify-content: space-between;
 }
 
+.navbar a {
+    text-decoration: none;
+    color: var(--palette2);
+
+}
 .icon {
     padding: 10px;
     font-size: 30px;
