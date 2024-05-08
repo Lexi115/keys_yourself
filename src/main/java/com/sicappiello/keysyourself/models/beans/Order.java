@@ -79,4 +79,18 @@ public class Order {
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", gameId=" + gameId +
+                ", userName='" + userName + '\'' +
+                ", gameName='" + gameName + '\'' +
+                ", quantity=" + quantity +
+                ", orderDate=" + orderDate +
+                ", price=" + price +
+                '}';
+    }
 }

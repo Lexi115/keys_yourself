@@ -41,7 +41,7 @@ public class GameDAO implements DAO<Game> {
         database.connect();
         List<Game> games = new ArrayList<>();
 
-        String query = "SELECT * FROM giochi g JOIN giochi_generi gg ON gg.gioco = g.id JOIN generi ge ON gg.genere = ge.id WHERE g.nome LIKE ?";
+        String query = "SELECT * FROM giochi g WHERE g.nome LIKE ?";
 
         try {
             ResultSet rs = database.executeQuery(query, "%" + name + "%");

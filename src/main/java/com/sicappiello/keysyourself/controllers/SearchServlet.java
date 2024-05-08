@@ -23,7 +23,7 @@ public class SearchServlet extends HttpServlet {
         List<Game> games = gameDao.getByName(request.getParameter("query"));
         request.setAttribute("games",games);
 
-        RequestDispatcher rd = request.getRequestDispatcher("searchResult.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/results/searchResult.jsp");
         rd.forward(request,response);
     }
 }
