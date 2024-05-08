@@ -9,45 +9,42 @@
 <body>
 <jsp:include page="WEB-INF/include/header.jsp" />
 <main>
-    <h1> fai sto login bro!! o registrati</h1>
-
     <%if(session.getAttribute("info")!=null){%>
     <p style="color:green;">${sessionScope.info}</p>
     <%session.removeAttribute("info");
     }%>
+    <div class="fieldContainer">
+        <div class="col-4">
 
-    <%if(session.getAttribute("error")!=null){
-        for(String s: (List<String>) session.getAttribute("error")){%>
-    <p style="color:red;"><%=s%></p><%}%>
-    <%session.removeAttribute("error");
-    }%>
+        </div>
 
-    <fieldset>
-        <legend>Login</legend>
-        <form action="login" method="post">
-            E-mail<input type="text" name="email" >
-            Password<input type="password" name="password" >
-            <input type="submit"><input type="reset">
-        </form>
+        <div class="col-4 field center">
+            <div class="row">
+                <img class="loginLogo" src="assets/images/login.png">
+            </div>
 
 
-
-    </fieldset>
-
-    <fieldset>
-        <legend>Registrati</legend>
-        <form action="register" method="post">
-            E-mail<input type="text" name="email" >
-            Password<input type="password" name="password" >
-            Name<input type="text" name="name" >
-            Surname<input type="text" name="surname" >
-            Address<input type="text" name="address" >
-            Phone number<input type="tel" name="tel" >
-            <input type="submit"><input type="reset">
-        </form>
+            <%if(session.getAttribute("error")!=null){
+                for(String s: (List<String>) session.getAttribute("error")){%>
+            <p style="color:red;"><%=s%></p><%}%>
+            <%session.removeAttribute("error");
+            }%>
 
 
-    </fieldset>
+            <div class="row">
+                <form action="login" method="post">
+                    <div class="row"><i class="bi bi-envelope"></i> <input type="text" name="email" ></div>
+                    <div class="row"><i class="bi bi-key"></i> <input class="row" type="password" name="password" ></div>
+                <input class="row" type="submit"><input type="reset">
+                </form>
+            </div>
+            Non sei registrato? <a href="registerpage.jsp">Registrati</a>
+        </div>
+
+        <div class="col-4">
+
+        </div>
+    </div>
 </main>
 
 

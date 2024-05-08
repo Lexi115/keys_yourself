@@ -33,7 +33,7 @@ public class GameDAO implements DAO<Game> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        database.close();
         return game;
     }
 
@@ -49,6 +49,7 @@ public class GameDAO implements DAO<Game> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        database.close();
         return games;
     }
 
@@ -65,6 +66,7 @@ public class GameDAO implements DAO<Game> {
             e.printStackTrace();
         }
 
+        database.close();
         return games;
     }
 
@@ -88,6 +90,7 @@ public class GameDAO implements DAO<Game> {
             e.printStackTrace();
         }
 
+        database.close();
         return 0;
     }
 
@@ -112,6 +115,7 @@ public class GameDAO implements DAO<Game> {
             e.printStackTrace();
         }
 
+        database.close();
         return 0;
     }
 
@@ -120,10 +124,13 @@ public class GameDAO implements DAO<Game> {
         database.connect();
 
         if (this.getById(entity.getId()) == null) {
+            database.close();
             return this.save(entity);
         } else {
+            database.close();
             return this.update(entity);
         }
+
     }
 
     @Override
@@ -135,11 +142,14 @@ public class GameDAO implements DAO<Game> {
         String query = "DELETE FROM giochi WHERE id = ?";
 
         try {
-            return database.executeUpdate(query, id);
+            int ris = database.executeUpdate(query, id);
+            database.close();
+            return ris;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        database.close();
         return 0;
     }
 
@@ -182,7 +192,7 @@ public class GameDAO implements DAO<Game> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        database.close();
         return genres;
     }
 }
