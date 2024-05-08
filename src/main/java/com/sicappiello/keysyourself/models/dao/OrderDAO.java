@@ -32,6 +32,7 @@ public class OrderDAO implements DAO<Order> {
             e.printStackTrace();
         }
 
+        database.close();
         return order;
     }
 
@@ -48,11 +49,13 @@ public class OrderDAO implements DAO<Order> {
             e.printStackTrace();
         }
 
+        database.close();
         return orders;
     }
 
     @Override
     public int save(Order entity) {
+        int rowsAffected = 0;
         database.connect();
         String query = "INSERT INTO ordini(id,utente,gioco,quantita,data_acquisto,prezzo," +
                 "nome_utente,nome_gioco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -69,16 +72,17 @@ public class OrderDAO implements DAO<Order> {
         };
 
         try {
-            return database.executeUpdate(query, params);
+            rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        return rowsAffected;
     }
 
     @Override
     public int update(Order entity) {
+        int rowsAffected = 0;
         database.connect();
         String query = "UPDATE ordini SET utente = ?,gioco = ?,quantita = ?," +
                 "data_acquisto = ?,prezzo = ?,nome_utente = ?, nome_gioco = ? WHERE id = ?";
@@ -95,18 +99,16 @@ public class OrderDAO implements DAO<Order> {
         };
 
         try {
-            return database.executeUpdate(query, params);
+            rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        return rowsAffected;
     }
 
     @Override
     public int saveOrUpdate(Order entity) {
-        database.connect();
-
         if (this.getById(entity.getId()) == null) {
             return this.save(entity);
         } else {
@@ -121,16 +123,18 @@ public class OrderDAO implements DAO<Order> {
 
     @Override
     public int delete(long id) {
+        int rowsAffected = 0;
         database.connect();
         String query = "DELETE FROM ordini WHERE id = ?";
 
         try {
-            return database.executeUpdate(query, id);
+            rowsAffected = database.executeUpdate(query, id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        database.close();
+        return rowsAffected;
     }
 
     @Override
