@@ -32,6 +32,7 @@ public class GenreDAO implements DAO<Genre> {
             e.printStackTrace();
         }
 
+        database.close();
         return genre;
     }
 
@@ -48,11 +49,13 @@ public class GenreDAO implements DAO<Genre> {
             e.printStackTrace();
         }
 
+        database.close();
         return genres;
     }
 
     @Override
     public int save(Genre entity) {
+        int rowsAffected = 0;
         database.connect();
         String query = "INSERT INTO generi(id,nome) VALUES (?, ?)";
 
@@ -62,16 +65,18 @@ public class GenreDAO implements DAO<Genre> {
         };
 
         try {
-            return database.executeUpdate(query, params);
+            rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        database.close();
+        return rowsAffected;
     }
 
     @Override
     public int update(Genre entity) {
+        int rowsAffected = 0;
         database.connect();
         String query = "UPDATE generi nome = ? WHERE id = ?";
 
@@ -81,18 +86,16 @@ public class GenreDAO implements DAO<Genre> {
         };
 
         try {
-            return database.executeUpdate(query, params);
+            rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        return rowsAffected;
     }
 
     @Override
     public int saveOrUpdate(Genre entity) {
-        database.connect();
-
         if (this.getById(entity.getId()) == null) {
             return this.save(entity);
         } else {
@@ -107,16 +110,18 @@ public class GenreDAO implements DAO<Genre> {
 
     @Override
     public int delete(long id) {
+        int rowsAffected = 0;
         database.connect();
         String query = "DELETE FROM generi WHERE id = ?";
 
         try {
-            return database.executeUpdate(query, id);
+            rowsAffected = database.executeUpdate(query, id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        database.close();
+        return rowsAffected;
     }
 
     @Override
