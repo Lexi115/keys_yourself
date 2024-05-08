@@ -33,6 +33,7 @@ public class UserDAO implements DAO<User> {
             e.printStackTrace();
         }
 
+        database.close();
         return user;
     }
 
@@ -51,6 +52,7 @@ public class UserDAO implements DAO<User> {
             e.printStackTrace();
         }
 
+        database.close();
         return user;
     }
 
@@ -69,6 +71,7 @@ public class UserDAO implements DAO<User> {
             e.printStackTrace();
         }
 
+        database.close();
         return user;
     }
 
@@ -86,12 +89,13 @@ public class UserDAO implements DAO<User> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        database.close();
         return users;
     }
 
     @Override
     public int save(User entity) {
+        int rowsAffected = 0;
         database.connect();
         String query = "INSERT INTO utenti(email,password,nome,cognome,indirizzo," +
                 "telefono,ruolo,auth_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -108,16 +112,18 @@ public class UserDAO implements DAO<User> {
         };
 
         try {
-            return database.executeUpdate(query, params);
+            rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        database.close();
+        return rowsAffected;
     }
 
     @Override
     public int update(User entity) {
+        int rowsAffected = 0;
         database.connect();
         String query = "UPDATE utenti SET email = ?, password = ?, nome = ?, cognome = ?," +
                 " indirizzo = ?, telefono = ?, ruolo = ?, auth_token = ? WHERE uid = ?";
@@ -135,18 +141,17 @@ public class UserDAO implements DAO<User> {
         };
 
         try {
-            return database.executeUpdate(query, params);
+            rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        database.close();
+        return rowsAffected;
     }
 
     @Override
     public int saveOrUpdate(User entity) {
-        database.connect();
-
         if (this.getById(entity.getUid()) == null) {
             return this.save(entity);
         } else {
@@ -161,16 +166,18 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public int delete(long id) {
+        int rowsDeleted = 0;
         database.connect();
         String query = "DELETE FROM utenti WHERE uid = ?";
 
         try {
-            return database.executeUpdate(query, id);
+            rowsDeleted = database.executeUpdate(query, id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        database.close();
+        return rowsDeleted;
     }
 
     @Override
@@ -196,6 +203,4 @@ public class UserDAO implements DAO<User> {
 
         return users;
     }
-
-
 }

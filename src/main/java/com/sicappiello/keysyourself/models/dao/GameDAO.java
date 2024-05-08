@@ -33,6 +33,7 @@ public class GameDAO implements DAO<Game> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         database.close();
         return game;
     }
@@ -49,6 +50,7 @@ public class GameDAO implements DAO<Game> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         database.close();
         return games;
     }
@@ -72,6 +74,7 @@ public class GameDAO implements DAO<Game> {
 
     @Override
     public int save(Game entity) {
+        int rowsAffected = 0;
         database.connect();
         String query = "INSERT INTO giochi(id,nome,prezzo,quantita_disponibile,descrizione,produttore) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -85,17 +88,17 @@ public class GameDAO implements DAO<Game> {
         };
 
         try {
-            return database.executeUpdate(query, params);
+            rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        database.close();
-        return 0;
+        return rowsAffected;
     }
 
     @Override
     public int update(Game entity) {
+        int rowsAffected = 0;
         database.connect();
         String query = "UPDATE giochi SET id = ?, nome = ?, prezzo = ?," +
                 " quantita_disponibile = ?, descrizione = ?, produttore = ?";
@@ -110,19 +113,17 @@ public class GameDAO implements DAO<Game> {
         };
 
         try {
-            return database.executeUpdate(query, params);
+            rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         database.close();
-        return 0;
+        return rowsAffected;
     }
 
     @Override
     public int saveOrUpdate(Game entity) {
-        database.connect();
-
         if (this.getById(entity.getId()) == null) {
             database.close();
             return this.save(entity);
@@ -138,19 +139,17 @@ public class GameDAO implements DAO<Game> {
 
     @Override
     public int delete(long id) {
+        int rowsAffected = 0;
         database.connect();
         String query = "DELETE FROM giochi WHERE id = ?";
 
         try {
-            int ris = database.executeUpdate(query, id);
-            database.close();
-            return ris;
+            rowsAffected = database.executeUpdate(query, id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        database.close();
-        return 0;
+        return rowsAffected;
     }
 
     @Override
@@ -192,6 +191,7 @@ public class GameDAO implements DAO<Game> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         database.close();
         return genres;
     }
