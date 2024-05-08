@@ -16,7 +16,7 @@
 
 body {
     margin: 0; /* togliere bordi laterali */
-    background-color: papayawhip;
+    background-color: #ffe8eb;
 }
 [class *= "col-"] {
     float: left;
@@ -82,6 +82,12 @@ body {
     main div{
         font-size: 8vw;
     }
+
+    .fieldContainer{
+        margin-top: 40px;
+        height: 800px;
+    }
+
 }
 /* Per dispositivi tablet */
 @media only screen and (max-width: 1024px) {
@@ -186,6 +192,7 @@ body {
     width:100%;
 }
 
+
 .searchbar {
     border: none;
     background-color: var(--palette2);
@@ -197,6 +204,7 @@ body {
     font-size: 24px;
     outline: none;
 }
+
 
 .searchbar:focus {
     outline: none;

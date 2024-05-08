@@ -125,10 +125,13 @@ public class GameDAO implements DAO<Game> {
     @Override
     public int saveOrUpdate(Game entity) {
         if (this.getById(entity.getId()) == null) {
+            database.close();
             return this.save(entity);
         } else {
+            database.close();
             return this.update(entity);
         }
+
     }
 
     @Override

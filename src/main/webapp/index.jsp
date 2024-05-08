@@ -24,5 +24,7 @@
     </div>
 </main>
 
+<%=session.getAttribute("user")%>
+
 </body>
 </html>

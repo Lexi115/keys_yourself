@@ -59,7 +59,7 @@ public class UserDAO implements DAO<User> {
     public User getByToken(String token) {
         database.connect();
         User user = null;
-        Functions.hash(token);
+        String newToken = Functions.hash(token);
         String query = "SELECT * FROM utenti u JOIN ruoli r ON u.ruolo = r.id WHERE u.auth_token= ?";
         try {
             ResultSet rs = database.executeQuery(query, token);
