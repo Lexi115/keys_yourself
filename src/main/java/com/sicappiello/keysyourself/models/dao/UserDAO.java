@@ -62,7 +62,7 @@ public class UserDAO implements DAO<User> {
         String newToken = Functions.hash(token);
         String query = "SELECT * FROM utenti u JOIN ruoli r ON u.ruolo = r.id WHERE u.auth_token= ?";
         try {
-            ResultSet rs = database.executeQuery(query, token);
+            ResultSet rs = database.executeQuery(query, newToken);
             List<User> users = fetch(rs);
             if (!users.isEmpty()) {
                 user = users.get(0);

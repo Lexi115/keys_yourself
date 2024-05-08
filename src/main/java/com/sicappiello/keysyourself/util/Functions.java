@@ -39,7 +39,7 @@ public class Functions {
         cookie.setMaxAge(604800); // 7 giorni
         cookie.setPath("/");
         response.addCookie(cookie);
-        return "1"+(Functions.hash(token));
+        return Functions.hash(token);
     }
 
     public static Cookie getCookie(String name, HttpServletRequest request) {

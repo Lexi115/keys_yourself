@@ -7,6 +7,7 @@
     --palette3: #d2abe0;
     --palette4: #e097cd;
     --palette5: #a76fe0;
+    --background-color: #ffe8eb;
 }
 
 * {
@@ -16,7 +17,7 @@
 
 body {
     margin: 0; /* togliere bordi laterali */
-    background-color: #ffe8eb;
+    background-color: var(--background-color);
 }
 [class *= "col-"] {
     float: left;
@@ -221,11 +222,11 @@ body {
     font-size: 24px;
 }
 
-.searchbutton:hover {
+.searchbutton:hover,.fieldButton:hover {
     background-color: var(--palette5);
 }
 
-.searchbutton:active {
+.searchbutton:hover,.fieldButton:active {
     background-color: var(--palette4);
 }
 
@@ -280,6 +281,16 @@ body {
     box-shadow: 5px 5px var(--palette1);
 }
 
+.clickableNoShadow {
+    transition: 0.4s;
+}
+
+.clickableNoShadow:hover {
+    transform: scale(1.05,1.05);
+    cursor: pointer;
+    border-color: var(--palette1);
+}
+
 .card .title {
     font-size: 20px;
 }
@@ -306,4 +317,78 @@ body {
 
 .price {
     color: var(--palette5);
+}
+
+/*login shit*/
+
+.field{
+    box-shadow: 10px 10px 0 darkorchid;
+    flex-direction: column;
+    padding: 10px 10px;
+    height: 80%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-color: var(--palette3);
+}
+
+.fieldContainer{
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.loginLogo{
+    width: 20vw;
+}
+
+.input{
+    transition: 0.4s;
+    box-shadow: 5px 5px 0 darkorchid;
+    border: none;
+    background-color: var(--background-color);
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    padding: 10px 10px;
+    color: var(--palette5);
+    font-size: 24px;
+    outline: none;
+}
+
+.input:focus{
+    border : 2px solid var(--palette5);
+    transform: scale(1.10,1.00);
+    cursor: pointer;
+}
+
+div.error-alert {
+    background-color: lightpink;
+    color: darkred;
+    border: 1px solid darkred;
+    border-radius: 5px;
+    justify-content: center;
+    padding: 10px;
+    width: 50%;
+}
+
+.fieldIcon {
+    color: darkorchid;
+    font-size: 2vw;
+}
+
+.fieldButton {
+    box-shadow: 5px 5px 0 darkorchid;
+        background-color: var(--palette2);
+        border: none;
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        padding: 10px 0;
+        color: white;
+        font-size: 24px;
 }

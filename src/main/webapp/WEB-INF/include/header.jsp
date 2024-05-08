@@ -16,7 +16,7 @@
                     <div class="col-lg-11">
                         <input type="text" name="query" class="searchbar center" value="${param.query}">
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-1 clickable">
                         <button class="searchbutton" type="submit"><i class="bi bi-search"></i></button>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
 
         <!-- Menu -->
         <div class="col-lg-1 col-md-2 ">
-            <div class="icon right">
+            <div class="icon right clickableNoShadow">
                 <a href="login"><i class="bi icon bi-person-circle"></i></a>
             </div>
         </div>
