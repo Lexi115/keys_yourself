@@ -17,7 +17,7 @@ public class GenreDAO implements DAO<Genre> {
     }
 
     @Override
-    public Genre getById(long id) {
+    public Genre getById(int id) {
         database.connect();
         Genre genre = null;
 
@@ -109,7 +109,7 @@ public class GenreDAO implements DAO<Genre> {
     }
 
     @Override
-    public int delete(long id) {
+    public int delete(int id) {
         int rowsAffected = 0;
         database.connect();
         String query = "DELETE FROM generi WHERE id = ?";

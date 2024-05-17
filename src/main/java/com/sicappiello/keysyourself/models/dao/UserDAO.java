@@ -18,7 +18,7 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public User getById(long id) {
+    public User getById(int id) {
         database.connect();
         User user = null;
 
@@ -165,7 +165,7 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public int delete(long id) {
+    public int delete(int id) {
         int rowsDeleted = 0;
         database.connect();
         String query = "DELETE FROM utenti WHERE uid = ?";

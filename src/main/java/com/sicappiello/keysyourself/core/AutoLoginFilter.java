@@ -1,6 +1,7 @@
 package com.sicappiello.keysyourself.core;
 
 import com.sicappiello.keysyourself.core.database.Database;
+import com.sicappiello.keysyourself.models.beans.ShoppingCart;
 import com.sicappiello.keysyourself.models.beans.User;
 import com.sicappiello.keysyourself.models.dao.UserDAO;
 import com.sicappiello.keysyourself.util.Functions;
@@ -23,6 +24,7 @@ public class AutoLoginFilter implements Filter {
         if(session == null) {
             // Crea nuova sessione
             session = req.getSession();
+            session.setAttribute("cart",new ShoppingCart());
 
             //Verifica presenza authToken nel cookie (altrimenti è un guest e ha solo la sessione)
             Cookie authTokenCookie = Functions.getCookie("auth_token", req);

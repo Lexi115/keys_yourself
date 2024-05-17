@@ -17,7 +17,7 @@ public class OrderDAO implements DAO<Order> {
     }
 
     @Override
-    public Order getById(long id) {
+    public Order getById(int id) {
         database.connect();
         Order order = null;
 
@@ -122,7 +122,7 @@ public class OrderDAO implements DAO<Order> {
     }
 
     @Override
-    public int delete(long id) {
+    public int delete(int id) {
         int rowsAffected = 0;
         database.connect();
         String query = "DELETE FROM ordini WHERE id = ?";

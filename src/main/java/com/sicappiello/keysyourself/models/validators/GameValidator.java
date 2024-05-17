@@ -21,9 +21,6 @@ public abstract class GameValidator implements Validator<Game> {
             errors.add("Prezzo non valido");
         }
 
-        if (!Regex.matches(Regex.GAME_AVAILABLE_QUANTITY, Integer.toString(entity.getAvailableQuantity()))) {
-            errors.add("Quantità non valida");
-        }
 
         if (!Regex.matches(Regex.GAME_DESCRIPTION, entity.getDescription())) {
             errors.add("Descrizione non valida");
