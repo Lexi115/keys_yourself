@@ -15,7 +15,7 @@
             <p class="lead">Carrello</p>
         </div>
         <div class="row">
-            <c:forEach items="${requestScope.cart.games}" var="game">
+            <c:forEach items="${sessionScope.cart.games}" var="game">
                 <div class="col-12 mb-6 center">
                     <a href="game?id=${game.id}">
                         <div class="card clickable">
