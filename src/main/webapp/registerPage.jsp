@@ -1,0 +1,58 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<jsp:include page="WEB-INF/include/header.jsp" />
+<main>
+
+    <%if(session.getAttribute("info")!=null){%>
+    <p style="color:green;">${sessionScope.info}</p>
+    <%session.removeAttribute("info");
+    }%>
+
+    <div class="regFieldContainer">
+
+        <div class="col-4 field center col-sm-12">
+            <div class="row">
+                <img class="loginLogo" src="assets/images/registrati.png">
+            </div>
+
+        <%if(session.getAttribute("error")!=null){
+            for(String s: (List<String>) session.getAttribute("error")){%>
+            <div class="error-alert mb-4"><%=s%></div><%}%>
+        <%session.removeAttribute("error");
+        }%>
+
+        <div class="row">
+            <form action="register" method="post">
+                <div class="row center mb-4"><div class="col-3">E-mail </div> <div class="col-9"> <input class="input" type="text" name="email" ></div></div>
+                <div class="row center mb-4"><div class="col-3">Password </div> <div class="col-9"> <input class="input" type="password" name="password" ></div></div>
+                <div class="row center mb-4"><div class="col-3">Nome </div> <div class="col-9"> <input class="input" type="text" name="name" ></div></div>
+                <div class="row center mb-4"><div class="col-3">Cognome </div> <div class="col-9"> <input class="input" type="text" name="surname" ></div></div>
+                <div class="row center mb-4"><div class="col-3">Indirizzo </div> <div class="col-9"> <input class="input" type="text" name="address" ></div></div>
+                <div class="row center mb-4"><div class="col-3">Telefono </div> <div class="col-9"> <input class="input" type="tel" name="tel" ></div></div>
+                <div class="row mb-3">
+                    <div class="col-5 col-sm-12 mb-2">
+                        <button type="submit" class="fieldButton clickableNoShadow"><i class="bi bi-person-plus"></i></button>
+                    </div>
+                    <div class="col-5 col-sm-12 offset-2">
+                        <button type="reset" class="fieldButton clickableNoShadow"><i class="bi bi-arrow-clockwise"></i></button>
+                    </div>
+                </div>
+        </form>
+        </div>
+        Sei già registrato? <a href="loginPage.jsp">Fai il login</a>
+    </div>
+    </div>
+
+</main>
+
+
+
+</body>
+</html>

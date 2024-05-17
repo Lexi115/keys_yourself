@@ -70,7 +70,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("loginPage.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("registerPage.jsp");
         rd.forward(req,res);
     }
 

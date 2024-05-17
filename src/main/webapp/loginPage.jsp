@@ -13,6 +13,7 @@
     <p style="color:green;">${sessionScope.info}</p>
     <%session.removeAttribute("info");
     }%>
+
     <div class="fieldContainer">
 
         <div class="col-4 field center col-sm-12">
@@ -56,7 +57,7 @@
                     </div>
                 </form>
             </div>
-            Non sei registrato? <a href="registerpage.jsp">Registrati</a>
+            Non sei registrato? <a href="registerPage.jsp">Registrati</a>
         </div>
 
     </div>
