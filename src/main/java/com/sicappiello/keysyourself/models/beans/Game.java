@@ -42,14 +42,6 @@ public class Game {
         this.price = price;
     }
 
-    public int getAvailableQuantity() {
-        return availableQuantity;
-    }
-
-    public void setAvailableQuantity(int availableQuantity) {
-        this.availableQuantity = availableQuantity;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -72,7 +64,6 @@ public class Game {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", availableQuantity=" + availableQuantity +
                 ", description='" + description + '\'' +
                 ", producer='" + producer + '\'' +
                 ", genres=" + genres +

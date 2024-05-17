@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 
 public interface DAO<T> {
 
-    T getById(long id);
+    T getById(int id);
 
     List<T> getAll();
 
@@ -20,7 +20,7 @@ public interface DAO<T> {
 
     int delete(T entity);
 
-    int delete(long id);
+    int delete(int id);
 
     List<T> fetch(ResultSet rs) throws SQLException;
 }

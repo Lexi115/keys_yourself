@@ -31,6 +31,8 @@
                             <p class="price right">€ <span class="sub-lead">${game.price}</span></p>
                         </div>
                     </div>
+                    <form method="post" action="cart"><input type="hidden" name="id" value="${game.id}">
+                        <input type="submit" value="Aggiungi al carrello"> </form>
                 </div>
             </c:forEach>
         </div>

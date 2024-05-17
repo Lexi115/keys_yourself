@@ -19,7 +19,7 @@ public class GameDAO implements DAO<Game> {
     }
 
     @Override
-    public Game getById(long id) {
+    public Game getById(int id) {
         database.connect();
         Game game = null;
 
@@ -76,13 +76,12 @@ public class GameDAO implements DAO<Game> {
     public int save(Game entity) {
         int rowsAffected = 0;
         database.connect();
-        String query = "INSERT INTO giochi(id,nome,prezzo,quantita_disponibile,descrizione,produttore) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO giochi(id,nome,prezzo,descrizione,produttore) VALUES (?, ?, ?, ?, ?, ?)";
 
         Object[] params = new Object[]{
                 entity.getId(),
                 entity.getName(),
                 entity.getPrice(),
-                entity.getAvailableQuantity(),
                 entity.getDescription(),
                 entity.getProducer(),
         };
@@ -101,13 +100,12 @@ public class GameDAO implements DAO<Game> {
         int rowsAffected = 0;
         database.connect();
         String query = "UPDATE giochi SET id = ?, nome = ?, prezzo = ?," +
-                " quantita_disponibile = ?, descrizione = ?, produttore = ?";
+                " descrizione = ?, produttore = ?";
 
         Object[] params = new Object[]{
                 entity.getId(),
                 entity.getName(),
                 entity.getPrice(),
-                entity.getAvailableQuantity(),
                 entity.getDescription(),
                 entity.getProducer(),
         };
@@ -138,7 +136,7 @@ public class GameDAO implements DAO<Game> {
     public int delete(Game entity) { return this.delete(entity.getId()); }
 
     @Override
-    public int delete(long id) {
+    public int delete(int id) {
         int rowsAffected = 0;
         database.connect();
         String query = "DELETE FROM giochi WHERE id = ?";
@@ -162,7 +160,6 @@ public class GameDAO implements DAO<Game> {
             game.setId(rs.getInt("id"));
             game.setName(rs.getString("nome"));
             game.setPrice(rs.getDouble("prezzo"));
-            game.setAvailableQuantity(rs.getInt("quantita_disponibile"));
             game.setDescription(rs.getString("descrizione"));
             game.setProducer(rs.getString("produttore"));
             game.setGenres(getGenresByGameId(game.getId()));
