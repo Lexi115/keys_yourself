@@ -18,11 +18,26 @@ public class ShoppingCart {
         this.games = games;
     }
 
-    public void addGame(Game game) {
-        this.games.add(game);
+    public boolean addGame(Game game) {
+        if (!containsGame(game)) {
+            this.games.add(game);
+            return true;
+        }
+
+        return false;
     }
 
     public void removeGame(Game game) {
         this.games.remove(game);
+    }
+
+    public boolean containsGame(Game game) {
+        for (Game g : games) {
+            if (g.getId() == game.getId()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

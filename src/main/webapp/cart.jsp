@@ -12,7 +12,7 @@
     <title>bazingaz</title>
 </head>
 <body>
-vefefvreve
+
 <c:forEach items="${sessionScope.cart.games}" var="game">
     <div class="col-4 col-md-6 col-sm-12 mb-6 center">
         <div class="card clickable">
