@@ -17,22 +17,26 @@
         <div class="row">
             <c:forEach items="${requestScope.games}" var="game">
                 <div class="col-4 col-md-6 col-sm-12 mb-6 center">
-                    <div class="card clickable">
-                        <div class="row">
-                            <div class="thumbnail">
-                                <img src="assets/images/tmp.jpg">
+
+                    <!-- Card del gioco cliccabile -->
+                    <a href="game?id=${game.id}">
+                        <div class="card clickable">
+                            <div class="row">
+                                <div class="thumbnail">
+                                    <img src="assets/images/tmp.jpg">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="title">${game.name}</p>
+                                <p class="subtitle">${game.producer}</p>
+                            </div>
+                            <div class="row">
+                                <p class="price right">€ <span class="sub-lead">${game.price}</span></p>
                             </div>
                         </div>
-                        <div class="row">
-                            <p class="title">${game.name}</p>
-                            <p class="subtitle">${game.producer}</p>
-                        </div>
-                        <div class="row">
-                            <p class="price right">€ <span class="sub-lead">${game.price}</span></p>
-                        </div>
-                    </div>
-                    <form method="post" action="cart"><input type="hidden" name="id" value="${game.id}">
-                        <input type="submit" value="Aggiungi al carrello"> </form>
+                    </a>
+
+
                 </div>
             </c:forEach>
         </div>

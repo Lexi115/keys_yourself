@@ -1,20 +1,24 @@
 package com.sicappiello.keysyourself.models.beans;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ShoppingCart {
-    private List<Game> games;
+    private Set<Game> games;
+    double total;
 
     public ShoppingCart() {
-        this.games = new ArrayList<>();
+        this.games = new HashSet<Game>();
+        this.total = 0;
     }
 
-    public List<Game> getGames() {
+    public Set<Game> getGames() {
         return games;
     }
 
-    public void setGames(List<Game> games) {
+    public void setGames(Set<Game> games) {
         this.games = games;
     }
 
@@ -29,6 +33,14 @@ public class ShoppingCart {
 
     public void removeGame(Game game) {
         this.games.remove(game);
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public boolean containsGame(Game game) {

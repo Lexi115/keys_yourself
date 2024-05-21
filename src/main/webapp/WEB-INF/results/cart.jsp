@@ -39,6 +39,12 @@
 
         <div class="row">
             <div class="col-2 col-md-6 col-sm-12">
+                totale: ${sessionScope.total}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2 col-md-6 col-sm-12">
                 <button class="fieldButton clickableNoShadow">
                     Vai al checkout
                 </button>
