@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-2 col-md-6 col-sm-12">
-                                        <a href="https://www.google.com">
+                                        <a href="cartremove?id=${game.id}">
                                             <button class="fieldButton clickableNoShadow">
                                                 <i class="bi bi-bag-dash-fill"></i> Rimuovi
                                             </button>

@@ -23,7 +23,7 @@ public class ShoppingCart {
     }
 
     public boolean addGame(Game game) {
-        if (!containsGame(game)) {
+        if (containsGame(game.getId()) == null) {
             this.games.add(game);
             return true;
         }
@@ -32,7 +32,12 @@ public class ShoppingCart {
     }
 
     public void removeGame(Game game) {
-        this.games.remove(game);
+        for (Game g : games) {
+            if (g.getId() == game.getId()) {
+                this.games.remove(game);
+                return;
+            }
+        }
     }
 
     public double getTotal() {
@@ -43,13 +48,13 @@ public class ShoppingCart {
         this.total = total;
     }
 
-    public boolean containsGame(Game game) {
+    public Game containsGame(int id) {
         for (Game g : games) {
-            if (g.getId() == game.getId()) {
-                return true;
+            if (g.getId() == id) {
+                return g;
             }
         }
 
-        return false;
+        return null;
     }
 }

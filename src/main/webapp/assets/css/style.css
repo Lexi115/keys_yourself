@@ -384,6 +384,16 @@ div.error-alert {
     width: 50%;
 }
 
+div.info-alert {
+    background-color: lightgreen;
+    color: darkgreen;
+    border: 1px solid darkgreen;
+    border-radius: 5px;
+    justify-content: center;
+    padding: 10px;
+    width: 50%;
+}
+
 .fieldIcon {
     color: darkorchid;
     font-size: 2vw;

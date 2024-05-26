@@ -9,11 +9,6 @@
 <body>
 <jsp:include page="WEB-INF/include/header.jsp" />
 <main>
-    <%if(session.getAttribute("info")!=null){%>
-    <p style="color:green;">${sessionScope.info}</p>
-    <%session.removeAttribute("info");
-    }%>
-
     <div class="fieldContainer">
 
         <div class="col-4 field center col-sm-12">
@@ -22,11 +17,7 @@
             </div>
 
 
-            <%if(session.getAttribute("error")!=null){
-                for(String s: (List<String>) session.getAttribute("error")){%>
-            <div class="error-alert mb-4"><%=s%></div><%}%>
-            <%session.removeAttribute("error");
-            }%>
+            <jsp:include page="WEB-INF/include/errorAlert.jsp" />
 
 
             <div class="row">
