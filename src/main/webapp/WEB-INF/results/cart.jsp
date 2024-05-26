@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-2 col-md-6 col-sm-12">
+                                    <div class="col-2 col-md-6 right col-sm-12">
                                         <a href="cartremove?id=${game.id}">
                                             <button class="fieldButton clickableNoShadow">
                                                 <i class="bi bi-bag-dash-fill"></i> Rimuovi
@@ -55,7 +55,7 @@
             </div>
             <div class="col-12">
                 <button class="fieldButton clickableNoShadow">
-                    Vai al checkout
+                    <i class="bi bi-bag-check-fill"></i> Checkout
                 </button>
             </div>
         </div>

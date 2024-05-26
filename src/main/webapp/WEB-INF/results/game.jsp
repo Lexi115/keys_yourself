@@ -10,8 +10,6 @@
 <body>
 <jsp:include page="../include/header.jsp" />
 <main>
-    <jsp:include page="WEB-INF/include/infoAlert.jsp" />
-    <jsp:include page="WEB-INF/include/errorAlert.jsp" />
     <div class="gameContainer mt-4 w-90">
         <div class="row">
             <div class="lead mb-1">${game.name}</div>
@@ -34,6 +32,8 @@
                     <div class="lead mb-2">€ ${game.price}</div>
                     <form method="post" action="cart">
                         <input type="hidden" name="id" value="${game.id}">
+                        <jsp:include page="../include/infoAlert.jsp" />
+                        <jsp:include page="../include/errorAlert.jsp" />
                         <button class="fieldButton clickableNoShadow" type="submit">
                             Aggiungi al carrello
                         </button>
