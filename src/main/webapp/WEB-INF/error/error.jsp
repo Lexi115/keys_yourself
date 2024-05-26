@@ -20,7 +20,7 @@
 
         <div class="row">
             <code>
-                <c:out value="${pageScope.exception}" />
+                <%=exception.getMessage()%>
             </code>
         </div>
     </div>

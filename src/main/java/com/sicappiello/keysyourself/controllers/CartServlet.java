@@ -27,16 +27,17 @@ public class CartServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-        Database db = Functions.getContextDatabase(this);
-        GameDAO gameDAO = new GameDAO(db);
-        List<String> errors = new ArrayList<>();
-        session.setAttribute("error",errors);
+        synchronized (session) {
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            Database db = Functions.getContextDatabase(this);
+            GameDAO gameDAO = new GameDAO(db);
+            List<String> errors = new ArrayList<>();
+            session.setAttribute("error",errors);
 
-        //Recupero il gioco dal database in base all'id fornito dal form
-        int gameId = Integer.parseInt(request.getParameter("id"));
-        Game selectedGame = gameDAO.getById(gameId);
-        if (selectedGame != null) {
+            //Recupero il gioco dal database in base all'id fornito dal form
+            int gameId = Integer.parseInt(request.getParameter("id"));
+            Game selectedGame = gameDAO.getById(gameId);
+            if (selectedGame != null) {
                 //il gioco era già presente nel carrello?
                 if( cart.addGame(selectedGame) ){
                     //gioco non era presente
@@ -45,18 +46,18 @@ public class CartServlet extends HttpServlet {
                     session.setAttribute("total", cart.getTotal());
                 } else {
                     //gioco è già presente
-                    errors.add(selectedGame.getName() + " già esiste.");
+                    errors.add(selectedGame.getName() + " è già nel carrello.");
                 }
 
                 //redirect
-            //response.sendRedirect(request.getContextPath() + "/game?id=" + selectedGame.getId());
-            response.sendRedirect(request.getContextPath() + "/login");
+                response.sendRedirect(request.getContextPath() + "/game?id=" + selectedGame.getId());
 
-        } else {
-            //gioco non esiste
-            errors.add("Gioco non esistente");
-          //response.sendRedirect(request.getContextPath() + "/");
-            response.sendRedirect(request.getContextPath() + "/login");
+            } else {
+                //gioco non esiste
+                errors.add("Gioco non esistente");
+                //response.sendRedirect(request.getContextPath() + "/");
+                response.sendRedirect(request.getContextPath() + "/login");
+            }
         }
     }
 }
