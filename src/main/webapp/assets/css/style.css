@@ -49,20 +49,53 @@ body {
     position: relative;
 }
 
-@media only screen and (min-width: 769px) {
-    .offset-1{left: 8.33%;}
-    .offset-2{left: 16.66%;}
-    .offset-3{left: 25%;}
-    .offset-4 {left: 33.33%;}
-    .offset-5 {left: 41.66%;}
-    .offset-6 {left: 50%;}
-    .offset-7 {left: 58.33%;}
-    .offset-8 {left: 66.66%;}
-    .offset-9 {left: 75%;}
-    .offset-10 {left: 83.33%;}
-    .offset-11 {left: 91.66%;}
-    .offset-12 {left: 100%;}
+
+.offset-0{left: 0.0%;}
+.offset-1{left: 8.33%;}
+.offset-2{left: 16.66%;}
+.offset-3{left: 25%;}
+.offset-4 {left: 33.33%;}
+.offset-5 {left: 41.66%;}
+.offset-6 {left: 50%;}
+.offset-7 {left: 58.33%;}
+.offset-8 {left: 66.66%;}
+.offset-9 {left: 75%;}
+.offset-10 {left: 83.33%;}
+.offset-11 {left: 91.66%;}
+.offset-12 {left: 100%;}
+
+@media only screen and (max-width: 769px) {
+    .offset-sm-0{left: 0.0%;}
+    .offset-sm-1{left: 8.33%;}
+    .offset-sm-2{left: 16.66%;}
+    .offset-sm-3{left: 25%;}
+    .offset-sm-4 {left: 33.33%;}
+    .offset-sm-5 {left: 41.66%;}
+    .offset-sm-6 {left: 50%;}
+    .offset-sm-7 {left: 58.33%;}
+    .offset-sm-8 {left: 66.66%;}
+    .offset-sm-9 {left: 75%;}
+    .offset-sm-10 {left: 83.33%;}
+    .offset-sm-11 {left: 91.66%;}
+    .offset-sm-12 {left: 100%;}
 }
+
+@media only screen and (max-width: 1024px) {
+    .offset-md-0{left: 0.0%;}
+    .offset-md-1{left: 8.33%;}
+    .offset-md-2{left: 16.66%;}
+    .offset-md-3{left: 25%;}
+    .offset-md-4 {left: 33.33%;}
+    .offset-md-5 {left: 41.66%;}
+    .offset-md-6 {left: 50%;}
+    .offset-md-7 {left: 58.33%;}
+    .offset-md-8 {left: 66.66%;}
+    .offset-md-9 {left: 75%;}
+    .offset-md-10 {left: 83.33%;}
+    .offset-md-11 {left: 91.66%;}
+    .offset-md-12 {left: 100%;}
+}
+
 
 /* Per dispositivi mobile */
 @media only screen and (max-width: 768px) {
@@ -168,6 +201,52 @@ body {
 
 .mb-6 {
     margin-bottom: 30px;
+}
+
+.mb-7 {
+    margin-bottom: 35px;
+}
+
+.mb-8 {
+    margin-bottom: 40px;
+}
+
+.mb-9 {
+    margin-bottom: 55px;
+}
+
+.mb-10 {
+    margin-bottom: 60px;
+}
+
+.mb-11 {
+    margin-bottom: 65px;
+}
+
+
+
+.mt-1 {
+    margin-top: 5px;
+}
+
+.mt-2 {
+    margin-top: 10px;
+}
+
+.mt-3 {
+    margin-top: 15px;
+}
+
+.mt-4 {
+    margin-top: 20px;
+}
+
+.mt-5 {
+    margin-top: 25px;
+}
+
+.mt-6 {
+    margin-top: 30px;
 }
 
 [class *= "w-"] {
@@ -305,6 +384,12 @@ body {
     border-radius: 10px;
 }
 
+.gamePageThumbnail img {
+    width: 100%;
+    max-width: 85%;
+    border-radius: 5px;
+}
+
 .lead {
     font-weight: bold;
     font-size: 30px;
@@ -315,9 +400,6 @@ body {
     font-size: 20px;
 }
 
-.price {
-    color: var(--palette5);
-}
 
 /*login shit*/
 
@@ -331,6 +413,31 @@ body {
     justify-content: center;
     text-align: center;
     align-items: center;
+    background-color: var(--palette3);
+}
+
+.flexHorizontal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.flexVertical{
+    display: flex;
+    flex-direction: column;
+}
+
+.gameContainer{
+    box-shadow: 10px 10px 0 darkorchid;
+    flex-direction: column;
+    padding: 10px 5px;
+    margin-top: 120px;
+    height: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    align-items: stretch;
     background-color: var(--palette3);
 }
 

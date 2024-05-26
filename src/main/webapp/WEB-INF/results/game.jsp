@@ -10,25 +10,36 @@
 <body>
 <jsp:include page="../include/header.jsp" />
 <main>
-    <div class="container w-90">
+    <jsp:include page="WEB-INF/include/infoAlert.jsp" />
+    <jsp:include page="WEB-INF/include/errorAlert.jsp" />
+    <div class="gameContainer mt-4 w-90">
         <div class="row">
-            <p class="lead">${game.name}</p>
+            <div class="lead mb-1">${game.name}</div>
+            <div class="sub-lead mb-6">${game.producer}</div>
         </div>
         <div class="row">
-            <div class="thumbnail col-3 col-md-12">
+            <div class="gamePageThumbnail col-7 col-md-12">
                 <img src="assets/images/tmp.jpg">
             </div>
-            <div class="col-8 col-md-12 offset-1">
-                <div class="game-description">${game.description}</div>
-                <div class="lead price">€ ${game.price}</div>
+            <div class="col-4 col-md-12 offset-1 offset-md-0" style="padding:0px 17px">
+                <div class="mb-11 mt-6 row">
+                    <div class="col-12">
+                        <div class="sub-lead mb-1">Descrizione</div>
+                        <div class="game-description">${game.description}</div>
+                    </div>
+                </div>
 
-                <div class="col-3 col-md-12">
+                <div class="row">
+                    <div class="col-12 mt-6">
+                    <div class="lead mb-2">€ ${game.price}</div>
                     <form method="post" action="cart">
                         <input type="hidden" name="id" value="${game.id}">
                         <button class="fieldButton clickableNoShadow" type="submit">
                             Aggiungi al carrello
                         </button>
                     </form>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
