@@ -30,12 +30,12 @@
 
         <div class="row">
             <form action="register" method="post">
-                <div class="row center mb-4"><div class="col-3">E-mail </div> <div class="col-9"> <input class="input" type="text" name="email" ></div></div>
-                <div class="row center mb-4"><div class="col-3">Password </div> <div class="col-9"> <input class="input" type="password" name="password" ></div></div>
-                <div class="row center mb-4"><div class="col-3">Nome </div> <div class="col-9"> <input class="input" type="text" name="name" ></div></div>
-                <div class="row center mb-4"><div class="col-3">Cognome </div> <div class="col-9"> <input class="input" type="text" name="surname" ></div></div>
-                <div class="row center mb-4"><div class="col-3">Indirizzo </div> <div class="col-9"> <input class="input" type="text" name="address" ></div></div>
-                <div class="row center mb-4"><div class="col-3">Telefono </div> <div class="col-9"> <input class="input" type="tel" name="tel" ></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="email" placeholder="E-mail" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="password" name="password" placeholder="Password" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="name" placeholder="Nome" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="surname" placeholder="Cognome" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="address" placeholder="Indirizzo" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="tel" name="tel" placeholder="Telefono" required></div></div>
                 <div class="row mb-3">
                     <div class="col-5 col-sm-12 mb-2">
                         <button type="submit" class="fieldButton clickableNoShadow"><i class="bi bi-person-plus"></i></button>

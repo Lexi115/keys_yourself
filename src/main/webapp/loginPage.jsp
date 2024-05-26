@@ -32,19 +32,13 @@
             <div class="row">
                 <form action="login" method="post">
                     <div class="row center mb-4">
-                        <div class="col-2">
-                            <i class="fieldIcon bi bi-envelope"></i>
-                        </div>
-                        <div class="col-10">
-                        <input class="input" type="text" name="email" >
+                        <div class="col-12">
+                        <input class="input" type="text" name="email" placeholder="E-mail" required>
                         </div>
                     </div>
                     <div class="row center mb-4">
-                        <div class="col-2 ">
-                            <i class="fieldIcon bi bi-key"></i>
-                        </div>
-                        <div class="col-10">
-                        <input class="input" type="password" name="password" >
+                        <div class="col-12">
+                        <input class="input" type="password" name="password" placeholder="Password" required>
                         </div>
                     </div>
                     <div class="row mb-3">
