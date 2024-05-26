@@ -15,13 +15,21 @@
             <p class="lead">${game.name}</p>
         </div>
         <div class="row">
-            <div class="col-2 col-md-6 col-sm-12">
-                <form method="post" action="cart">
-                    <input type="hidden" name="id" value="${game.id}">
-                    <button class="fieldButton clickableNoShadow" type="submit">
-                        Aggiungi al carrello
-                    </button>
-                </form>
+            <div class="thumbnail col-3 col-md-12">
+                <img src="assets/images/tmp.jpg">
+            </div>
+            <div class="col-8 col-md-12 offset-1">
+                <div class="game-description">${game.description}</div>
+                <div class="lead price">€ ${game.price}</div>
+
+                <div class="col-3 col-md-12">
+                    <form method="post" action="cart">
+                        <input type="hidden" name="id" value="${game.id}">
+                        <button class="fieldButton clickableNoShadow" type="submit">
+                            Aggiungi al carrello
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
