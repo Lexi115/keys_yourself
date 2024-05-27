@@ -55,7 +55,7 @@
             </div>
             <div class="col-12">
                 <button class="fieldButton clickableNoShadow">
-                    <i class="bi bi-bag-check-fill"></i> Checkout
+                    <i class="bi bi-bag-check-fill"></i> Pagamento
                 </button>
             </div>
         </div>
