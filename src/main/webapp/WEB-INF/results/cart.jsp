@@ -54,9 +54,11 @@
                 <p class="price">Totale: € <span class="sub-lead">${sessionScope.total}</span></p>
             </div>
             <div class="col-12">
-                <button class="fieldButton clickableNoShadow">
-                    <i class="bi bi-bag-check-fill"></i> Pagamento
-                </button>
+                <a href="checkout">
+                    <button class="fieldButton clickableNoShadow">
+                        <i class="bi bi-bag-check-fill"></i> Pagamento
+                    </button>
+                </a>
             </div>
         </div>
     </div>

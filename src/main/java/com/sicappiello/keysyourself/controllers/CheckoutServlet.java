@@ -13,7 +13,7 @@ public class CheckoutServlet extends HttpServlet {
 
     //clicca procedi al pagamento
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("checkout.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/checkout.jsp");
         rd.forward(req,res);
     }
 
