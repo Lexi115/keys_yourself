@@ -1,10 +1,7 @@
 package com.sicappiello.keysyourself.controllers;
 
-import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.ShoppingCart;
-import com.sicappiello.keysyourself.models.dao.GameDAO;
-import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,7 +29,7 @@ public class CartRemoveServlet extends HttpServlet {
             if (game != null) {
                 cart.removeGame(game);
                 cart.setTotal(cart.getTotal() - game.getPrice());
-                session.setAttribute("total", cart.getTotal());
+                session.setAttribute("total", String.format("%.2f",cart.getTotal()));
             }
         }
 

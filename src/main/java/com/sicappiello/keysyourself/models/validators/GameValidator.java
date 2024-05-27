@@ -3,9 +3,7 @@ package com.sicappiello.keysyourself.models.validators;
 import com.sicappiello.keysyourself.core.enums.Regex;
 import com.sicappiello.keysyourself.core.interfaces.Validator;
 import com.sicappiello.keysyourself.models.beans.Game;
-import com.sicappiello.keysyourself.util.Functions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GameValidator implements Validator<Game> {

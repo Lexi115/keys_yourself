@@ -1,8 +1,8 @@
 package com.sicappiello.keysyourself.controllers;
 
+import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.models.beans.User;
 import com.sicappiello.keysyourself.models.dao.UserDAO;
-import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
