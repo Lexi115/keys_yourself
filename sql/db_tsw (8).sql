@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 27, 2024 at 01:53 PM
+-- Generation Time: May 27, 2024 at 05:59 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -147,6 +147,19 @@ INSERT INTO `giochi` (`id`, `nome`, `prezzo`, `descrizione`, `produttore`) VALUE
 (47, 'Suicide Squad: Kill the Justice League', '59.99', 'Unisciti al Suicide Squad in questo gioco d\'azione e avventura, dove devi fermare la Justice League diventata malvagia.', 'Rocksteady Studios'),
 (48, 'Star Wars Jedi: Fallen Order 2', '59.99', 'Torna a vestire i panni di un Jedi in questa epica avventura nel mondo di Star Wars, piena di azione e misteri.', 'Respawn Entertainment'),
 (49, 'Dragon Age 4', '59.99', 'Esplora un mondo fantasy ricco di intrighi politici, magia e avventure in questo nuovo capitolo della serie Dragon Age.', 'BioWare');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `giochi_acquistati`
+--
+
+CREATE TABLE `giochi_acquistati` (
+  `id_ordine` int NOT NULL,
+  `gioco` int DEFAULT NULL,
+  `nome_gioco` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `codice_gioco` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -362,9 +375,15 @@ INSERT INTO `giochi_generi` (`gioco`, `genere`) VALUES
 CREATE TABLE `ordini` (
   `id` int NOT NULL,
   `utente` int DEFAULT NULL,
-  `gioco` int DEFAULT NULL,
-  `nome_utente` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nome_gioco` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `cognome` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(320) COLLATE utf8mb4_general_ci NOT NULL,
+  `telefono` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `indirizzo` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `citta` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `regione` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `cap` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `stato` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `data_acquisto` date NOT NULL,
   `prezzo` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -440,7 +459,7 @@ INSERT INTO `utenti` (`uid`, `email`, `password`, `nome`, `cognome`, `indirizzo`
 (72, 'luca@email.com', 'giannipass', 'Luca', 'Rosa', 'Corso Italia 28', '456456456', '0', NULL),
 (73, 'elisa@email.com', 'password123', 'Elisa', 'Verde', 'Via Garibaldi 29', '789789789', '0', NULL),
 (74, 'gabriele@email.com', 'securepass', 'Gabriele', 'Blu', 'Corso Vittorio Emanuele 30', '987987987', '0', NULL),
-(75, 'ciao@ciao', 'b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2', 'ggg', 'gigi', 'waddawawd', '42342342', '0', '882c79515ad141db654902a915fe8afa8dedc9edf30009e777544ae4da626556'),
+(75, 'ciao@ciao', 'b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2', 'ggg', 'gigi', 'waddawawd', '42342342', '0', '49eac2a51955ae67df6cfe5cdc21056079d70edac8b0e88cd8774d8ad5cc312a'),
 (76, 'admin@admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin', 'admin', '23', '23423', '0', 'd0366ab1a7d1eff3767fe2e8f3869769395a3b889e4b756177f79b877e6f3fdb');
 
 --
@@ -468,6 +487,13 @@ ALTER TABLE `giochi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `giochi_acquistati`
+--
+ALTER TABLE `giochi_acquistati`
+  ADD KEY `gioco` (`gioco`),
+  ADD KEY `id_ordine` (`id_ordine`);
+
+--
 -- Indexes for table `giochi_generi`
 --
 ALTER TABLE `giochi_generi`
@@ -480,8 +506,7 @@ ALTER TABLE `giochi_generi`
 --
 ALTER TABLE `ordini`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `utente` (`utente`),
-  ADD KEY `gioco` (`gioco`);
+  ADD KEY `utente` (`utente`);
 
 --
 -- Indexes for table `ruoli`
@@ -514,6 +539,12 @@ ALTER TABLE `giochi`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
+-- AUTO_INCREMENT for table `ordini`
+--
+ALTER TABLE `ordini`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `utenti`
 --
 ALTER TABLE `utenti`
@@ -531,6 +562,13 @@ ALTER TABLE `carrelli`
   ADD CONSTRAINT `carrelli_ibfk_2` FOREIGN KEY (`utente`) REFERENCES `utenti` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `giochi_acquistati`
+--
+ALTER TABLE `giochi_acquistati`
+  ADD CONSTRAINT `giochi_acquistati_ibfk_3` FOREIGN KEY (`gioco`) REFERENCES `giochi` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `giochi_acquistati_ibfk_4` FOREIGN KEY (`id_ordine`) REFERENCES `ordini` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `giochi_generi`
 --
 ALTER TABLE `giochi_generi`
@@ -538,14 +576,6 @@ ALTER TABLE `giochi_generi`
   ADD CONSTRAINT `giochi_generi_ibfk_2` FOREIGN KEY (`genere`) REFERENCES `generi` (`id`),
   ADD CONSTRAINT `giochi_generi_ibfk_3` FOREIGN KEY (`genere`) REFERENCES `generi` (`id`),
   ADD CONSTRAINT `giochi_generi_ibfk_4` FOREIGN KEY (`gioco`) REFERENCES `giochi` (`id`);
-
---
--- Constraints for table `ordini`
---
-ALTER TABLE `ordini`
-  ADD CONSTRAINT `ordini_ibfk_1` FOREIGN KEY (`utente`) REFERENCES `utenti` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ordini_ibfk_2` FOREIGN KEY (`utente`) REFERENCES `utenti` (`uid`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `ordini_ibfk_3` FOREIGN KEY (`gioco`) REFERENCES `giochi` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `utenti`
