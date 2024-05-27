@@ -47,6 +47,9 @@
                     </a>
                 </div>
             </c:forEach>
+            <c:if test="${empty sessionScope.cart.games}">
+                <div class="sub-lead center">Il carrello è vuoto.</div>
+            </c:if>
         </div>
 
         <div class="row right">
@@ -54,10 +57,10 @@
                 <p class="price">Totale: € <span class="sub-lead">${sessionScope.total}</span></p>
             </div>
             <div class="col-12">
-                <a href="checkout">
-                <button class="fieldButton clickableNoShadow">
-                    <i class="bi bi-bag-check-fill"></i> Pagamento
-                </button>
+                <a href="${not empty sessionScope.cart.games ? 'checkout' : '#'}">
+                    <button class="fieldButton ${empty sessionScope.cart.games ? 'disabled' : 'clickableNoShadow'}">
+                        <i class="bi bi-bag-check-fill"></i> Pagamento
+                    </button>
                 </a>
             </div>
         </div>

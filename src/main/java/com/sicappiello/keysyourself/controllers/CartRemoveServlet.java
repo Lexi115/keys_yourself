@@ -33,7 +33,7 @@ public class CartRemoveServlet extends HttpServlet {
             }
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/results/cart.jsp");
-        rd.forward(request,response);
+        //redirect
+        response.sendRedirect(request.getContextPath() + "/cart");
     }
 }

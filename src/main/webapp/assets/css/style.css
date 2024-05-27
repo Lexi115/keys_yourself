@@ -8,6 +8,7 @@
     --palette4: #e097cd;
     --palette5: #a76fe0;
     --background-color: #ffe8eb;
+    --link: #644d81;
 }
 
 * {
@@ -218,30 +219,52 @@ main div{
     margin-bottom: 65px;
 }
 
-
-
-.mt-1 {
-    margin-top: 5px;
+.p-1 {
+    padding: 5px;
 }
 
-.mt-2 {
-    margin-top: 10px;
+.p-2 {
+    padding: 10px;
 }
 
-.mt-3 {
-    margin-top: 15px;
+.p-3 {
+    padding: 15px;
 }
 
-.mt-4 {
-    margin-top: 20px;
+.p-4 {
+    padding: 20px;
 }
 
-.mt-5 {
-    margin-top: 25px;
+.p-5 {
+    padding: 25px;
 }
 
-.mt-6 {
-    margin-top: 30px;
+.p-6 {
+    padding: 30px;
+}
+
+.p-1 {
+    padding: 5px;
+}
+
+.p-2 {
+    padding: 10px;
+}
+
+.p-3 {
+    padding: 15px;
+}
+
+.p-4 {
+    padding: 20px;
+}
+
+.p-5 {
+    padding: 25px;
+}
+
+.p-6 {
+    padding: 30px;
 }
 
 [class *= "w-"] {
@@ -344,8 +367,17 @@ main div{
     word-wrap: break-word;
 }
 
-a .card{
+a {
+    color: var(--link);
     text-decoration: none;
+}
+
+a:hover {
+    color: var(--palette5);
+}
+
+a:active {
+    color: var(--palette3);
 }
 
 .clickable {
@@ -440,6 +472,17 @@ a .card{
     background-color: var(--palette3);
 }
 
+.riepilogoContainer{
+    box-shadow: 10px 10px 0 darkorchid;
+    flex-direction: column;
+    padding: 10px 5px;
+    height: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    background-color: var(--palette3);
+}
+
 .fieldContainer{
     margin-top: 10%;
     display: flex;
@@ -464,7 +507,7 @@ a .card{
     transition: 0.4s;
     box-shadow: 5px 5px 0 darkorchid;
     border: none;
-    background-color: var(--background-color);
+    background-color: white;
     width: 100%;
     height: 100%;
     border-radius: 0;
@@ -515,4 +558,12 @@ div.info-alert {
         padding: 10px 0;
         color: white;
         font-size: 24px;
+}
+
+.cards {
+    width: 150px;
+}
+
+.disabled {
+    opacity: 0.5 !important;
 }
