@@ -13,9 +13,9 @@
 </head>
 <body>
 grazie per l'acquisto<br>
-${requestScope.order.toString}
+${requestScope.order}<br><br>
 <c:forEach items="${requestScope.order.games}" var="purchasedGame">
-    gioco 1 : ${purchasedGame.toString} <br>
+    gioco 1 : ${purchasedGame} <br>
 </c:forEach>
 
 </body>

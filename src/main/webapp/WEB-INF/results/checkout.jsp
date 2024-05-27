@@ -15,6 +15,7 @@
             <p class="lead">Checkout</p>
         </div>
 
+        <form action="checkout" method="post">
         <div class="row">
             <!-- Colonna indirizzi di fatturazione -->
             <div class="col-lg-8 col-md-12 col-sm-12 p-6">
@@ -92,7 +93,7 @@
                             <p class="price">Totale: € <span class="sub-lead">${sessionScope.total}</span></p>
                         </div>
                         <div class="col-12">
-                            <button class="fieldButton clickableNoShadow">
+                            <button type="submit" class="fieldButton clickableNoShadow">
                                 <i class="bi bi-bag-check-fill"></i> Acquista
                             </button>
                         </div>
@@ -100,6 +101,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </main>
 </body>

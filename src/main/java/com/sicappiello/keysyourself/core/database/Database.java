@@ -3,10 +3,7 @@ package com.sicappiello.keysyourself.core.database;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.TimeZone;
 
 public class Database {
@@ -111,6 +108,27 @@ public class Database {
         this.fillParameters(statement, parameters);
 
         return statement.executeUpdate();
+    }
+
+    public int executeUpdateReturnKeys(String query, Object... parameters) throws SQLException {
+        if (!this.isConnected()) {
+            return -1;
+        }
+
+        PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+        // Imposta dinamicamente i parametri
+        this.fillParameters(statement, parameters);
+
+        statement.executeUpdate();
+
+        try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            }
+        }
+
+        return -1;
     }
 
     private void fillParameters(PreparedStatement statement, Object... parameters) throws SQLException {

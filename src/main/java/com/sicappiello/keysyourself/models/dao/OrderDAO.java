@@ -57,12 +57,15 @@ public class OrderDAO implements DAO<Order> {
 
     @Override
     public int save(Order entity) {
-        int rowsAffected = 0;
+        int orderId = -1;
         database.connect();
         String query = "INSERT INTO ordini(utente,nome,cognome,email,telefono,indirizzo,citta,regione,cap,stato,data_acquisto,prezzo)" +
                 " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
-        Object[] params = new Object[]{
+        String purchasedGamesQuery = "INSERT INTO giochi_acquistati(id_ordine,gioco,nome_gioco,codice_gioco)" +
+                " VALUES (?,?,?,?)";
+
+        Object[] orderParams = new Object[]{
                 entity.getUserId(),
                 entity.getFirstName(),
                 entity.getLastName(),
@@ -78,12 +81,31 @@ public class OrderDAO implements DAO<Order> {
         };
 
         try {
-            rowsAffected = database.executeUpdate(query, params);
+            orderId = database.executeUpdateReturnKeys(query, orderParams);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return rowsAffected;
+        //aggiungo i giochi comprati nella tabella giochi_acquistati
+        for(PurchasedGame g : entity.getGames()) {
+
+            Object[] gameParams = new Object[]{
+                    orderId,
+                    g.getGame().getId(),
+                    g.getGameName(),
+                    g.getGameCode()
+            };
+
+            try {
+                database.executeUpdate(purchasedGamesQuery, gameParams);
+                System.out.println("Purchased game " + g.getGame().getId() + " " + g.getGameName());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        database.close();
+        return orderId;
     }
 
     @Override
@@ -114,7 +136,7 @@ public class OrderDAO implements DAO<Order> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        database.close();
         return rowsAffected;
     }
 

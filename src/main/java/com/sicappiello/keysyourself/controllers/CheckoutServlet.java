@@ -53,7 +53,7 @@ public class CheckoutServlet extends HttpServlet {
             order.setFirstName(req.getParameter("firstName"));
             order.setLastName(req.getParameter("lastName"));
             order.setEmail(req.getParameter("email"));
-            order.setPhoneNumber(req.getParameter("phone"));
+            order.setPhoneNumber(req.getParameter("phoneNumber"));
             order.setAddress(req.getParameter("address"));
             order.setCity(req.getParameter("city"));
             order.setState(req.getParameter("state"));
@@ -73,12 +73,17 @@ public class CheckoutServlet extends HttpServlet {
                 purchasedGames.add(new PurchasedGame(g, g.getName(), Functions.generateCode()));
             }
 
-            //salvo l'ordine nel database
+            //salvo l'ordine e i giochi acquistati nel database
             Database db = Functions.getContextDatabase(this);
             OrderDAO orderDAO = new OrderDAO(db);
             orderDAO.save(order);
 
+            //svuoto il carrello
+            session.setAttribute("cart", new ShoppingCart());
+
+            //aggiungo l'ordine nella request per la pagina grazie per l'acquisto
             req.setAttribute("order", order);
+
             RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/thanks.jsp");
             rd.forward(req,res);
 
