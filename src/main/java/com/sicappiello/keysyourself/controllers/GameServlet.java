@@ -2,6 +2,7 @@ package com.sicappiello.keysyourself.controllers;
 
 import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.models.beans.Game;
+import com.sicappiello.keysyourself.models.beans.Genre;
 import com.sicappiello.keysyourself.models.beans.ShoppingCart;
 import com.sicappiello.keysyourself.models.dao.GameDAO;
 import com.sicappiello.keysyourself.util.Functions;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/game")
 public class GameServlet extends HttpServlet {
@@ -23,13 +25,25 @@ public class GameServlet extends HttpServlet {
         Game selectedGame = gameDAO.getById(Integer.parseInt(request.getParameter("id")));
         if(selectedGame!=null){
             request.setAttribute("game",selectedGame);
+            request.setAttribute("gameGenres", getGenreString(selectedGame));
         } else {
-            throw new RuntimeException("no game niga");
+            throw new RuntimeException("Nessun gioco trovato.");
         }
         rd.forward(request,response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // aggiungi nuovo gioco
+    }
+
+    private String getGenreString(Game game)
+    {
+        List<Genre> genreList = game.getGenres();
+        String[] genreArray = new String[genreList.size()];
+        for (int i = 0; i < genreArray.length; i++) {
+            genreArray[i] = genreList.get(i).getName();
+        }
+
+        return String.join(", ", genreArray);
     }
 }

@@ -8,6 +8,7 @@
     --palette4: #e097cd;
     --palette5: #a76fe0;
     --background-color: #ffe8eb;
+    --link: #644d81;
 }
 
 * {
@@ -366,8 +367,17 @@ main div{
     word-wrap: break-word;
 }
 
-a .card{
+a {
+    color: var(--link);
     text-decoration: none;
+}
+
+a:hover {
+    color: var(--palette5);
+}
+
+a:active {
+    color: var(--palette3);
 }
 
 .clickable {
@@ -548,4 +558,12 @@ div.info-alert {
         padding: 10px 0;
         color: white;
         font-size: 24px;
+}
+
+.cards {
+    width: 150px;
+}
+
+.disabled {
+    opacity: 0.5 !important;
 }

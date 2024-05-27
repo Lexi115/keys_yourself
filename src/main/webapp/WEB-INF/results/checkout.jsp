@@ -14,48 +14,63 @@
         <div class="row">
             <p class="lead">Checkout</p>
         </div>
+
         <div class="row">
             <!-- Colonna indirizzi di fatturazione -->
             <div class="col-lg-8 col-md-12 col-sm-12 p-6">
                 <div>
                     <h4>Indirizzo di Fatturazione</h4>
-                    <form>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input type="text" class="input" id="firstName" placeholder="Nome" required>
+                                <input name="firstName" type="text" class="input" id="firstName" placeholder="Nome" required>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input type="text" class="input" id="lastName" placeholder="Cognome" required>
+                                <input name="lastName" type="text" class="input" id="lastName" placeholder="Cognome" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input type="email" class="input" id="email" placeholder="Email" required>
+                                <input name="email" type="email" class="input" id="email" placeholder="Email" required>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input type="tel" class="input" id="phone" placeholder="Telefono" required>
+                                <input name="phoneNumber" type="tel" class="input" id="phone" placeholder="Telefono" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-8 col-md-12 col-sm-12 p-1">
-                                <input type="text" class="input" id="address" placeholder="Indirizzo" required>
+                                <input name="address" type="text" class="input" id="address" placeholder="Indirizzo" required>
                             </div>
                             <div class="col-lg-4 col-md-12 col-sm-12 p-1">
-                                <input type="text" class="input" id="city" placeholder="Città" required>
+                                <input name="city" type="text" class="input" id="city" placeholder="Città" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-12 p-1">
-                                <input type="text" class="input" id="state" placeholder="Provincia" required>
+                                <input name="state" type="text" class="input" id="state" placeholder="Provincia" required>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 p-1">
-                                <input type="text" class="input" id="zip" placeholder="CAP" required>
+                                <input name="zip" type="text" class="input" id="zip" placeholder="CAP" required>
                             </div>
                             <div class="col-lg-4 col-md-12 col-sm-12 p-1">
-                                <input type="text" class="input" id="country" placeholder="Paese" required>
+                                <input name="country" type="text" class="input" id="country" placeholder="Paese" required>
                             </div>
                         </div>
-                    </form>
+                </div>
+
+                <div>
+                    <h4>Metodo di pagamento</h4>
+                    <img class="cards" src="assets/images/cards.png">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12 p-1">
+                            <input name="creditCardNumber" type="text" class="input" id="creditCardNumber" placeholder="Numero carta di credito" required>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 p-1">
+                            <input name="creditCardExpiration" type="text" class="input" id="creditCardExpiration" placeholder="mm/YY" required>
+                        </div>
+                        <div class="col-lg-2 col-md-12 col-sm-12 p-1">
+                            <input name="creditCardCVV" type="text" class="input" id="creditCardCVV" placeholder="CVV" required>
+                        </div>
+                    </div>
                 </div>
             </div>
 

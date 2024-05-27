@@ -26,6 +26,12 @@
                         <div class="game-description">${game.description}</div>
                     </div>
                 </div>
+                <div class="mb-11 mt-6 row">
+                    <div class="col-12">
+                        <div class="sub-lead mb-1">Generi</div>
+                        <div class="game-description">${gameGenres}</div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-12 mt-6">
