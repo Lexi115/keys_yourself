@@ -6,7 +6,10 @@ import com.sicappiello.keysyourself.models.beans.User;
 import com.sicappiello.keysyourself.models.dao.UserDAO;
 import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 

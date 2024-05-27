@@ -1,13 +1,11 @@
 package com.sicappiello.keysyourself.models.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
     private int id;
     private String name;
     private double price;
-    private int availableQuantity;
     private String description;
     private String producer;
     private List<Genre> genres;

@@ -1,10 +1,8 @@
 package com.sicappiello.keysyourself.core.interfaces;
 
-import com.sicappiello.keysyourself.core.database.Database;
-
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.sql.ResultSet;
 
 public interface DAO<T> {
 

@@ -1,6 +1,4 @@
 import com.sicappiello.keysyourself.core.database.Database;
-import com.sicappiello.keysyourself.core.enums.Regex;
-import com.sicappiello.keysyourself.util.Functions;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

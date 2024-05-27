@@ -2,18 +2,15 @@ package com.sicappiello.keysyourself.util;
 
 import com.google.common.hash.Hashing;
 import com.sicappiello.keysyourself.core.database.Database;
-import com.sicappiello.keysyourself.models.dao.UserDAO;
+import com.sicappiello.keysyourself.models.beans.User;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
-import com.sicappiello.keysyourself.models.beans.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Random;
 
 public class Functions {
     public static Database getContextDatabase(HttpServlet servlet) {
@@ -70,5 +67,25 @@ public class Functions {
         }
 
         return fullURL.toString();
+    }
+
+    //generate code string
+
+    private static char randomAlphanumeric() {
+        String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        return alphanumeric.charAt(random.nextInt(alphanumeric.length()));
+    }
+
+    public static String generateCode(){
+        StringBuilder code = new StringBuilder();
+        for(int i=1;i<20;i++){
+            if(i%5==0){
+                code.append("-");
+            } else {
+                code.append(randomAlphanumeric());
+            }
+        }
+        return code.toString();
     }
 }

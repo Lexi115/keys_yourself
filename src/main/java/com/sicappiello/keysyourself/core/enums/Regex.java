@@ -22,6 +22,9 @@ public abstract class Regex {
     //Regex per generi
     public static final String GENRE_NAME = ".{1,30}";
 
+    //Regex per billing information
+
+
     public static boolean matches(String regex, String input) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
