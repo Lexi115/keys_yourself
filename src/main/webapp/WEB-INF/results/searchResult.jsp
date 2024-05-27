@@ -39,6 +39,9 @@
 
                 </div>
             </c:forEach>
+            <c:if test="${empty requestScope.games}">
+                <div class="sub-lead center">Nessun risultato pertinente</div>
+            </c:if>
         </div>
     </div>
 </main>
