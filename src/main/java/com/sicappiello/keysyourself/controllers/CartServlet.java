@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,7 @@ public class CartServlet extends HttpServlet {
                     //gioco non era presente
                     session.setAttribute("info", selectedGame.getName() + " aggiunto al carrello!");
                     cart.setTotal(cart.getTotal() + selectedGame.getPrice());
-                    session.setAttribute("total", cart.getTotal());
+                    session.setAttribute("total", String.format("%.2f",cart.getTotal()));
                 } else {
                     //gioco è già presente
                     errors.add(selectedGame.getName() + " è già nel carrello.");

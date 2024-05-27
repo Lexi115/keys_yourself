@@ -2,7 +2,9 @@ package com.sicappiello.keysyourself.models.dao;
 
 import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.core.interfaces.DAO;
+import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Order;
+import com.sicappiello.keysyourself.models.beans.PurchasedGame;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,18 +59,22 @@ public class OrderDAO implements DAO<Order> {
     public int save(Order entity) {
         int rowsAffected = 0;
         database.connect();
-        String query = "INSERT INTO ordini(id,utente,gioco,quantita,data_acquisto,prezzo," +
-                "nome_utente,nome_gioco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO ordini(utente,nome,cognome,email,telefono,indirizzo,citta,regione,cap,stato,data_acquisto,prezzo)" +
+                " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         Object[] params = new Object[]{
-                entity.getId(),
                 entity.getUserId(),
-                entity.getGameId(),
-                entity.getQuantity(),
+                entity.getFirstName(),
+                entity.getLastName(),
+                entity.getEmail(),
+                entity.getPhoneNumber(),
+                entity.getAddress(),
+                entity.getCity(),
+                entity.getState(),
+                entity.getZip(),
+                entity.getCountry(),
                 entity.getOrderDate(),
-                entity.getPrice(),
-                entity.getUserName(),
-                entity.getGameName()
+                entity.getPrice()
         };
 
         try {
@@ -84,17 +90,22 @@ public class OrderDAO implements DAO<Order> {
     public int update(Order entity) {
         int rowsAffected = 0;
         database.connect();
-        String query = "UPDATE ordini SET utente = ?,gioco = ?,quantita = ?," +
-                "data_acquisto = ?,prezzo = ?,nome_utente = ?, nome_gioco = ? WHERE id = ?";
+        String query = "UPDATE ordini SET utente = ?,nome = ?,cognome = ?,email = ?,telefono = ?,indirizzo = ?,citta = ?,regione = ?,cap = ?,stato = ?,data_acquisto = ?,prezzo = ?" +
+                "prezzo = ? WHERE id = ?";
 
         Object[] params = new Object[]{
                 entity.getUserId(),
-                entity.getGameId(),
-                entity.getQuantity(),
+                entity.getFirstName(),
+                entity.getLastName(),
+                entity.getEmail(),
+                entity.getPhoneNumber(),
+                entity.getAddress(),
+                entity.getCity(),
+                entity.getState(),
+                entity.getZip(),
+                entity.getCountry(),
                 entity.getOrderDate(),
                 entity.getPrice(),
-                entity.getUserName(),
-                entity.getGameName(),
                 entity.getId()
         };
 
@@ -146,16 +157,48 @@ public class OrderDAO implements DAO<Order> {
 
             order.setId(rs.getInt("id"));
             order.setUserId(rs.getInt("utente"));
-            order.setGameId(rs.getInt("gioco"));
-            order.setQuantity(rs.getInt("quantita"));
+            order.setFirstName(rs.getString("nome"));
+            order.setLastName(rs.getString("cognome"));
+            order.setEmail(rs.getString("email"));
+            order.setPhoneNumber(rs.getString("telefono"));
+            order.setAddress(rs.getString("indirizzo"));
+            order.setCity(rs.getString("citta"));
+            order.setState(rs.getString("regione"));
+            order.setZip(rs.getString("cap"));
+            order.setCountry(rs.getString("stato"));
             order.setOrderDate((rs.getDate("data_acquisto")).toLocalDate());
             order.setPrice(rs.getDouble("prezzo"));
-            order.setUserName(rs.getString("nome_utente"));
-            order.setGameName(rs.getString("nome_gioco"));
+            order.setGames(getGamesByOrderId(order.getId()));
 
             orders.add(order);
         }
 
         return orders;
+    }
+
+    public List<PurchasedGame> getGamesByOrderId(int id){
+        database.connect();
+        List<PurchasedGame> purchasedGames = new ArrayList<>();
+        String query = "SELECT ga.gioco,ga.nome_gioco,ga.codice_gioco FROM giochi_acquistati ga FULL JOIN ordini o ON ordini.id = ga.id_ordine WHERE ga.id_ordine=?";
+        try {
+            ResultSet rs = database.executeQuery(query, id);
+            while(rs.next()) {
+                PurchasedGame purchasedGame = new PurchasedGame();
+
+                purchasedGame.setGameName(rs.getString("nome_gioco"));
+                purchasedGame.setGameCode(rs.getString("codice_gioco"));
+
+                GameDAO gameDAO = new GameDAO(database);
+                Game purchasedGameBean = gameDAO.getById(rs.getInt("gioco"));
+                purchasedGame.setGame(purchasedGameBean);
+
+                purchasedGames.add(purchasedGame);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        database.close();
+        return purchasedGames;
     }
 }

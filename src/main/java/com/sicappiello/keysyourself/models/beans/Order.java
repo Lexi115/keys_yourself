@@ -1,20 +1,28 @@
 package com.sicappiello.keysyourself.models.beans;
 
-import com.sicappiello.keysyourself.models.dao.UserDAO;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Order {
     private int id;
     private int userId;
-    private int gameId;
-    private String userName;
-    private String gameName;
-    private int quantity;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phoneNumber;
+    private String address;
+    private String city;
+    private String state;
+    private String zip;
+    private String country;
     private LocalDate orderDate;
     private double price;
+    private List<PurchasedGame> games;
 
-    public Order() {}
+    public Order() {
+        games = new ArrayList<>();
+    }
 
     public int getId() {
         return id;
@@ -32,20 +40,76 @@ public class Order {
         this.userId = userId;
     }
 
-    public int getGameId() {
-        return gameId;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public LocalDate getOrderDate() {
@@ -64,20 +128,12 @@ public class Order {
         this.price = price;
     }
 
-    public String getUserName() {
-        return userName;
+    public List<PurchasedGame> getGames() {
+        return games;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getGameName() {
-        return gameName;
-    }
-
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
+    public void setGames(List<PurchasedGame> games) {
+        this.games = games;
     }
 
     @Override
@@ -85,12 +141,18 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", userId=" + userId +
-                ", gameId=" + gameId +
-                ", userName='" + userName + '\'' +
-                ", gameName='" + gameName + '\'' +
-                ", quantity=" + quantity +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", country='" + country + '\'' +
                 ", orderDate=" + orderDate +
                 ", price=" + price +
+                ", games=" + games +
                 '}';
     }
 }

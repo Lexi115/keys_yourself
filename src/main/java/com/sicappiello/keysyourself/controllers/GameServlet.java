@@ -1,6 +1,5 @@
 package com.sicappiello.keysyourself.controllers;
 
-import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Genre;
 import com.sicappiello.keysyourself.models.beans.ShoppingCart;
@@ -12,7 +11,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;

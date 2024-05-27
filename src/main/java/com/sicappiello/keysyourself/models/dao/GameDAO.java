@@ -4,7 +4,6 @@ import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.core.interfaces.DAO;
 import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Genre;
-import com.sicappiello.keysyourself.models.beans.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

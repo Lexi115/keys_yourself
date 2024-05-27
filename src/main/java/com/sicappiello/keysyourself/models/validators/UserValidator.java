@@ -1,11 +1,10 @@
 package com.sicappiello.keysyourself.models.validators;
 
+import com.sicappiello.keysyourself.core.enums.Regex;
 import com.sicappiello.keysyourself.core.interfaces.Validator;
 import com.sicappiello.keysyourself.models.beans.User;
 
-import java.util.ArrayList;
 import java.util.List;
-import com.sicappiello.keysyourself.core.enums.Regex;
 
 public class UserValidator implements Validator<User> {
 
