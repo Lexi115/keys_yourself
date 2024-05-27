@@ -30,6 +30,11 @@ body {
     display: block;
 }
 
+main div{
+    font-size: 20px;
+}
+
+
 .col-0 {display: none;}
 .col-1{width: 8.33%;}
 .col-2{width: 16.66%;}
@@ -113,10 +118,6 @@ body {
     .col-sm-11 {width: 91.66% !important;}
     .col-sm-12 {width: 100% !important;}
 
-    main div{
-        font-size: 8vw;
-    }
-
     .fieldContainer{
         margin-top: 40px;
         height: 800px;
@@ -139,9 +140,6 @@ body {
     .col-md-11 {width: 91.66%;}
     .col-md-12 {width: 100%;}
 
-    main div{
-        font-size: 5vw;
-    }
 
 }
 
@@ -160,9 +158,6 @@ body {
     .col-lg-11 {width: 91.66%;}
     .col-lg-12 {width: 100%;}
 
-    main div{
-        font-size: 1vw;
-    }
 }
 
 .right {
