@@ -28,7 +28,7 @@ public class AutoLoginFilter implements Filter {
             // Crea nuova sessione
             session = req.getSession();
             session.setAttribute("cart",new ShoppingCart());
-            session.setAttribute("total", 0.0);
+            session.setAttribute("total", String.format("%.2f", 0.0));
 
             //Verifica presenza authToken nel cookie (altrimenti è un guest e ha solo la sessione)
             Cookie authTokenCookie = Functions.getCookie("auth_token", req);

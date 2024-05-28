@@ -22,7 +22,10 @@ public class CheckoutServlet extends HttpServlet {
     //clicca procedi al pagamento
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if (session.getAttribute("cart") == null) {res.sendRedirect("index.jsp");}
+        if (((ShoppingCart) session.getAttribute("cart")).getGames().isEmpty()) {
+            res.sendRedirect(req.getContextPath() + "/");
+            return;
+        }
 
         //in caso nel cart ci sta qualcosa
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/checkout.jsp");
@@ -38,6 +41,10 @@ public class CheckoutServlet extends HttpServlet {
         HttpSession session = req.getSession();
         synchronized (session) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            if (cart.getGames().isEmpty()) {
+                res.sendRedirect(req.getContextPath() + "/");
+                return;
+            }
 
             Order order = new Order();
 
@@ -80,6 +87,7 @@ public class CheckoutServlet extends HttpServlet {
 
             //svuoto il carrello
             session.setAttribute("cart", new ShoppingCart());
+            session.setAttribute("total", String.format("%.2f", 0.0));
 
             //aggiungo l'ordine nella request per la pagina grazie per l'acquisto
             req.setAttribute("order", order);
