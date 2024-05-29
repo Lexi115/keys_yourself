@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="col-2 col-md-12 col-sm-12">
                                     <div class="thumbnail">
-                                        <img src="assets/images/tmp.jpg">
+                                        <img src="assets/images/games/${game.id}.jpg">
                                     </div>
                                 </div>
                                 <div class="col-10 col-md-12 col-sm-12">
