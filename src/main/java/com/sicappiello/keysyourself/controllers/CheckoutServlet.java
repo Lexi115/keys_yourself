@@ -4,6 +4,7 @@ import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.core.interfaces.Validator;
 import com.sicappiello.keysyourself.models.beans.*;
 import com.sicappiello.keysyourself.models.dao.OrderDAO;
+import com.sicappiello.keysyourself.models.validators.CreditCardValidator;
 import com.sicappiello.keysyourself.models.validators.OrderValidator;
 import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.RequestDispatcher;
@@ -49,6 +50,7 @@ public class CheckoutServlet extends HttpServlet {
             }
 
             Order order = new Order();
+            CreditCard creditCard = new CreditCard();
 
             //se l'utente esiste salviamo anche id utente
             if (session.getAttribute("user") != null) {
@@ -72,10 +74,16 @@ public class CheckoutServlet extends HttpServlet {
             LocalDate date = LocalDate.now();
             order.setOrderDate(LocalDate.of(date.getYear(), date.getMonthValue(), date.getDayOfMonth()));
 
+            //creo l'oggetto carta di credito
+            creditCard.setCardNumber(req.getParameter("creditCardNumber"));
+
+
+
             //valido l'ordine
-            OrderValidator validator = new OrderValidator();
+            OrderValidator orderValidator = new OrderValidator();
+            CreditCardValidator creditCardValidator = new CreditCardValidator();
             List<String> errors = new ArrayList<>();
-            if((validator.validate(order,errors))) {
+            if((orderValidator.validate(order,errors))) {
 
                 String total = (String) session.getAttribute("total");
                 total = total.replace(",", ".");

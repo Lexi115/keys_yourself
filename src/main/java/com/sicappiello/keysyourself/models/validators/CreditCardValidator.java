@@ -6,7 +6,7 @@ import com.sicappiello.keysyourself.models.beans.CreditCard;
 
 import java.util.List;
 
-public abstract class CreditCardValidator implements Validator<CreditCard> {
+public class CreditCardValidator implements Validator<CreditCard> {
 
     @Override
     public boolean validate(CreditCard entity, List<String> errors) {
