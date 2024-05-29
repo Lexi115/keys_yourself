@@ -23,7 +23,7 @@
                         <div class="card clickable">
                             <div class="row">
                                 <div class="thumbnail">
-                                    <img src="assets/images/tmp.jpg">
+                                    <img src="assets/images/games/${game.id}.jpg">
                                 </div>
                             </div>
                             <div class="row">
