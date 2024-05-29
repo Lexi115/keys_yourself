@@ -472,6 +472,20 @@ a:active {
     background-color: var(--palette3);
 }
 
+.gameContainerCheckout{
+    box-shadow: 10px 10px 0 darkorchid;
+    flex-direction: column;
+    padding: 10px 10px;
+    margin-top: 5px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    align-items: stretch;
+    background-color: var(--palette3);
+}
+
+
 .riepilogoContainer{
     box-shadow: 10px 10px 0 darkorchid;
     flex-direction: column;
