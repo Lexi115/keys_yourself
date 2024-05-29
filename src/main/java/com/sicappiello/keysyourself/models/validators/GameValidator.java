@@ -6,7 +6,7 @@ import com.sicappiello.keysyourself.models.beans.Game;
 
 import java.util.List;
 
-public abstract class GameValidator implements Validator<Game> {
+public class GameValidator implements Validator<Game> {
 
     @Override
     public boolean validate(Game entity,List<String> errors) {
