@@ -10,6 +10,8 @@ public class UserValidator implements Validator<User> {
 
     @Override
     public boolean validate(User entity, List<String> errors) {
+        errors.clear();
+
         // Controlla E-Mail
         if (!Regex.matches(Regex.USER_EMAIL, entity.getEmail())) {
             errors.add("E-Mail non valida");

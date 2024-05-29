@@ -10,6 +10,7 @@ public abstract class GameValidator implements Validator<Game> {
 
     @Override
     public boolean validate(Game entity,List<String> errors) {
+        errors.clear();
 
         if (!Regex.matches(Regex.GAME_NAME, entity.getName())) {
             errors.add("Nome non valido");
