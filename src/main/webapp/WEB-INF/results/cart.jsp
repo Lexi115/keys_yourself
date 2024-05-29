@@ -25,27 +25,24 @@
                                         <img src="assets/images/games/${game.id}.jpg">
                                     </div>
                                 </div>
-                                <div class="col-10 col-md-12 col-sm-12">
+                                <div class="col-4 col-md-12 col-sm-12">
                                     <div style="padding-left: 10px">
                                         <p class="title">${game.name}</p>
                                         <p class="subtitle">${game.producer}</p>
                                         <p class="price">€ <span class="sub-lead">${game.price}</span></p>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-2 col-md-6 right col-sm-12">
+                                    <div class="col-2 col-md-6 right col-sm-12" style="margin-top: 30px;margin-right: 10px">
                                         <a href="cartremove?id=${game.id}">
                                             <button class="fieldButton clickableNoShadow">
                                                 <i class="bi bi-bag-dash-fill"></i> Rimuovi
                                             </button>
                                         </a>
-
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
             </c:forEach>
             <c:if test="${empty sessionScope.cart.games}">
                 <div class="sub-lead center">Il carrello è vuoto.</div>

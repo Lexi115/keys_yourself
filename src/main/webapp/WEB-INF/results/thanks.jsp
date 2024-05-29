@@ -20,7 +20,7 @@
                         <div class="col-2 col-md-12 col-sm-12">
                             <a href="game?id=${purchasedGame.game.id}">
                             <div class="clickable thumbnail">
-                                <img src="assets/images/tmp.jpg">
+                                <img src="assets/images/games/${purchasedGame.game.id}.jpg">
                             </div>
                             </a>
                         </div>
