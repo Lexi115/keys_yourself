@@ -1,8 +1,10 @@
 package com.sicappiello.keysyourself.controllers;
 
 import com.sicappiello.keysyourself.core.database.Database;
+import com.sicappiello.keysyourself.core.interfaces.Validator;
 import com.sicappiello.keysyourself.models.beans.*;
 import com.sicappiello.keysyourself.models.dao.OrderDAO;
+import com.sicappiello.keysyourself.models.validators.OrderValidator;
 import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,6 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/checkout")
@@ -37,7 +40,6 @@ public class CheckoutServlet extends HttpServlet {
 
     //clicca checkout
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //validator delle billing info
         HttpSession session = req.getSession();
         synchronized (session) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
@@ -57,6 +59,7 @@ public class CheckoutServlet extends HttpServlet {
                 order.setUserId(-1);
             }
 
+            //creo l'ordine
             order.setFirstName(req.getParameter("firstName"));
             order.setLastName(req.getParameter("lastName"));
             order.setEmail(req.getParameter("email"));
@@ -69,32 +72,40 @@ public class CheckoutServlet extends HttpServlet {
             LocalDate date = LocalDate.now();
             order.setOrderDate(LocalDate.of(date.getYear(), date.getMonthValue(), date.getDayOfMonth()));
 
-            String total = (String) session.getAttribute("total");
-            total = total.replace(",",".");
-            order.setPrice(Double.parseDouble(total));
+            //valido l'ordine
+            OrderValidator validator = new OrderValidator();
+            List<String> errors = new ArrayList<>();
+            if((validator.validate(order,errors))) {
+
+                String total = (String) session.getAttribute("total");
+                total = total.replace(",", ".");
+                order.setPrice(Double.parseDouble(total));
 
 
-            //converto ogni gioco in purchasedGame e genero un codice per ognuno, mettendoli infine nella lista dei giochi comprati
-            List<PurchasedGame> purchasedGames = order.getGames();
-            for (Game g : cart.getGames()) {
-                purchasedGames.add(new PurchasedGame(g, g.getName(), Functions.generateCode()));
+                //converto ogni gioco in purchasedGame e genero un codice per ognuno, mettendoli infine nella lista dei giochi comprati
+                List<PurchasedGame> purchasedGames = order.getGames();
+                for (Game g : cart.getGames()) {
+                    purchasedGames.add(new PurchasedGame(g, g.getName(), Functions.generateCode()));
+                }
+
+                //salvo l'ordine e i giochi acquistati nel database
+                Database db = Functions.getContextDatabase(this);
+                OrderDAO orderDAO = new OrderDAO(db);
+                orderDAO.save(order);
+
+                //svuoto il carrello
+                session.setAttribute("cart", new ShoppingCart());
+                session.setAttribute("total", String.format("%.2f", 0.0));
+
+                //aggiungo l'ordine nella request per la pagina grazie per l'acquisto
+                req.setAttribute("order", order);
+
+                RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/thanks.jsp");
+                rd.forward(req, res);
+            } else {
+                session.setAttribute("error", errors);
+                doGet(req, res);
             }
-
-            //salvo l'ordine e i giochi acquistati nel database
-            Database db = Functions.getContextDatabase(this);
-            OrderDAO orderDAO = new OrderDAO(db);
-            orderDAO.save(order);
-
-            //svuoto il carrello
-            session.setAttribute("cart", new ShoppingCart());
-            session.setAttribute("total", String.format("%.2f", 0.0));
-
-            //aggiungo l'ordine nella request per la pagina grazie per l'acquisto
-            req.setAttribute("order", order);
-
-            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/thanks.jsp");
-            rd.forward(req,res);
-
         }
     }
 }

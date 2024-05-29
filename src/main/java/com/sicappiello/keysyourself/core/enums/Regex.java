@@ -22,7 +22,20 @@ public abstract class Regex {
     //Regex per generi
     public static final String GENRE_NAME = ".{1,30}";
 
-    //Regex per billing information
+    //Regex per order
+    public static final String ORDER_FIRST_NAME = ".{1,150}";
+    public static final String ORDER_LAST_NAME = ".{1,50}";
+    public static final String ORDER_EMAIL = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+    public static final String ORDER_PHONE_NUMBER = "^\\+\\d{2,6}\\s?[\\d\\s]{10,16}$";
+    public static final String ORDER_ADDRESS = ".{1,100}";
+    public static final String ORDER_CITY = ".{1,100}";
+    public static final String ORDER_STATE = "{1,100}";
+    public static final String ORDER_COUNTRY = ".{1,50}";
+    public static final String ORDER_ZIP = "\\d{5}";
+
+    //credit card regex
+    public static final String CREDIT_CARD_NUMBER = "\\d{16}";
+    public static final String CREDIT_CARD_CVV = "\\d{3}";
 
 
     public static boolean matches(String regex, String input) {

@@ -6,7 +6,7 @@ import com.sicappiello.keysyourself.models.beans.Order;
 
 import java.util.List;
 
-public abstract class OrderValidator implements Validator<Order> {
+public class OrderValidator implements Validator<Order> {
 
     @Override
     public boolean validate(Order entity, List<String> errors) {
@@ -41,6 +41,12 @@ public abstract class OrderValidator implements Validator<Order> {
         if (!Regex.matches(Regex.ORDER_COUNTRY, entity.getCountry())) {
             errors.add("Paese non valido");
         }
+
+        if (!Regex.matches(Regex.ORDER_ZIP, entity.getZip())){
+            errors.add("Codice postale non valido");
+        }
+
+        return errors.isEmpty();
     }
 
 }
