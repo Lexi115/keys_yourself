@@ -59,10 +59,10 @@ public class OrderDAO implements DAO<Order> {
     public List<Order> getAll(User user) {
         database.connect();
         List<Order> orders = new ArrayList<>();
-
-        String query = "SELECT * FROM ordini";
+      
+        String query = "SELECT * FROM ordini WHERE utente = ?";
         try {
-            ResultSet rs = database.executeQuery(query);
+            ResultSet rs = database.executeQuery(query, user.getUid());
             orders = fetch(rs);
         } catch (SQLException e) {
             e.printStackTrace();
