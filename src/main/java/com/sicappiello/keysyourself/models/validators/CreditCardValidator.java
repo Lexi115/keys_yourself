@@ -10,7 +10,6 @@ public class CreditCardValidator implements Validator<CreditCard> {
 
     @Override
     public boolean validate(CreditCard entity, List<String> errors) {
-        errors.clear();
 
         if (!Regex.matches(Regex.CREDIT_CARD_NUMBER, entity.getCardNumber())) {
             errors.add("Numero carta di credito non valido");

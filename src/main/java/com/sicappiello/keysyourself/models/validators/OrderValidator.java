@@ -10,7 +10,6 @@ public class OrderValidator implements Validator<Order> {
 
     @Override
     public boolean validate(Order entity, List<String> errors) {
-        errors.clear();
 
         if (!Regex.matches(Regex.ORDER_FIRST_NAME, entity.getFirstName())) {
             errors.add("Nome non valido");

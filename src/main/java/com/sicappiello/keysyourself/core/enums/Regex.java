@@ -30,7 +30,7 @@ public abstract class Regex {
     public static final String ORDER_CITY = ".{1,100}";
     public static final String ORDER_STATE = ".{1,100}";
     public static final String ORDER_COUNTRY = ".{1,50}";
-    public static final String ORDER_ZIP = "\\d{5}";
+    public static final String ORDER_ZIP = "^\\d{5}$";
 
     //credit card regex
     public static final String CREDIT_CARD_NUMBER = "^\\d{16}$";
