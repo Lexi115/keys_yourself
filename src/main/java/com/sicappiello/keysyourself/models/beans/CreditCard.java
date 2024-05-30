@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class CreditCard {
 
     private String cardNumber;
-    private LocalDate expirationDate;
-    private int cvv;
+    private String expirationDate;
+    private String cvv;
     private double balance;
 
     public CreditCard() {
@@ -20,19 +20,19 @@ public class CreditCard {
         this.cardNumber = cardNumber;
     }
 
-    public LocalDate getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
 
@@ -46,7 +46,8 @@ public class CreditCard {
 
     public boolean isExpired() {
         LocalDate today = LocalDate.now();
-        return today.isAfter(expirationDate);
+        LocalDate expiryDate = LocalDate.parse(expirationDate);
+        return today.isAfter(expiryDate);
     }
 
     @Override

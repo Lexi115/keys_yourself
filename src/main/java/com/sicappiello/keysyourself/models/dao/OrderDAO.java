@@ -5,6 +5,7 @@ import com.sicappiello.keysyourself.core.interfaces.DAO;
 import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Order;
 import com.sicappiello.keysyourself.models.beans.PurchasedGame;
+import com.sicappiello.keysyourself.models.beans.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +47,22 @@ public class OrderDAO implements DAO<Order> {
         String query = "SELECT * FROM ordini";
         try {
             ResultSet rs = database.executeQuery(query);
+            orders = fetch(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        database.close();
+        return orders;
+    }
+
+    public List<Order> getAll(User user) {
+        database.connect();
+        List<Order> orders = new ArrayList<>();
+
+        String query = "SELECT * FROM ordini WHERE utente = ?";
+        try {
+            ResultSet rs = database.executeQuery(query, user.getUid());
             orders = fetch(rs);
         } catch (SQLException e) {
             e.printStackTrace();
