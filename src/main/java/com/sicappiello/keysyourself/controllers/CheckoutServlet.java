@@ -30,6 +30,7 @@ public class CheckoutServlet extends HttpServlet {
             res.sendRedirect(req.getContextPath() + "/");
             return;
         }
+        System.out.println(req.getParameter("firstName"));
 
         //in caso nel cart ci sta qualcosa
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/checkout.jsp");
@@ -42,6 +43,7 @@ public class CheckoutServlet extends HttpServlet {
     //clicca checkout
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        System.out.println(req.getParameter("firstName"));
         synchronized (session) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart.getGames().isEmpty()) {
@@ -76,14 +78,19 @@ public class CheckoutServlet extends HttpServlet {
 
             //creo l'oggetto carta di credito
             creditCard.setCardNumber(req.getParameter("creditCardNumber"));
+            creditCard.setExpirationDate(req.getParameter("creditCardExpiration"));
+            creditCard.setCvv(req.getParameter("creditCardCVV"));
 
 
-
-            //valido l'ordine
+            //valido l'ordine e la carta di credito
             OrderValidator orderValidator = new OrderValidator();
             CreditCardValidator creditCardValidator = new CreditCardValidator();
+
             List<String> errors = new ArrayList<>();
-            if((orderValidator.validate(order,errors))) {
+            //todo FINIRE IL CONTROLLO
+            boolean isValidOrder = orderValidator.validate(order,errors);
+            boolean isValidCreditCard = creditCardValidator.validate(creditCard,errors);
+            if((isValidOrder)&&(isValidCreditCard)) {
 
                 String total = (String) session.getAttribute("total");
                 total = total.replace(",", ".");
@@ -111,6 +118,8 @@ public class CheckoutServlet extends HttpServlet {
                 RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/thanks.jsp");
                 rd.forward(req, res);
             } else {
+
+                //torna alla pagine del checkout
                 session.setAttribute("error", errors);
                 doGet(req, res);
             }

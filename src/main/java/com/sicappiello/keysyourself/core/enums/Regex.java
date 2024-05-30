@@ -15,7 +15,6 @@ public abstract class Regex {
     //Regex per giochi
     public static final String GAME_NAME = ".{1,150}";
     public static final String GAME_PRICE = "^\\d{1,10}.\\d{2}$";
-    public static final String GAME_AVAILABLE_QUANTITY = "\\d";
     public static final String GAME_DESCRIPTION = ".{1,2000}";
     public static final String GAME_PRODUCER = ".{1,50}";
 
@@ -29,13 +28,14 @@ public abstract class Regex {
     public static final String ORDER_PHONE_NUMBER = "^\\+\\d{2,6}\\s?[\\d\\s]{10,16}$";
     public static final String ORDER_ADDRESS = ".{1,100}";
     public static final String ORDER_CITY = ".{1,100}";
-    public static final String ORDER_STATE = "{1,100}";
+    public static final String ORDER_STATE = ".{1,100}";
     public static final String ORDER_COUNTRY = ".{1,50}";
-    public static final String ORDER_ZIP = "\\d{5}";
+    public static final String ORDER_ZIP = "^\\d{5}$";
 
     //credit card regex
-    public static final String CREDIT_CARD_NUMBER = "\\d{16}";
-    public static final String CREDIT_CARD_CVV = "\\d{3}";
+    public static final String CREDIT_CARD_NUMBER = "^\\d{16}$";
+    public static final String CREDIT_CARD_EXPIRATION_DATE = "^(0[1-9]|1[0-2])\\/([0-9]{4})$";
+    public static final String CREDIT_CARD_CVV = "^\\d{3}$";
 
 
     public static boolean matches(String regex, String input) {

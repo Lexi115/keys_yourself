@@ -25,37 +25,37 @@
                     <h4>Indirizzo di Fatturazione</h4>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input name="firstName" type="text" class="input" id="firstName" placeholder="Nome" required>
+                                <input name="firstName" type="text" class="input" id="firstName" placeholder="Nome" value="${param.firstName}" required>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input name="lastName" type="text" class="input" id="lastName" placeholder="Cognome" required>
+                                <input name="lastName" type="text" class="input" id="lastName" placeholder="Cognome" value="${param.lastName}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input name="email" type="email" class="input" id="email" placeholder="Email" required>
+                                <input name="email" type="email" class="input" id="email" placeholder="Email" value="${param.email}" required>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input name="phoneNumber" type="tel" class="input" id="phone" placeholder="Telefono" required>
+                                <input name="phoneNumber" type="tel" class="input" id="phone" placeholder="Telefono" value="${param.phoneNumber}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-8 col-md-12 col-sm-12 p-1">
-                                <input name="address" type="text" class="input" id="address" placeholder="Indirizzo" required>
+                                <input name="address" type="text" class="input" id="address" placeholder="Indirizzo" value="${param.address}" required>
                             </div>
                             <div class="col-lg-4 col-md-12 col-sm-12 p-1">
-                                <input name="city" type="text" class="input" id="city" placeholder="Città" required>
+                                <input name="city" type="text" class="input" id="city" placeholder="Città" value="${param.city}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-12 p-1">
-                                <input name="state" type="text" class="input" id="state" placeholder="Provincia" required>
+                                <input name="state" type="text" class="input" id="state" placeholder="Regione" value="${param.state}" required>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 p-1">
-                                <input name="zip" type="text" class="input" id="zip" placeholder="CAP" required>
+                                <input name="zip" type="text" class="input" id="zip" placeholder="CAP" value="${param.zip}" required>
                             </div>
                             <div class="col-lg-4 col-md-12 col-sm-12 p-1">
-                                <input name="country" type="text" class="input" id="country" placeholder="Paese" required>
+                                <input name="country" type="text" class="input" id="country" placeholder="Paese" value="${param.country}" required>
                             </div>
                         </div>
                 </div>
@@ -65,13 +65,13 @@
                     <img class="cards" src="assets/images/cards.png">
                     <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                            <input name="creditCardNumber" type="text" class="input" id="creditCardNumber" placeholder="Numero carta di credito" required>
+                            <input name="creditCardNumber" type="text" class="input" id="creditCardNumber" placeholder="Numero carta di credito" value="${param.creditCardNumber}" required>
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12 p-1">
-                            <input name="creditCardExpiration" type="text" class="input" id="creditCardExpiration" placeholder="mm/YY" required>
+                            <input name="creditCardExpiration" type="text" class="input" id="creditCardExpiration" placeholder="mm/YY" value="${param.creditCardExpiration}" required>
                         </div>
                         <div class="col-lg-2 col-md-12 col-sm-12 p-1">
-                            <input name="creditCardCVV" type="text" class="input" id="creditCardCVV" placeholder="CVV" required>
+                            <input name="creditCardCVV" type="text" class="input" id="creditCardCVV" placeholder="CVV" value="${param.creditCardCVV}" required>
                         </div>
                     </div>
                 </div>
