@@ -16,7 +16,9 @@ public class CreditCardValidator implements Validator<CreditCard> {
             errors.add("Numero carta di credito non valido");
         }
 
-        if (entity.isExpired()) {
+        if (!Regex.matches(Regex.CREDIT_CARD_EXPIRATION_DATE, entity.getExpirationDate())){
+            errors.add("Data di scadenza non valida");
+        } else if (entity.isExpired()) {
             errors.add("Carta di credito scaduta");
         }
 
