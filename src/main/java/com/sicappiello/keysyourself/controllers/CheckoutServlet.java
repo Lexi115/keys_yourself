@@ -4,6 +4,7 @@ import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.core.interfaces.Validator;
 import com.sicappiello.keysyourself.models.beans.*;
 import com.sicappiello.keysyourself.models.dao.OrderDAO;
+import com.sicappiello.keysyourself.models.validators.CreditCardValidator;
 import com.sicappiello.keysyourself.models.validators.OrderValidator;
 import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.RequestDispatcher;
@@ -29,6 +30,7 @@ public class CheckoutServlet extends HttpServlet {
             res.sendRedirect(req.getContextPath() + "/");
             return;
         }
+        System.out.println(req.getParameter("firstName"));
 
         //in caso nel cart ci sta qualcosa
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/checkout.jsp");
@@ -41,6 +43,7 @@ public class CheckoutServlet extends HttpServlet {
     //clicca checkout
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        System.out.println(req.getParameter("firstName"));
         synchronized (session) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart.getGames().isEmpty()) {
@@ -49,6 +52,7 @@ public class CheckoutServlet extends HttpServlet {
             }
 
             Order order = new Order();
+            CreditCard creditCard = new CreditCard();
 
             //se l'utente esiste salviamo anche id utente
             if (session.getAttribute("user") != null) {
@@ -72,10 +76,21 @@ public class CheckoutServlet extends HttpServlet {
             LocalDate date = LocalDate.now();
             order.setOrderDate(LocalDate.of(date.getYear(), date.getMonthValue(), date.getDayOfMonth()));
 
-            //valido l'ordine
-            OrderValidator validator = new OrderValidator();
+            //creo l'oggetto carta di credito
+            creditCard.setCardNumber(req.getParameter("creditCardNumber"));
+            creditCard.setExpirationDate(req.getParameter("creditCardExpiration"));
+            creditCard.setCvv(req.getParameter("creditCardCVV"));
+
+
+            //valido l'ordine e la carta di credito
+            OrderValidator orderValidator = new OrderValidator();
+            CreditCardValidator creditCardValidator = new CreditCardValidator();
+
             List<String> errors = new ArrayList<>();
-            if((validator.validate(order,errors))) {
+            //todo FINIRE IL CONTROLLO
+            boolean isValidOrder = orderValidator.validate(order,errors);
+            boolean isValidCreditCard = creditCardValidator.validate(creditCard,errors);
+            if((isValidOrder)&&(isValidCreditCard)) {
 
                 String total = (String) session.getAttribute("total");
                 total = total.replace(",", ".");
@@ -103,6 +118,8 @@ public class CheckoutServlet extends HttpServlet {
                 RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/thanks.jsp");
                 rd.forward(req, res);
             } else {
+
+                //torna alla pagine del checkout
                 session.setAttribute("error", errors);
                 doGet(req, res);
             }

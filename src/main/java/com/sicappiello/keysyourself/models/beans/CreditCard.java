@@ -1,6 +1,7 @@
 package com.sicappiello.keysyourself.models.beans;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 
 public class CreditCard {
 
@@ -46,8 +47,18 @@ public class CreditCard {
 
     public boolean isExpired() {
         LocalDate today = LocalDate.now();
-        LocalDate expiryDate = LocalDate.parse(expirationDate);
-        return today.isAfter(expiryDate);
+        return today.isAfter(parseIntoLocalDate());
+    }
+
+    public LocalDate parseIntoLocalDate(){
+        String[] expirationDateString = expirationDate.split("/");
+        int year = Integer.parseInt(expirationDateString[1]);
+        int month = Integer.parseInt(expirationDateString[0]);
+        //prendi l'ultimo mese del mese
+        YearMonth yearMonth = YearMonth.of(year, month);
+        int lastDay = yearMonth.lengthOfMonth();
+
+        return LocalDate.of(year,month,lastDay);
     }
 
     @Override
