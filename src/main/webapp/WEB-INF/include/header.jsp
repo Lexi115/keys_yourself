@@ -14,7 +14,7 @@
             <form action="search" method="get">
                 <div class="row">
                     <div class="col-lg-11">
-                        <input type="text" name="query" class="searchbar center" value="${param.query}">
+                        <input type="text" name="query" class="searchbar center" id=searchBar" value="${param.query}">
                     </div>
                     <div class="col-lg-1 clickable">
                         <button class="searchbutton" type="submit" title="Cerca"><i class="bi bi-search"></i></button>
@@ -37,3 +37,15 @@
         </div>
     </div>
 </header>
+<script>
+    searchBar = document.getElementById("searchBar");
+    searchBar.oninput = function () {
+        // parte richiesta asincrona
+        fetch('AsyncServlet?q=' + searchBar.value)
+            .then(response => response.json())
+            .then(json => {
+                    console.log(json);
+                }
+            );
+    }
+</script>
