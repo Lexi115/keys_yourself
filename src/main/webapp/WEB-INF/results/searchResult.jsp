@@ -45,5 +45,9 @@
         </div>
     </div>
 </main>
+<script>
+    searchBar = document.getElementById('searchBar');
+    searchBar.focus();
+</script>
 </body>
 </html>
