@@ -40,14 +40,13 @@
 <script>
     window.onload = function () {
         let searchBar = document.getElementById("searchBar");
-        searchBar.oninput = function () {
-            // parte richiesta asincrona
-            fetch('AsyncSearch?q=' + searchBar.value)
-                .then(response => response.json())
-                .then(json => {
-                        console.log(json);
-                    }
-                );
+        searchBar.onfocus = function () {
+            // reindirizza alla pagina di ricerca
+            searchResult = document.getElementById('search-result');
+
+            if(!searchResult){
+                location.href = "${pageContext.request.contextPath}/search?query=";
+            }
         }
     }
 </script>

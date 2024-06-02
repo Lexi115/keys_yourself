@@ -54,22 +54,6 @@ public class GameDAO implements DAO<Game> {
         return games;
     }
 
-    public List<Game> getByName(String name,int n) {
-        database.connect();
-        List<Game> games = new ArrayList<>();
-
-        String query = "SELECT * FROM giochi g WHERE g.nome LIKE ? LIMIT ?";
-
-        try {
-            ResultSet rs = database.executeQuery(query, "%" + name + "%",n);
-            games = fetch(rs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        database.close();
-        return games;
-    }
 
     @Override
     public List<Game> getAll() {

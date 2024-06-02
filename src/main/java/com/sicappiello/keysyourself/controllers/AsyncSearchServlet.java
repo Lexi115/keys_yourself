@@ -22,7 +22,7 @@ public class AsyncSearchServlet extends HttpServlet {
         String query = req.getParameter("q");
         GameDAO gameDAO = new GameDAO(Functions.getContextDatabase(this));
 
-        List<Game> gamesList = gameDAO.getByName(query,3);
+        List<Game> gamesList = gameDAO.getByName(query);
         JSONArray games = new JSONArray();
         if(!gamesList.isEmpty()){
             for(Game game : gamesList){
@@ -30,7 +30,7 @@ public class AsyncSearchServlet extends HttpServlet {
                 gameJSON.put("id", game.getId());
                 gameJSON.put("name", game.getName());
                 gameJSON.put("producer", game.getProducer());
-                gameJSON.put("price" , game.getPrice());
+                gameJSON.put("price", game.getPrice());
                 games.add(gameJSON);
             }
         }

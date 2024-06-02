@@ -219,6 +219,50 @@ main div{
     margin-bottom: 65px;
 }
 
+.mt-1 {
+    margin-top: 5px;
+}
+
+.mt-2 {
+    margin-top: 10px;
+}
+
+.mt-3 {
+    margin-top: 15px;
+}
+
+.mt-4 {
+    margin-top: 20px;
+}
+
+.mt-5 {
+    margin-top: 25px;
+}
+
+.mt-6 {
+    margin-top: 30px;
+}
+
+.mt-7 {
+    margin-top: 35px;
+}
+
+.mt-8 {
+    margin-top: 40px;
+}
+
+.mt-9 {
+    margin-top: 55px;
+}
+
+.mt-10 {
+    margin-top: 60px;
+}
+
+.mt-11 {
+    margin-top: 65px;
+}
+
 .p-1 {
     padding: 5px;
 }
