@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,16 +22,23 @@ import java.util.List;
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDAO userDAO = new UserDAO(Functions.getContextDatabase(this));
-        User userFound = userDAO.getById(Integer.parseInt(request.getParameter("id")));
-        if(userFound!=null){
-            request.setAttribute("userFound",userFound);
-            OrderDAO orderDAO = new OrderDAO(Functions.getContextDatabase(this));
-            List<Order> userOrders = orderDAO.getAll(userFound);
-            request.setAttribute("userOrders",userOrders);
-        } else {
-            throw new RuntimeException("Nessun utente trovato.");
+        HttpSession session = request.getSession();
+
+        // Se l'utente non è autenticato, redirect alla pagina login
+        Object userObj = session.getAttribute("user");
+        if (userObj == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
         }
+
+        User user = (User) userObj;
+
+        // ottieni tutti gli ordini dell'utente
+        OrderDAO orderDAO = new OrderDAO(Functions.getContextDatabase(this));
+        List<Order> userOrders = orderDAO.getAll(user);
+        request.setAttribute("orders",userOrders);
+
+        System.out.println(userOrders);
 
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/results/profile.jsp");
         rd.forward(request,response);

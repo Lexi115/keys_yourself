@@ -176,139 +176,139 @@ main div{
 }
 
 .mb-1 {
-    margin-bottom: 5px;
+    margin-bottom: 5px !important;
 }
 
 .mb-2 {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
 .mb-3 {
-    margin-bottom: 15px;
+    margin-bottom: 15px !important;
 }
 
 .mb-4 {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 
 .mb-5 {
-    margin-bottom: 25px;
+    margin-bottom: 25px !important;
 }
 
 .mb-6 {
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
 }
 
 .mb-7 {
-    margin-bottom: 35px;
+    margin-bottom: 35px !important;
 }
 
 .mb-8 {
-    margin-bottom: 40px;
+    margin-bottom: 40px !important;
 }
 
 .mb-9 {
-    margin-bottom: 55px;
+    margin-bottom: 55px !important;
 }
 
 .mb-10 {
-    margin-bottom: 60px;
+    margin-bottom: 60px !important;
 }
 
 .mb-11 {
-    margin-bottom: 65px;
+    margin-bottom: 65px !important;
 }
 
 .mt-1 {
-    margin-top: 5px;
+    margin-top: 5px !important;
 }
 
 .mt-2 {
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 
 .mt-3 {
-    margin-top: 15px;
+    margin-top: 15px !important;
 }
 
 .mt-4 {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
 .mt-5 {
-    margin-top: 25px;
+    margin-top: 25px !important;
 }
 
 .mt-6 {
-    margin-top: 30px;
+    margin-top: 30px !important;
 }
 
 .mt-7 {
-    margin-top: 35px;
+    margin-top: 35px !important;
 }
 
 .mt-8 {
-    margin-top: 40px;
+    margin-top: 40px !important;
 }
 
 .mt-9 {
-    margin-top: 55px;
+    margin-top: 55px !important;
 }
 
 .mt-10 {
-    margin-top: 60px;
+    margin-top: 60px !important;
 }
 
 .mt-11 {
-    margin-top: 65px;
+    margin-top: 65px !important;
 }
 
 .p-1 {
-    padding: 5px;
+    padding: 5px !important;
 }
 
 .p-2 {
-    padding: 10px;
+    padding: 10px !important;
 }
 
 .p-3 {
-    padding: 15px;
+    padding: 15px !important;
 }
 
 .p-4 {
-    padding: 20px;
+    padding: 20px !important;
 }
 
 .p-5 {
-    padding: 25px;
+    padding: 25px !important;
 }
 
 .p-6 {
-    padding: 30px;
+    padding: 30px !important;
 }
 
 .p-1 {
-    padding: 5px;
+    padding: 5px !important;
 }
 
 .p-2 {
-    padding: 10px;
+    padding: 10px !important;
 }
 
 .p-3 {
-    padding: 15px;
+    padding: 15px !important;
 }
 
 .p-4 {
-    padding: 20px;
+    padding: 20px !important;
 }
 
 .p-5 {
-    padding: 25px;
+    padding: 25px !important;
 }
 
 .p-6 {
-    padding: 30px;
+    padding: 30px !important;
 }
 
 [class *= "w-"] {

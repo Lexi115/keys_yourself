@@ -218,7 +218,7 @@ public class OrderDAO implements DAO<Order> {
     public List<PurchasedGame> getGamesByOrderId(int id){
         database.connect();
         List<PurchasedGame> purchasedGames = new ArrayList<>();
-        String query = "SELECT ga.gioco,ga.nome_gioco,ga.codice_gioco FROM giochi_acquistati ga FULL JOIN ordini o ON ordini.id = ga.id_ordine WHERE ga.id_ordine=?";
+        String query = "SELECT ga.gioco,ga.nome_gioco,ga.codice_gioco FROM giochi_acquistati ga JOIN ordini o ON o.id = ga.id_ordine WHERE ga.id_ordine=?";
         try {
             ResultSet rs = database.executeQuery(query, id);
             while(rs.next()) {
