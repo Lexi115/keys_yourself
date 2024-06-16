@@ -24,12 +24,12 @@
                 <form action="login" method="post">
                     <div class="row center mb-4">
                         <div class="col-12">
-                        <input class="input" type="text" name="email" placeholder="E-mail" required>
+                        <input class="input" type="text" name="email" placeholder="E-mail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required>
                         </div>
                     </div>
                     <div class="row center mb-4">
                         <div class="col-12">
-                        <input class="input" type="password" name="password" placeholder="Password" required>
+                        <input class="input" type="password" name="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%_*#?&])[A-Za-z\d@$!%_*#?&]{8,}$" required>
                         </div>
                     </div>
                     <div class="row mb-3">
