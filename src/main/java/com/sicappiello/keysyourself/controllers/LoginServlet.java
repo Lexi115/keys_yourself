@@ -39,6 +39,13 @@ public class LoginServlet extends HttpServlet {
                     user.setAuthToken(Functions.sendAuthenticationToken(response,user));
                     userDAO.update(user);
 
+                    //controllo se è admin
+                    if(user.isAdmin()){
+                        session.setAttribute("isAdmin","true");
+                    } else {
+                        session.setAttribute("isAdmin","false");
+                    }
+
                     response.sendRedirect(request.getContextPath() + "/");
                     return;
                 } else {

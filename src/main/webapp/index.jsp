@@ -9,6 +9,8 @@
 </head>
 <body>
 <jsp:include page="WEB-INF/include/header.jsp" />
+<jsp:include page="WEB-INF/include/errorAlert.jsp" />
+<jsp:include page="WEB-INF/include/infoAlert.jsp" />
 
 <main>
     <div>
@@ -26,6 +28,7 @@
 </main>
 
 <%=session.getAttribute("user")%>
-
+<script>
+</script>
 </body>
 </html>

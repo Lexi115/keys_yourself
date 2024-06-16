@@ -36,10 +36,15 @@
                 <div class="row">
                     <div class="col-12 mt-6">
                     <div class="lead mb-2">€ ${game.price}</div>
-                    <form method="post" action="cart">
-                        <input type="hidden" name="id" value="${game.id}">
                         <jsp:include page="../include/infoAlert.jsp" />
                         <jsp:include page="../include/errorAlert.jsp" />
+                        <c:if test="${user.admin}">
+                        <button onclick="location.href='removeGame?id=${game.id}'" class="fieldButton clickableNoShadow mb-2">
+                            Rimuovi gioco
+                        </button >
+                        </c:if>
+                        <form method="post" action="cart">
+                            <input type="hidden" name="id" value="${game.id}">
                         <button class="fieldButton clickableNoShadow" type="submit">
                             Aggiungi al carrello
                         </button>
