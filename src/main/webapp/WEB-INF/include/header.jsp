@@ -29,7 +29,7 @@
         <!-- Menu -->
         <div class="col-lg-2 col-md-2 ">
             <div class="icon right clickableNoShadow" title="Account">
-                <a href="login"><i class="bi icon bi-person-circle"></i></a>
+                <a href="profile"><i class="bi icon bi-person-circle"></i></a>
             </div>
             <div class="icon right clickableNoShadow" title="Carrello">
                 <a href="cart"><i class="bi icon bi-bag-fill"></i></a>
