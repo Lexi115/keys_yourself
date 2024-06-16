@@ -55,7 +55,7 @@ public class CartServlet extends HttpServlet {
                 //gioco non esiste
                 errors.add("Gioco non esistente");
                 //response.sendRedirect(request.getContextPath() + "/");
-                response.sendRedirect(request.getContextPath() + "/login");
+                response.sendRedirect(request.getContextPath() + "/");
             }
         }
     }

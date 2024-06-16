@@ -12,11 +12,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class AutoLoginFilter implements Filter {
 
     //Intercetta la richiesta alla servlet per effettuare il login automatico
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
@@ -29,6 +33,7 @@ public class AutoLoginFilter implements Filter {
             session = req.getSession();
             session.setAttribute("cart",new ShoppingCart());
             session.setAttribute("total", String.format("%.2f", 0.0));
+            session.setAttribute("isAdmin","false");
 
             //Verifica presenza authToken nel cookie (altrimenti è un guest e ha solo la sessione)
             Cookie authTokenCookie = Functions.getCookie("auth_token", req);
@@ -40,11 +45,30 @@ public class AutoLoginFilter implements Filter {
                 User user = userDAO.getByToken(authTokenCookie.getValue());
                 if (user != null) {
                     session.setAttribute("user", user);
+                    //controllo se è admin
+                    if(user.isAdmin()){
+                        session.setAttribute("isAdmin","true");
+                    }
                 }
             }
         }
 
-        //Continua la chain di filter
+        //controllo accesso alle funzioni da admin
+        String path = req.getRequestURI().substring(req.getContextPath().length());
+        if(path.startsWith("/admin")){
+            if(Objects.equals(session.getAttribute("isAdmin"), "true")) {
+                //può entrare
+                chain.doFilter(req, res);
+            } else {
+                //non può entrare, redirect a login
+                List<String> errors = new ArrayList<>();
+                errors.add("Si nu scem.... ma ddo t avvij"); //awjhbdahjwadbjhwkldabwhjkdbawjhkebawhjebawhjbeawjkhbedakbhwjdkbhjawejbeawbjkheawkjaewbawebjkawebjhabwhjejaewbkawekawebjaehwkbjhkawejbhkeawjb
+                session.setAttribute("error",errors);
+                res.sendRedirect(req.getContextPath() + "/login");
+            }
+        } else {
+        //non è una pagina admin continua normalmente
         chain.doFilter(req, res);
+    }
     }
 }
