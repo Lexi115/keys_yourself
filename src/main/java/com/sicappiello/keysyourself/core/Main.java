@@ -1,10 +1,15 @@
 package com.sicappiello.keysyourself.core;
 
 import com.sicappiello.keysyourself.core.database.Database;
+import com.sicappiello.keysyourself.models.beans.Genre;
+import com.sicappiello.keysyourself.models.dao.GenreDAO;
+import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import org.apache.tomcat.jdbc.pool.DataSource;
+
+import java.util.List;
 
 public class Main extends HttpServlet {
 
@@ -21,7 +26,13 @@ public class Main extends HttpServlet {
 
             Database database = new Database(dbHost, dbUser, dbPassword, dbName, dbPort);
             ctx.setAttribute("db", database);
-        super.init();
+
+            // Aggiungi generi giochi al servlet context
+            List<Genre> genreList = getGenres();
+            ctx.setAttribute("genreList", genreList);
+            System.out.println("Generi caricati: " + genreList);
+
+            super.init();
     }
 
     @Override
@@ -35,4 +46,11 @@ public class Main extends HttpServlet {
         ServletContext ctx = getServletContext();
         ctx.removeAttribute("db");
     }
+    private List<Genre> getGenres() {
+        Database db = Functions.getContextDatabase(this);
+        GenreDAO dao = new GenreDAO(db);
+
+        return dao.getAll();
+    }
+
 }
