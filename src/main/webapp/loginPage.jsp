@@ -29,7 +29,7 @@
                     </div>
                     <div class="row center mb-4">
                         <div class="col-12">
-                        <input class="input" type="password" name="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%_*#?&])[A-Za-z\d@$!%_*#?&]{8,}$" required>
+                        <input class="input" type="password" name="password" placeholder="Password"required> <!-- password! -->
                         </div>
                     </div>
                     <div class="row mb-3">

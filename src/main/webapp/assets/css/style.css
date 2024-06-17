@@ -287,28 +287,8 @@ main div{
     padding: 30px !important;
 }
 
-.p-1 {
-    padding: 5px !important;
-}
-
-.p-2 {
-    padding: 10px !important;
-}
-
-.p-3 {
-    padding: 15px !important;
-}
-
-.p-4 {
-    padding: 20px !important;
-}
-
-.p-5 {
-    padding: 25px !important;
-}
-
-.p-6 {
-    padding: 30px !important;
+.p-7 {
+    padding: 35px !important;
 }
 
 [class *= "w-"] {
@@ -344,11 +324,6 @@ main div{
     padding: 10px 10px;
     color: white;
     font-size: 24px;
-    outline: none;
-}
-
-
-.searchbar:focus {
     outline: none;
 }
 
@@ -624,4 +599,9 @@ div.info-alert {
 
 .disabled {
     opacity: 0.5 !important;
+}
+
+#description {
+    resize: none;
+    height: 200px;
 }
