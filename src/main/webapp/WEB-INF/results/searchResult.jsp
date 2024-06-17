@@ -10,16 +10,17 @@
 <body>
 <jsp:include page="../include/header.jsp" />
 <main>
-    <div class="row">
-        <c:if test="${user.admin}">
-            <a href="${pageContext.request.contextPath}/addGameServlet">
-                <button style="width: 30%;" class="offset-3 mb-3 mt-3 fieldButton clickableNoShadow">
-                    <i class="bi bi-plus-lg"></i> Aggiungi un gioco
-                </button>
-            </a>
-        </c:if>
-    </div>
+
     <div class="container w-90">
+        <div class="row center" style="justify-content: flex-start;">
+            <c:if test="${user.admin}">
+                <a href="${pageContext.request.contextPath}/addGameServlet">
+                    <button class="offset-3 mb-3 mt-3 fieldButton clickableNoShadow">
+                        <i class="bi bi-plus-lg"></i> Aggiungi un gioco
+                    </button>
+                </a>
+            </c:if>
+        </div>
         <div class="row" id="search-result">
             <c:forEach items="${requestScope.games}" var="game">
                 <div class="col-4 col-md-6 col-sm-12 mb-6 center">

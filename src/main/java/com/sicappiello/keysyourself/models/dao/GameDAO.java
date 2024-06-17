@@ -74,9 +74,12 @@ public class GameDAO implements DAO<Game> {
 
     @Override
     public int save(Game entity) {
+        int key = 0;
         int rowsAffected = 0;
         database.connect();
         String query = "INSERT INTO giochi(id,nome,prezzo,descrizione,produttore) VALUES (?, ?, ?, ?, ?, ?)";
+
+        String genreQuery = "INERT INTO giochi_generi(gioco,genere) VALUES (?, ?)";
 
         Object[] params = new Object[]{
                 entity.getId(),
@@ -87,12 +90,31 @@ public class GameDAO implements DAO<Game> {
         };
 
         try {
-            rowsAffected = database.executeUpdate(query, params);
+            key = database.executeUpdateReturnKeys(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return rowsAffected;
+        for(Genre genre : entity.getGenres()) {
+
+
+            Object[] genreParams = new Object[]{
+
+                key,
+                genre.getId(),
+
+            };
+
+            try {
+                rowsAffected = database.executeUpdate(genreQuery, genreParams);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return rowsAffected+1;
+
     }
 
     @Override
