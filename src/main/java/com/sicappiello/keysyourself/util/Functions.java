@@ -39,6 +39,14 @@ public class Functions {
         return Functions.hash(token);
     }
 
+    public static void clearAuthenticationToken(HttpServletResponse response) {
+        Cookie cookie = new Cookie("auth_token", "");
+        cookie.setSecure(true); // solo HTTPS
+        cookie.setMaxAge(0); // rimuovi cookie settando maxAge a 0
+        cookie.setPath("/");
+        response.addCookie(cookie);
+    }
+
     public static Cookie getCookie(String name, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {

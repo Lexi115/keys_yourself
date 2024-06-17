@@ -19,6 +19,14 @@
             <b>Indirizzo:</b> ${user.address}<br>
             <b>Telefono:</b> ${user.phoneNumber}
         </p>
+        <div class="row">
+            <div class="offset-5 offset-md-0 offset-sm-0 col-lg-2 col-sm-12">
+                <a href="logout">
+                    <button class="fieldButton clickableNoShadow"><i class="bi bi-box-arrow-left"></i> Logout</button>
+                </a>
+            </div>
+
+        </div>
     </div>
 
     <div class="w-90">
