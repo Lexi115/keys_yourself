@@ -87,7 +87,7 @@ public class CheckoutServlet extends HttpServlet {
             CreditCardValidator creditCardValidator = new CreditCardValidator();
 
             List<String> errors = new ArrayList<>();
-            //todo FINIRE IL CONTROLLO
+
             boolean isValidOrder = orderValidator.validate(order,errors);
             boolean isValidCreditCard = creditCardValidator.validate(creditCard,errors);
             if((isValidOrder)&&(isValidCreditCard)) {
