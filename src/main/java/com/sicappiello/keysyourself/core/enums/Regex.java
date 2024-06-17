@@ -20,6 +20,7 @@ public abstract class Regex {
 
     //Regex per generi
     public static final String GENRE_NAME = ".{1,30}";
+    public static final String GAME_ID = "^\\d{1,5}$";
 
     //Regex per order
     public static final String ORDER_FIRST_NAME = ".{1,150}";

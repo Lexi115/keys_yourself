@@ -10,6 +10,8 @@
 <body>
 <jsp:include page="../include/header.jsp" />
 <main>
+    <jsp:include page="../include/errorAlert.jsp" />
+    <jsp:include page="../include/infoAlert.jsp" />
     <div class="gameContainer mt-4 w-90">
         <div class="row">
             <div class="lead mb-1">${game.name}</div>
