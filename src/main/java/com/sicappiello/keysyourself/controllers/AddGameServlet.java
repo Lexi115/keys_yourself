@@ -16,16 +16,14 @@ import jakarta.servlet.http.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-@WebServlet("/admin/addGameServlet")
+@WebServlet("/admin/addGame")
 @MultipartConfig(
         maxFileSize = FileSize.MAX_REAL,      // 20 MB in caso di emergenza
         maxRequestSize = FileSize.REQUEST_MAX   // 20 MB
 )
-public class addGameServlet extends HttpServlet {
+public class AddGameServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //redirect alla pagina aggiungi gioco
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/addGame.jsp");
@@ -33,6 +31,8 @@ public class addGameServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        List<String> errors = new ArrayList<>();
+
         //riceviamo i dati del gioco, convalidiamoli
         Game newGame = new Game();
         HttpSession session = req.getSession();
@@ -43,36 +43,42 @@ public class addGameServlet extends HttpServlet {
         newGame.setProducer(req.getParameter("producer"));
 
         //recupero la lista di id di generi per abbinarli al gioco
-        String[] genresId = req.getParameter("genres").split(",");
-        List<Genre> genres = new ArrayList<>();
-        //TODO gestire caso in cui no generi inseriti
-        for (String s : genresId) {
-            Genre genre = new Genre();
-            genre.setId(Integer.parseInt(s));
-            genres.add(genre);
+        String genresString = req.getParameter("genres");
+        if (genresString == null || genresString.isEmpty()) {
+            errors.add("Aggiungere almeno un genere!");
         }
-
-        newGame.setGenres(genres);
-
-        //valido il gioco appena inserito
-        GameValidator validator = new GameValidator();
-        List<String> errors = new ArrayList<>();
-
-        boolean valid = validator.validate(newGame, errors);
-        if (valid) {
-            //è valido lo aggiungo al database
-            GameDAO dao = new GameDAO(Functions.getContextDatabase(this));
-            int key = dao.save(newGame);
-
-            // Carica immagine di anteprima
-            if (key != -1 && uploadImage(req, key, errors)) {
-                System.out.println("ok");
-                session.setAttribute("info", "Gioco aggiunto correttamente");
-                res.sendRedirect(req.getContextPath() + "/game?id=" + key);
-                return;
+        else {
+            String[] genresId = genresString.split(",");
+            List<Genre> genres = new ArrayList<>();
+            for (String s : genresId) {
+                Genre genre = new Genre();
+                genre.setId(Integer.parseInt(s));
+                genres.add(genre);
             }
 
+            newGame.setGenres(genres);
+
+            //valido il gioco appena inserito
+            GameValidator validator = new GameValidator();
+
+
+            boolean valid = validator.validate(newGame, errors);
+            if (valid) {
+                //è valido lo aggiungo al database
+                GameDAO dao = new GameDAO(Functions.getContextDatabase(this));
+                int key = dao.save(newGame);
+
+                // Carica immagine di anteprima
+                if (key != -1 && uploadImage(req, key, errors)) {
+                    System.out.println("ok");
+                    session.setAttribute("info", "Gioco aggiunto correttamente");
+                    res.sendRedirect(req.getContextPath() + "/game?id=" + key);
+                    return;
+                }
+
+            }
         }
+
 
         //non è valido torno gli errori e lo rimando alla addpage
         session.setAttribute("error", errors);

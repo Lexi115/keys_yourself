@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,7 @@
                                     <div style="padding-left: 10px">
                                         <p class="title">${game.name}</p>
                                         <p class="subtitle">${game.producer}</p>
-                                        <p class="price">€ <span class="sub-lead">${game.price}</span></p>
+                                        <p class="price">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
                                     </div>
                                 </div>
                                     <div class="col-2 col-md-6 right col-sm-12" style="margin-top: 30px;margin-right: 10px">

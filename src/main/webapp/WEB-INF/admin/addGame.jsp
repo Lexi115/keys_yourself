@@ -16,7 +16,7 @@
             <p class="lead">Aggiungi gioco</p>
         </div>
 
-        <form action="addGameServlet" method="post" id="myForm" enctype="multipart/form-data">
+        <form action="addGame" method="post" id="myForm" enctype="multipart/form-data">
             <div class="row">
                 <!-- Colonna dati del gioco -->
                 <div class="col-lg-8 col-md-12 col-sm-12 p-6">
@@ -75,7 +75,7 @@
                         <div class="thumbnail">
                             <img id="imagePreview" src="../assets/images/games/tmp.jpg">
                         </div>
-                        <input type="file" class="input" style="display: none;" name="image" id="imageField" required>
+                        <input type="file" class="input" style="display: none;" name="image" id="imageField">
                         <button class="fieldButton clickableNoShadow" type="button" id="btnFile"><i class="bi bi-cloud-upload"></i> Carica immagine</button>
                         <p style="margin-bottom: 0"><b>Max:</b> <%=FileSize.MAX_MB %> MB</p>
                     </div>
@@ -125,9 +125,17 @@
         }
     }
 
-
     myForm.onsubmit = function () {
         genresToString();
+
+        if (genreInput.value === '') {
+            alert('Aggiungere almeno un genere!');
+            return false;
+        }
+
+        if (imageField.value === null) {
+            alert('Caricare una immagine!');
+        }
     }
 
     genresSelect.oninput = function () {

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,7 @@
 
                 <div class="row">
                     <div class="col-12 mt-6">
-                    <div class="lead mb-2">€ ${game.price}</div>
+                    <div class="lead mb-2">€ <fmt:formatNumber value="${game.price}" minFractionDigits="2" /></div>
                         <jsp:include page="../include/infoAlert.jsp" />
                         <jsp:include page="../include/errorAlert.jsp" />
                         <c:if test="${user.admin}">

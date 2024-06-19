@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
     <div class="container w-90">
         <div class="row center" style="justify-content: flex-start;">
             <c:if test="${user.admin}">
-                <a href="${pageContext.request.contextPath}/admin/addGameServlet">
+                <a href="${pageContext.request.contextPath}/admin/addGame">
                     <button class="offset-3 mb-3 mt-3 fieldButton clickableNoShadow">
                         <i class="bi bi-plus-lg"></i> Aggiungi un gioco
                     </button>
@@ -31,7 +32,7 @@
                         <div class="card clickable">
                             <div class="row">
                                 <div class="thumbnail">
-                                    <img src="assets/images/games/${game.id}.jpg" alt="Immagi">
+                                    <img src="assets/images/games/${game.id}.jpg" alt="Immagine">
                                 </div>
                             </div>
                             <div class="row">
@@ -39,7 +40,7 @@
                                 <p class="subtitle">${game.producer}</p>
                             </div>
                             <div class="row">
-                                <p class="price right">€ <span class="sub-lead">${game.price}</span></p>
+                                <p class="price right">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
                             </div>
                         </div>
                     </a>
