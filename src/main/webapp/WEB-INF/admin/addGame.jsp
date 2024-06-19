@@ -1,3 +1,4 @@
+<%@ page import="com.sicappiello.keysyourself.util.FileSize" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
             <p class="lead">Aggiungi gioco</p>
         </div>
 
-        <form action="addGameServlet" method="post" enctype="multipart/form-data">
+        <form action="addGameServlet" method="post" id="myForm" enctype="multipart/form-data">
             <div class="row">
                 <!-- Colonna dati del gioco -->
                 <div class="col-lg-8 col-md-12 col-sm-12 p-6">
@@ -49,7 +50,7 @@
                         <h4>Generi gioco</h4>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <select name="genres" class="input" id="genresSelect">
+                                <select class="input" id="genresSelect">
                                     <option value="null" selected>Seleziona un genere</option>
                                     <c:forEach items="${applicationScope.genreList}" var="genre">
                                         <option id="genre-${genre.id}" value="${genre.id}">${genre.name}</option>
@@ -70,11 +71,13 @@
                 <!-- Colonna aggiunta immagine -->
                 <div class="col-lg-4 col-md-12 col-sm-12 p-6">
                     <h4>Aggiungi immagine gioco</h4>
-                    <div class="riepilogoContainer" style="min-height: 320px">
+                    <div class="riepilogoContainer">
                         <div class="thumbnail">
-                            <img src="../assets/images/games/tmp.jpg">
+                            <img id="imagePreview" src="../assets/images/games/tmp.jpg">
                         </div>
-                        <input type="file" name="image" id="imageField" required>
+                        <input type="file" class="input" style="display: none;" name="image" id="imageField" required>
+                        <button class="fieldButton clickableNoShadow" type="button" id="btnFile"><i class="bi bi-cloud-upload"></i> Carica immagine</button>
+                        <p style="margin-bottom: 0"><b>Max:</b> <%=FileSize.MAX_MB %> MB</p>
                     </div>
 
                     <button type="submit" class="mt-6 fieldButton clickableNoShadow">
@@ -90,12 +93,49 @@
     let genresSelect = document.getElementById("genresSelect");
     let genreListUl = document.getElementById("genreListUl");
     let genreInput = document.getElementById("genreInput");
+    let myForm = document.getElementById("myForm");
+    let btnFile = document.getElementById("btnFile");
+    let imageField = document.getElementById("imageField");
+    let imagePreview = document.getElementById("imagePreview");
+
+    btnFile.onclick = function () {
+        imageField.click();
+    }
+
+    imageField.onchange = function (event) {
+        let photo = event.target.files[0];
+
+        // Se è maggiore di 10 MB, scarta
+        if (photo.size > <%=FileSize.MAX%>) {
+            alert('Il file è troppo grande (max 10 MB)');
+            return false;
+        }
+
+        if (!photo.type.startsWith('image')) {
+            alert('Il file caricato non è un\'immagine');
+            return false;
+        }
+
+        // crea url temporaneo per immagine
+        imagePreview.src = URL.createObjectURL(photo);
+
+        imagePreview.onload = function () {
+            // libera memoria
+            URL.revokeObjectURL(imagePreview.src);
+        }
+    }
+
+
+    myForm.onsubmit = function () {
+        genresToString();
+    }
 
     genresSelect.oninput = function () {
         let genreId = genresSelect.value;
         let genreName = document.getElementById("genre-" + genreId).innerHTML;
         addGenre(genreId, genreName);
     }
+
 
     function printGenreList() {
         genreListUl.innerHTML = "";
@@ -147,7 +187,6 @@
         }
         printGenreList();
     }
-
     function genresToString(){
         let resultString = "";
         for (let i = 0; i < genreList.length; i++) {
@@ -156,6 +195,7 @@
         resultString = resultString.slice(0, -1); // rimuove ultimo carattere (la virgola)
         genreInput.value = resultString;
     }
+
 
 </script>
 </body>

@@ -21,6 +21,8 @@
         <div class="row">
             <code>
                 <%=exception.getMessage()%>
+                <%=exception.getCause()%>
+                <%=exception.toString()%>
             </code>
         </div>
     </div>

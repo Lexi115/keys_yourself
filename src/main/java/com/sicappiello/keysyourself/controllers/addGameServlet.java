@@ -4,6 +4,7 @@ import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Genre;
 import com.sicappiello.keysyourself.models.dao.GameDAO;
 import com.sicappiello.keysyourself.models.validators.GameValidator;
+import com.sicappiello.keysyourself.util.FileSize;
 import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
@@ -15,13 +16,14 @@ import jakarta.servlet.http.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 @WebServlet("/admin/addGameServlet")
 @MultipartConfig(
-        fileSizeThreshold = 1024 * 30, // 30 KB
-        maxFileSize = 1024 * 1024 * 10,      // 10 MB
-        maxRequestSize = 1024 * 1024 * 20   // 20 MB
+        maxFileSize = FileSize.MAX_REAL,      // 20 MB in caso di emergenza
+        maxRequestSize = FileSize.REQUEST_MAX   // 20 MB
 )
 public class addGameServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -43,7 +45,7 @@ public class addGameServlet extends HttpServlet {
         //recupero la lista di id di generi per abbinarli al gioco
         String[] genresId = req.getParameter("genres").split(",");
         List<Genre> genres = new ArrayList<>();
-
+        //TODO gestire caso in cui no generi inseriti
         for (String s : genresId) {
             Genre genre = new Genre();
             genre.setId(Integer.parseInt(s));
@@ -68,8 +70,6 @@ public class addGameServlet extends HttpServlet {
                 session.setAttribute("info", "Gioco aggiunto correttamente");
                 res.sendRedirect(req.getContextPath() + "/game?id=" + key);
                 return;
-            }else {
-                System.out.println("error img o db");
             }
 
         }
@@ -90,8 +90,11 @@ public class addGameServlet extends HttpServlet {
         System.out.println(imageDirectory);
         HttpSession session = request.getSession();
 
-        // E' stato car
-        if(filePart.getSize() > 0) {
+        // Controllo dimensioni
+
+        long fileSize = filePart.getSize();
+
+        if(fileSize > FileSize.MIN && fileSize <= FileSize.MAX) {
             // E' un'immagine?
             BufferedImage image = ImageIO.read(filePart.getInputStream());
             if (image != null) {
@@ -120,8 +123,11 @@ public class addGameServlet extends HttpServlet {
             } else {
                 errors.add("File non è un immagine.");
             }
+        } else if( fileSize > FileSize.MAX){
+            //Max 10 MB catturato qui
+            errors.add("Immagine troppo grande <b>(Max " + FileSize.MAX_MB + " MB)</b>");
         } else {
-            errors.add("Nessun file caricato.");
+            errors.add("Nessuna immagine caricata.");
         }
 
         return false;
