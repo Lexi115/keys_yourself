@@ -74,7 +74,7 @@ public class OrderDAO implements DAO<Order> {
 
     @Override
     public int save(Order entity) {
-        int orderId = -1;
+        int orderId;
         database.connect();
         String query = "INSERT INTO ordini(utente,nome,cognome,email,telefono,indirizzo,citta,regione,cap,stato,data_acquisto,prezzo)" +
                 " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -101,6 +101,7 @@ public class OrderDAO implements DAO<Order> {
             orderId = database.executeUpdateReturnKeys(query, orderParams);
         } catch (SQLException e) {
             e.printStackTrace();
+            return -1;
         }
 
         //aggiungo i giochi comprati nella tabella giochi_acquistati
@@ -118,6 +119,7 @@ public class OrderDAO implements DAO<Order> {
                 System.out.println("Purchased game " + g.getGame().getId() + " " + g.getGameName());
             } catch (SQLException e) {
                 e.printStackTrace();
+                return -1;
             }
         }
 

@@ -4,7 +4,9 @@ import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.core.interfaces.DAO;
 import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Genre;
+import jakarta.servlet.ServletContext;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -75,9 +77,8 @@ public class GameDAO implements DAO<Game> {
     @Override
     public int save(Game entity) {
         int key = 0;
-        int rowsAffected = 0;
         database.connect();
-        String query = "INSERT INTO giochi(id,nome,prezzo,descrizione,produttore) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO giochi(id,nome,prezzo,descrizione,produttore) VALUES (?, ?, ?, ?, ?)";
 
         String genreQuery = "INSERT INTO giochi_generi(gioco,genere) VALUES (?, ?)";
 
@@ -93,6 +94,7 @@ public class GameDAO implements DAO<Game> {
             key = database.executeUpdateReturnKeys(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
+            return -1;
         }
 
         for(Genre genre : entity.getGenres()) {
@@ -107,6 +109,7 @@ public class GameDAO implements DAO<Game> {
                 database.executeUpdate(genreQuery, genreParams);
             } catch (SQLException e) {
                 e.printStackTrace();
+                return -1;
             }
 
         }
@@ -165,6 +168,25 @@ public class GameDAO implements DAO<Game> {
 
         try {
             rowsAffected = database.executeUpdate(query, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rowsAffected;
+    }
+
+    public int delete(int id, String imagePath) {
+        int rowsAffected = 0;
+        database.connect();
+        String query = "DELETE FROM giochi WHERE id = ?";
+
+        try {
+            rowsAffected = database.executeUpdate(query, id);
+
+            // Rimuovi file immagine
+            File file = new File(imagePath);
+            file.delete();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

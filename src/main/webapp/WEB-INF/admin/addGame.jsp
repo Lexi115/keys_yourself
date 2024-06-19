@@ -15,11 +15,11 @@
             <p class="lead">Aggiungi gioco</p>
         </div>
 
-
-        <form action="admin/addGameServlet" method="post">
+        <form action="addGameServlet" method="post" enctype="multipart/form-data">
             <div class="row">
                 <!-- Colonna dati del gioco -->
                 <div class="col-lg-8 col-md-12 col-sm-12 p-6">
+                    <jsp:include page="/WEB-INF/include/infoAlert.jsp" />
                     <jsp:include page="/WEB-INF/include/errorAlert.jsp" />
                     <div>
                         <h4>Dettagli gioco</h4>
@@ -70,28 +70,11 @@
                 <!-- Colonna riepilogo ordine -->
                 <div class="col-lg-4 col-md-12 col-sm-12 p-6">
                     <div class="riepilogoContainer">
-                        <h4 class="center">Riepilogo</h4>
-
-                        <div>
-                            <ul>
-                                <c:forEach items="${sessionScope.cart.games}" var="game">
-                                    <li>${game.name} - € ${game.price}</li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-
-                        <div class="row right">
-                            <div class="col-12 right" style="text-align: end">
-                                <p class="price">Totale: € <span class="sub-lead">${sessionScope.total}</span></p>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="fieldButton clickableNoShadow">
-                                    <i class="bi bi-bag-check-fill"></i> Acquista
-                                </button>
-                            </div>
-                        </div>
+                        <input type="file" name="image" id="imageField" required>
                     </div>
                 </div>
+
+                <input type="submit">
             </div>
         </form>
     </div>

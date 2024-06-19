@@ -16,7 +16,7 @@ public class GameValidator implements Validator<Game> {
             errors.add("Nome non valido");
         }
 
-        if (!Regex.matches(Regex.GAME_PRICE, Double.toString(entity.getPrice()))) {
+        if (!Regex.matches(Regex.GAME_PRICE, String.format("%.2f", entity.getPrice()))) {
             errors.add("Prezzo non valido");
         }
 
