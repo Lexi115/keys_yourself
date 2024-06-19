@@ -41,8 +41,7 @@ public class addGameServlet extends HttpServlet {
         newGame.setProducer(req.getParameter("producer"));
 
         //recupero la lista di id di generi per abbinarli al gioco
-        //String[] genresId = req.getParameter("genresId").split(",");
-        String[] genresId = {"207"};
+        String[] genresId = req.getParameter("genres").split(",");
         List<Genre> genres = new ArrayList<>();
 
         for (String s : genresId) {

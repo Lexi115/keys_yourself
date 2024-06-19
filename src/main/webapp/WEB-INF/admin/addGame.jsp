@@ -8,7 +8,7 @@
     <link href="../assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="/WEB-INF/include/header.jsp" />
 <main>
     <div class="container w-90">
         <div class="row">
@@ -56,7 +56,7 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="col-lg-6 col-md-12 col-sm-12 p-1 riepilogoContainer offset-md-0" style="left: 3%; min-height:20px">
+                            <div class="col-lg-5 col-md-12 col-sm-12 p-1 riepilogoContainer offset-md-0" style="left: 3%; min-height:20px;">
                                 <ul id="genreListUl" style="list-style-type: none;">
                                     <!-- lista generi riempita dinamicamente -->
                                 </ul>
@@ -67,14 +67,20 @@
                     </div>
                 </div>
 
-                <!-- Colonna riepilogo ordine -->
+                <!-- Colonna aggiunta immagine -->
                 <div class="col-lg-4 col-md-12 col-sm-12 p-6">
-                    <div class="riepilogoContainer">
+                    <h4>Aggiungi immagine gioco</h4>
+                    <div class="riepilogoContainer" style="min-height: 320px">
+                        <div class="thumbnail">
+                            <img src="../assets/images/games/tmp.jpg">
+                        </div>
                         <input type="file" name="image" id="imageField" required>
                     </div>
-                </div>
 
-                <input type="submit">
+                    <button type="submit" class="mt-6 fieldButton clickableNoShadow">
+                        <i class="bi bi-plus-lg"></i> Aggiungi gioco
+                    </button>
+                </div>
             </div>
         </form>
     </div>
