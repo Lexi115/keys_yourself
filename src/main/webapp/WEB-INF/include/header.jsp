@@ -14,7 +14,7 @@
             <form action="search" method="get">
                 <div class="row">
                     <div class="col-lg-11">
-                        <input type="text" name="query" class="searchbar center" id="searchBar" value="${param.query}">
+                        <input type="text" name="query" class="searchbar center" id="searchBar" value="${param.query}" placeholder="Clicca qui per iniziare a cercare!">
                     </div>
                     <div class="col-lg-1 clickable">
                         <button class="searchbutton" type="submit" title="Cerca"><i class="bi bi-search"></i></button>

@@ -87,7 +87,7 @@ main div{
     .offset-sm-12 {left: 100%;}
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
     .offset-md-0{left: 0.0% !important;}
     .offset-md-1{left: 8.33% !important;}
     .offset-md-2{left: 16.66% !important;}
@@ -311,8 +311,9 @@ main div{
     align-self: flex-start;
 }
 
-.logo{
+.logo {
     width:100%;
+    max-width: 300px !important;
 }
 
 
@@ -326,6 +327,11 @@ main div{
     color: white;
     font-size: 24px;
     outline: none;
+}
+
+::placeholder {
+    color: white;
+    opacity: 0.3;
 }
 
 .searchbutton {
@@ -605,4 +611,83 @@ div.info-alert {
 #description {
     resize: none;
     height: 200px;
+}
+/* Home page css aggiunte */
+
+.container {
+    min-height: 20%;
+    overflow: hidden;
+}
+
+.hero {
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    text-shadow: 0 0 5px black;
+}
+
+@media only screen and (min-width:768px){
+    .hero {
+        padding: 60px;
+    }
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("../images/banner.png") repeat-x;
+    width: 100%;
+    height: 400px;
+    z-index: -1;
+    animation: slide 60s linear infinite alternate;
+    filter: brightness(50%);
+}
+
+@keyframes slide {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+
+.hero-title {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.hero-button {
+    padding: 15px 30px;
+    font-size: 20px;
+    background-color: var(--palette2);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hero-button:hover {
+    background-color: var(--palette5);
+}
+
+.feature {
+    padding: 20px;
+}
+
+.feature .card {
+    padding: 20px;
+    text-align: center;
+}
+
+.feature .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.feature .subtitle {
+    font-size: 16px;
+    color: var(--palette4);
 }
