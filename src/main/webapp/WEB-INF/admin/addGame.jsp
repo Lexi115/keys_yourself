@@ -20,7 +20,7 @@
         <form action="addGame" method="post" id="myForm" enctype="multipart/form-data">
             <div class="row">
                 <!-- Colonna dati del gioco -->
-                <div class="col-lg-8 col-md-12 col-sm-12 p-6">
+                <div class="col-lg-7 col-md-12 col-sm-12 p-6">
                     <jsp:include page="/WEB-INF/include/infoAlert.jsp" />
                     <jsp:include page="/WEB-INF/include/errorAlert.jsp" />
                     <div>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-2 col-md-6 col-sm-12 p-1">
+                            <div class="col-lg-3 col-md-6 col-sm-12 p-1">
                                 <input name="price" type="number" step="0.01" class="input" id="price" placeholder="Prezzo" min="0" value="${param.price}" pattern="^\d{1,10}.\d{2}$" required>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="col-lg-5 col-md-12 col-sm-12 p-1 riepilogoContainer offset-md-0" style="left: 3%; min-height:20px;">
+                            <div class="col-lg-5 col-md-12 col-sm-12 p-1 riepilogoContainer offset-md-0" style="margin-left:  3%; min-height:20px;">
                                 <ul id="genreListUl" style="list-style-type: none;">
                                     <!-- lista generi riempita dinamicamente -->
                                 </ul>
@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Colonna aggiunta immagine -->
-                <div class="col-lg-4 col-md-12 col-sm-12 p-6">
+                <div class="col-lg-5 col-md-12 col-sm-12 p-6">
                     <h4>Aggiungi immagine gioco</h4>
                     <div class="riepilogoContainer">
                         <div class="thumbnail">

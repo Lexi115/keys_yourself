@@ -18,7 +18,7 @@
         <div class="row center" style="justify-content: flex-start;">
             <c:if test="${user.admin}">
                 <a href="${pageContext.request.contextPath}/admin/addGame">
-                    <button class="offset-3 mb-3 mt-3 fieldButton clickableNoShadow">
+                    <button class="center mb-3 mt-3 fieldButton clickableNoShadow">
                         <i class="bi bi-plus-lg"></i> Aggiungi un gioco
                     </button>
                 </a>
@@ -38,9 +38,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <p class="title">${game.name}</p>
-                                <p class="subtitle">${game.producer}</p>
-                                <p class="price">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
+                                <p class="title cut-text">${game.name}</p>
+                                <p class="subtitle cut-text">${game.producer}</p>
+                                <p class="price cut-text">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
                             </div>
 
                         </div>
@@ -96,7 +96,8 @@
     function createCard(game) {
         //creiamo la card del gioco
         let container = document.createElement('div');
-        container.classList.add('col-4','col-md-6','col-sm-12','mb-6','center');
+
+        container.classList.add('col-lg-4','col-md-6','col-sm-12','flexHorizontal','p-2');
 
         let a = document.createElement('a');
         a.href = 'game?id=' + game.id;
@@ -121,20 +122,21 @@
         img.alt = 'Immagine gioco';
 
         let pTitle = document.createElement('p');
-        pTitle.classList.add('title');
+        pTitle.classList.add('title', 'cut-text');
         pTitle.innerHTML = game.name;
 
         let pSubTitle = document.createElement('p');
-        pSubTitle.classList.add('subtitle');
+        pSubTitle.classList.add('subtitle', 'cut-text');
         pSubTitle.innerHTML = game.producer;
 
         let pPrice = document.createElement('p');
-        pPrice.classList.add('price','right');
+        pPrice.classList.add('price', 'cut-text');
         pPrice.innerHTML =  '€ ';
 
         let span = document.createElement('span');
         span.classList.add('sub-lead');
-        span.innerHTML = game.price;
+        let numberFormat = new Intl.NumberFormat('it-IT', {currency: 'EUR'});
+        span.innerHTML = numberFormat.format(game.price);
 
         //incapsulamento degli elementi
 

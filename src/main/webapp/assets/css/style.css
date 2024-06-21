@@ -154,6 +154,7 @@ body {
 .center {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .flexHorizontal{
@@ -296,6 +297,10 @@ body {
     .flexEnd {
         display: none;
     }
+
+    .cut-text {
+        width: 78vw;
+    }
 }
 
 /* Dispositivi tablet */
@@ -331,6 +336,10 @@ body {
     .flexEnd {
         display: none;
     }
+
+    .cut-text {
+        width: 40vw;
+    }
 }
 
 /* Dispostivi desktop */
@@ -362,5 +371,14 @@ body {
     .offset-lg-10 {margin-left: 83.33% !important;}
     .offset-lg-11 {margin-left: 91.66% !important;}
     .offset-lg-12 {margin-left: 100% !important;}
+
+    .cut-text {
+        width: 25vw;
+    }
 }
 
+.cut-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

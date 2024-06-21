@@ -21,10 +21,10 @@
             <div class="sub-lead mb-6">${game.producer}</div>
         </div>
         <div class="row">
-            <div class="gamePageThumbnail col-7 col-md-12">
+            <div class="gamePageThumbnail col-lg-7 col-md-12 col-sm-12">
                 <img src="assets/images/games/${game.id}.jpg">
             </div>
-            <div class="col-4 col-md-12 offset-1 offset-md-0 offset-sm-0" style="padding:0px 17px">
+            <div class="col-4 col-md-12 col-sm-12 offset-1 offset-md-0 offset-sm-0" style="padding:0px 17px">
                 <div class="mb-11 mt-6 row">
                     <div class="col-12">
                         <div class="sub-lead mb-1">Descrizione</div>
