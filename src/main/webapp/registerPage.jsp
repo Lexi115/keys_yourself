@@ -5,6 +5,7 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="./assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="WEB-INF/include/header.jsp" />
@@ -12,7 +13,7 @@
 
     <div class="regFieldContainer">
 
-        <div class="col-4 field center col-sm-12">
+        <div class="col-lg-4 col-md-7 field col-sm-12 center">
             <div class="row">
                 <img class="loginLogo" src="assets/images/registrati.png">
             </div>

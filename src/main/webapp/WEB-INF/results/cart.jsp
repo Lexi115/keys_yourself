@@ -7,6 +7,7 @@
     <title>Carrello</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
@@ -33,7 +34,7 @@
                                         <p class="price">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
                                     </div>
                                 </div>
-                                    <div class="col-2 col-md-6 right col-sm-12" style="margin-top: 30px;margin-right: 10px">
+                                    <div class="col-2 col-md-6 right col-sm-12" style="margin-top: 30px;margin-right: 5px">
                                         <a href="cartremove?id=${game.id}">
                                             <button class="fieldButton clickableNoShadow">
                                                 <i class="bi bi-bag-dash-fill"></i> Rimuovi

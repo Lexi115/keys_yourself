@@ -1,3 +1,4 @@
+<%--suppress ALL --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -7,6 +8,7 @@
     <title>${game.name}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
@@ -22,7 +24,7 @@
             <div class="gamePageThumbnail col-7 col-md-12">
                 <img src="assets/images/games/${game.id}.jpg">
             </div>
-            <div class="col-4 col-md-12 offset-1 offset-md-0" style="padding:0px 17px">
+            <div class="col-4 col-md-12 offset-1 offset-md-0 offset-sm-0" style="padding:0px 17px">
                 <div class="mb-11 mt-6 row">
                     <div class="col-12">
                         <div class="sub-lead mb-1">Descrizione</div>

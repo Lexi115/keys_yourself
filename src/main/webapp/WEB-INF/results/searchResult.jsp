@@ -7,8 +7,10 @@
     <title>Cerca</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
+
 <jsp:include page="../include/header.jsp" />
 <main>
 
@@ -25,7 +27,7 @@
         </div>
         <div class="row" id="search-result">
             <c:forEach items="${requestScope.games}" var="game">
-                <div class="col-4 col-md-6 col-sm-12 mb-6 center">
+                <div class="col-lg-4 col-md-6 col-sm-12 flexHorizontal p-2">
 
                     <!-- Card del gioco cliccabile -->
                     <a href="game?id=${game.id}">
@@ -38,10 +40,9 @@
                             <div class="row">
                                 <p class="title">${game.name}</p>
                                 <p class="subtitle">${game.producer}</p>
+                                <p class="price">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
                             </div>
-                            <div class="row">
-                                <p class="price right">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
-                            </div>
+
                         </div>
                     </a>
 
@@ -54,14 +55,21 @@
     </div>
 </main>
 <script>
+
     let searchBar = document.getElementById('searchBar');
-    let searchResult = document.getElementById('search-result');
+
+    let searchBarMobile = document.getElementById('searchBarMobile');
+    searchResult = document.getElementById('search-result');
     let queryStringSpan = document.getElementById('queryStringSpan');
 
     searchBar.focus();
 
-    searchBar.oninput = function () {
-        fetch('AsyncSearch?q=' + searchBar.value)
+    searchBar.oninput = function () {fetchAjaxSearch(searchBar.value)};
+    searchBarMobile.oninput = function () {fetchAjaxSearch(searchBarMobile.value)};
+
+
+    function fetchAjaxSearch(value) {
+        fetch('AsyncSearch?q=' + value)
             .then(response => response.json())
             .then(json => {
                 // resetta il contenuto del div searchresult

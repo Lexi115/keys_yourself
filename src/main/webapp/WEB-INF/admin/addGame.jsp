@@ -7,6 +7,7 @@
     <title>Aggiungi gioco</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/include/header.jsp" />
