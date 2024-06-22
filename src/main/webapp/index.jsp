@@ -1,4 +1,5 @@
-<%@ page import="com.sicappiello.keysyourself.util.Functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -32,16 +33,81 @@
     <!-- Parte principale -->
     <div class="container w-90">
 
-        <section>
-            <h2>Giochi del giorno</h2>
+        <section class="gameContainer" style="margin-top: 30px">
+            <h1 style="font-size:340px">Giochi del giorno</h1>
+            <div class="row" id="idk">
+                <c:forEach items="${applicationScope.gamesOfTheDay}" var="game">
+                    <div class="col-lg-4 col-md-12 col-sm-12 flexHorizontal p-2">
+
+                        <!-- Card del gioco cliccabile -->
+                        <a href="game?id=${game.id}">
+                            <div class="card clickable">
+                                <div class="row">
+                                    <div class="thumbnail">
+                                        <img src="assets/images/games/${game.id}.jpg" alt="Immagine">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="title cut-text">${game.name}</p>
+                                    <p class="subtitle cut-text">${game.producer}</p>
+                                    <p class="price cut-text">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
         </section>
 
         <section>
-            <h2>Selezionati per te</h2>
+            <h2>Ultime uscite</h2>
+            <c:forEach items="${requestScope.latestGames}" var="game">
+                <div class="col-lg-4 col-md-12 col-sm-12 flexHorizontal p-2">
+
+                    <!-- Card del gioco cliccabile -->
+                    <a href="game?id=${game.id}">
+                        <div class="card clickable">
+                            <div class="row">
+                                <div class="thumbnail">
+                                    <img src="assets/images/games/${game.id}.jpg" alt="Immagine">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="title cut-text">${game.name}</p>
+                                <p class="subtitle cut-text">${game.producer}</p>
+                                <p class="price cut-text">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+            </c:forEach>
         </section>
 
         <section>
             <h2>Sotto i €10</h2>
+            <c:forEach items="${requestScope.cheapGames}" var="game">
+                <div class="col-lg-4 col-md-12 col-sm-12 flexHorizontal p-2">
+
+                    <!-- Card del gioco cliccabile -->
+                    <a href="game?id=${game.id}">
+                        <div class="card clickable">
+                            <div class="row">
+                                <div class="thumbnail">
+                                    <img src="assets/images/games/${game.id}.jpg" alt="Immagine">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="title cut-text">${game.name}</p>
+                                <p class="subtitle cut-text">${game.producer}</p>
+                                <p class="price cut-text">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+            </c:forEach>
         </section>
 
 

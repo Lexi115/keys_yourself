@@ -2,7 +2,7 @@
                 <div class="row sticky navbar" id="row-menu" style="display: flex">
                     <!-- Logo -->
                     <div class="col-lg-2 col-md-12 flexHorizontal">
-                        <a href="${pageContext.request.contextPath}/home">
+                        <a href="${pageContext.request.contextPath}/">
                             <img class="logo" src="${pageContext.request.contextPath}/assets/images/logo.png">
                         </a>
                     </div>
@@ -64,7 +64,7 @@
                     <form action="search" method="get">
                         <div class="row">
                             <div class="col-lg-0 col-md-1 col-sm-2">
-                                <button class="searchbutton" type="button" title="Home" onclick="location.href = '${pageContext.request.contextPath}/home';"><i class="bi bi-house"></i></button>
+                                <button class="searchbutton" type="button" title="Home" onclick="location.href = '${pageContext.request.contextPath}/';"><i class="bi bi-house"></i></button>
                             </div>
                             <div class="col-lg-0 col-md-10 col-sm-8">
                                 <input type="text" name="query" class="searchbar center" id="searchBarMobile" value="${param.query}" placeholder="Cerca qui!">

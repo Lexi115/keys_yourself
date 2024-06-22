@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameDAO implements DAO<Game> {
     private final Database database;
@@ -235,6 +236,36 @@ public class GameDAO implements DAO<Game> {
 
         database.close();
         return genres;
+    }
+
+    public List<Game> getByPriceRange(double min, double max) {
+        database.connect();
+        List<Game> games = new ArrayList<>();
+
+        String query = "SELECT * FROM giochi g WHERE g.prezzo BETWEEN ? AND ?";
+
+        try {
+            ResultSet rs = database.executeQuery(query, min, max);
+            games = fetch(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        database.close();
+        return games;
+    }
+
+    public List<Game> get3RandomGames(List<Game> gameList){
+        List<Game> selectedGames = new ArrayList<>();
+        Random random = new Random();
+
+        for(int i = 0; i < 3; i++){
+            int randomNumber = random.nextInt(gameList.size());
+            selectedGames.add(gameList.get(randomNumber));
+            gameList.remove(randomNumber);
+        }
+
+        return selectedGames;
     }
 }
 

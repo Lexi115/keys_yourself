@@ -1,7 +1,9 @@
 package com.sicappiello.keysyourself.core;
 
 import com.sicappiello.keysyourself.core.database.Database;
+import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Genre;
+import com.sicappiello.keysyourself.models.dao.GameDAO;
 import com.sicappiello.keysyourself.models.dao.GenreDAO;
 import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.ServletContext;
@@ -9,7 +11,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import org.apache.tomcat.jdbc.pool.DataSource;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Main extends HttpServlet {
 
@@ -31,6 +35,12 @@ public class Main extends HttpServlet {
             List<Genre> genreList = getGenres();
             ctx.setAttribute("genreList", genreList);
             System.out.println("Generi caricati: " + genreList);
+
+            //Imposto come attributo del ServletContext i giochi del giorno
+            GameDAO gameDAO = new GameDAO(database);
+            List<Game> randomGames = gameDAO.get3RandomGames(gameDAO.getAll());
+            ctx.setAttribute("gamesOfTheDay",randomGames);
+            System.out.println(randomGames);
 
             super.init();
     }
