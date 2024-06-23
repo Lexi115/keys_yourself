@@ -33,8 +33,8 @@
     <!-- Parte principale -->
     <div class="container w-90">
 
-        <section class="gameContainer" style="margin-top: 30px">
-            <h1 style="font-size:340px">Giochi del giorno</h1>
+        <section class="mainPageGameContainer" style="margin-top: 30px">
+            <h1 class="center" style="font-size:34px">Giochi del giorno</h1>
             <div class="row" id="idk">
                 <c:forEach items="${applicationScope.gamesOfTheDay}" var="game">
                     <div class="col-lg-4 col-md-12 col-sm-12 flexHorizontal p-2">
@@ -48,9 +48,9 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <p class="title cut-text">${game.name}</p>
-                                    <p class="subtitle cut-text">${game.producer}</p>
-                                    <p class="price cut-text">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
+                                    <p class="title cut-text-main">${game.name}</p>
+                                    <p class="subtitle cut-text-main">${game.producer}</p>
+                                    <p class="price cut-text-main">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
                                 </div>
 
                             </div>
@@ -74,9 +74,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <p class="title cut-text">${game.name}</p>
-                                <p class="subtitle cut-text">${game.producer}</p>
-                                <p class="price cut-text">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
+                                <p class="title cut-text-main">${game.name}</p>
+                                <p class="subtitle cut-text-main">${game.producer}</p>
+                                <p class="price cut-text-main">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
                             </div>
 
                         </div>
@@ -99,9 +99,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <p class="title cut-text">${game.name}</p>
-                                <p class="subtitle cut-text">${game.producer}</p>
-                                <p class="price cut-text">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
+                                <p class="title cut-text-main">${game.name}</p>
+                                <p class="subtitle cut-text-main">${game.producer}</p>
+                                <p class="price cut-text-main">€ <span class="sub-lead"><fmt:formatNumber value="${game.price}" minFractionDigits="2" /></span></p>
                             </div>
 
                         </div>

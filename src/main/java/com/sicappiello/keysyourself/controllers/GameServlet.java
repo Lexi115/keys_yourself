@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 @WebServlet("/game")
 public class GameServlet extends HttpServlet {
@@ -29,6 +30,7 @@ public class GameServlet extends HttpServlet {
         }
         rd.forward(request,response);
     }
+
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // aggiungi nuovo gioco

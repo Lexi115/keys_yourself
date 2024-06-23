@@ -202,7 +202,7 @@ header .searchbutton:active,header .fieldButton:active {
 
 /*PAGINA DI LOGIN/REGISTRAZIONE -------------------------------------------*/
 
-.field, .gameContainer, .gameContainerCheckout, .riepilogoContainer {
+.field, .gameContainer, .gameContainerCheckout, .riepilogoContainer, .mainPageGameContainer {
     box-shadow: 10px 10px 0 darkorchid;
     flex-direction: column;
     display: flex;
@@ -218,11 +218,15 @@ header .searchbutton:active,header .fieldButton:active {
     height: 80%;
 }
 
-.gameContainer {
+.gameContainer, .mainPageGameContainer {
     align-items: stretch;
     height: 100%;
     padding: 10px 5px;
     margin-top: 120px;
+}
+
+.mainPageGameContainer {
+    text-align: left;
 }
 
 .gameContainerCheckout {
