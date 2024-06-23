@@ -48,7 +48,7 @@
     </context-param>
     
     <!-- Pagina di errore -->
-    <!--<error-page>
+    <error-page>
         <location>/WEB-INF/error/error.jsp</location>
-    </error-page>-->
+    </error-page>
 </web-app>

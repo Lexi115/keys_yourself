@@ -22,12 +22,12 @@
 
         <div class="row">
             <form action="register" method="post">
-                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="email" placeholder="E-mail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required></div></div>
-                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="password" name="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%_*#?&])[A-Za-z\d@$!%_*#?&]{8,}$" required></div></div>
-                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="name" placeholder="Nome" pattern=".{1,200}" required></div></div>
-                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="surname" placeholder="Cognome" pattern=".{1,50}" required></div></div>
-                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="address" placeholder="Indirizzo" pattern=".{1,100}" required></div></div>
-                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="tel" name="tel" placeholder="Telefono" pattern="^\+\d{2,6}\s?[\d\s]{10,16}$" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="email" value="${param.email}" placeholder="E-mail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="password" name="password" value="${param.password}" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%_*#?&])[A-Za-z\d@$!%_*#?&]{8,}$" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="name" value="${param.name}" placeholder="Nome" pattern=".{1,200}" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="surname" value="${param.surname}" placeholder="Cognome" pattern=".{1,50}" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="address" value="${param.address}" placeholder="Indirizzo" pattern=".{1,100}" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="tel" name="tel" value="${param.tel}" placeholder="Telefono" pattern="^\+\d{2,6}\s?[\d\s]{10,16}$" required></div></div>
                 <div class="row mb-3">
                     <div class="col-5 col-sm-12 mb-2">
                         <button type="submit" class="fieldButton clickableNoShadow"><i class="bi bi-person-plus"></i></button>

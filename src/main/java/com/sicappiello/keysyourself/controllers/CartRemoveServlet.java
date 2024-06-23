@@ -28,7 +28,7 @@ public class CartRemoveServlet extends HttpServlet {
             Game game = cart.containsGame(gameId);
             if (game != null) {
                 cart.removeGame(game);
-                cart.setTotal(cart.getTotal() - game.getPrice());
+                cart.setTotal(Math.abs(cart.getTotal() - game.getPrice()));
                 session.setAttribute("total", String.format("%.2f",cart.getTotal()));
             }
         }

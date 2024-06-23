@@ -11,7 +11,7 @@
 <body>
 <jsp:include page="../include/header.jsp" />
 <main>
-
+    <div class=w-90">
     <div class="lead center" style="font-size: 30px; margin-top: 3px; ">Grazie per l'acquisto!</div>
     <div class="sub-lead">Giochi acquistati</div>
     <c:forEach items="${requestScope.order.games}" var="purchasedGame">
@@ -36,11 +36,12 @@
         </div>
     </c:forEach>
     <div class="right col-3 col-md-12 col-sm-12 offset-md-0 mb-5" style="margin-right: 20px">
-        <a href="home">
+        <a href="">
             <button class="fieldButton clickableNoShadow">
                 <i class="bi bi-house"></i> Home
             </button>
         </a>
+    </div>
     </div>
 </main>
 </body>

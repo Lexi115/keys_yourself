@@ -39,10 +39,11 @@ public class HomeServlet extends HttpServlet {
         List<Game> latestGames = new ArrayList<>();
         int length = cheapGames.size();
 
-        latestGames.add(cheapGames.get(length - 1));
-        latestGames.add(cheapGames.get(length - 2));
-        latestGames.add(cheapGames.get(length - 3));
-
+        if(length >=3) {
+            latestGames.add(cheapGames.get(length - 1));
+            latestGames.add(cheapGames.get(length - 2));
+            latestGames.add(cheapGames.get(length - 3));
+        }
         return latestGames;
     }
 }

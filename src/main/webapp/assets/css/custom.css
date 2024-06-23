@@ -237,6 +237,7 @@ header .searchbutton:active,header .fieldButton:active {
 .riepilogoContainer {
     height: 100%;
     padding: 10px 5px;
+    text-align: left;
 }
 
 .fieldContainer, .regFieldContainer {
@@ -248,11 +249,13 @@ header .searchbutton:active,header .fieldButton:active {
 .fieldContainer {
     margin-top: 10%;
     height: 100%;
+    text-align: left;
 }
 
 .regFieldContainer {
     margin-top: 3%;
     height: 80%;
+    text-align: left;
 }
 
 .loginLogo{

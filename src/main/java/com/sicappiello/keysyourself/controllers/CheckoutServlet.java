@@ -36,8 +36,6 @@ public class CheckoutServlet extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/checkout.jsp");
         rd.forward(req,res);
 
-        //todo maybe : preleva da database informazioni di fatturazione
-
     }
 
     //clicca checkout

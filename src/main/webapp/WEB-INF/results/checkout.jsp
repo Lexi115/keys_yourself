@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -69,7 +70,7 @@
                             <input name="creditCardNumber" type="text" class="input" id="creditCardNumber" placeholder="Numero carta di credito" value="${param.creditCardNumber}" pattern="^\d{16}$" required>
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12 p-1">
-                            <input name="creditCardExpiration" type="text" class="input" id="creditCardExpiration" placeholder="mm/YY" value="${param.creditCardExpiration}" pattern="^(0[1-9]|1[0-2])\/([0-9]{4})$" required>
+                            <input name="creditCardExpiration" type="text" class="input" id="creditCardExpiration" placeholder="mm/YYYY" value="${param.creditCardExpiration}" pattern="^(0[1-9]|1[0-2])\/([0-9]{4})$" required>
                         </div>
                         <div class="col-lg-2 col-md-12 col-sm-12 p-1">
                             <input name="creditCardCVV" type="text" class="input" id="creditCardCVV" placeholder="CVV" value="${param.creditCardCVV}" pattern="^\d{3}$" required>
@@ -93,7 +94,7 @@
 
                     <div class="row right">
                         <div class="col-12 right" style="text-align: end">
-                            <p class="price">Totale: € <span class="sub-lead">${sessionScope.total}</span></p>
+                            <p class="price">Totale: € <span class="sub-lead"><fmt:formatNumber value="${sessionScope.total}" minFractionDigits="2" /></span></p>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="fieldButton clickableNoShadow">
