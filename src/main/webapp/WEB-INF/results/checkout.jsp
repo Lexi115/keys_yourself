@@ -94,7 +94,7 @@
 
                     <div class="row right">
                         <div class="col-12 right" style="text-align: end">
-                            <p class="price">Totale: € <span class="sub-lead"><fmt:formatNumber value="${sessionScope.total}" minFractionDigits="2" /></span></p>
+                            <p class="price">Totale: € <span class="sub-lead">${sessionScope.total}</span></p>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="fieldButton clickableNoShadow">
