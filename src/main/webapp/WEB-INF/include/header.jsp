@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4">
-                                <div class="center clickable">
+                                <div class="center clickableNoShadow">
                                     <button id="searchbutton" class="searchbutton" type="button" title="Cerca" style="border-radius: 30px" onclick="location.href = '${pageContext.request.contextPath}/search?query=';"><i class="bi bi-search"></i></button>
                                 </div>
                             </div>

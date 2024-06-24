@@ -113,8 +113,5 @@
 
     </div>
 </main>
-<script>
-    // JavaScript può essere aggiunto qui
-</script>
 </body>
 </html>
