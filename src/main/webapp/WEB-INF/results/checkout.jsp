@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/custom.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
@@ -64,7 +65,7 @@
 
                 <div>
                     <h4>Metodo di pagamento</h4>
-                    <img class="cards" src="assets/images/cards.png">
+                    <img class="cards" src="assets/images/cards.png" alt="Carte di credito">
                     <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12 p-1">
                             <input name="creditCardNumber" type="text" class="input" id="creditCardNumber" placeholder="Numero carta di credito" value="${param.creditCardNumber}" pattern="^\d{16}$" required>

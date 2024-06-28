@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/custom.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
@@ -24,7 +25,7 @@
                             <div class="row">
                                 <div class="col-2 col-md-12 col-sm-12">
                                     <div class="thumbnail">
-                                        <img src="assets/images/games/${game.id}.jpg">
+                                        <img src="assets/images/games/${game.id}.jpg" alt="Immagine del gioco">
                                     </div>
                                 </div>
                                 <div class="col-4 col-md-12 col-sm-12">

@@ -180,9 +180,6 @@ public class GameDAO implements DAO<Game> {
     }
 
     @Override
-    public int delete(Game entity) { return this.delete(entity.getId()); }
-
-    @Override
     public int delete(int id) {
         int rowsAffected = 0;
         database.connect();

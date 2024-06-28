@@ -19,7 +19,6 @@ public abstract class Regex {
     public static final String GAME_PRODUCER = ".{1,50}";
 
     //Regex per generi
-    public static final String GENRE_NAME = ".{1,30}";
     public static final String GAME_ID = "^\\d{1,5}$";
 
     //Regex per order

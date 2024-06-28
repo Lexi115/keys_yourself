@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/custom.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 <jsp:include page="/WEB-INF/include/header.jsp" />
@@ -74,7 +75,7 @@
                     <h4>Aggiungi immagine gioco</h4>
                     <div class="riepilogoContainer">
                         <div class="thumbnail">
-                            <img id="imagePreview" src="../assets/images/games/tmp.jpg">
+                            <img id="imagePreview" src="../assets/images/games/tmp.jpg" alt="Anteprima immagine">
                         </div>
                         <input type="file" class="input" style="display: none;" name="image" id="imageField">
                         <button class="fieldButton clickableNoShadow" type="button" id="btnFile"><i class="bi bi-cloud-upload"></i> Carica immagine</button>

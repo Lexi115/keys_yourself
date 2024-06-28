@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.sicappiello.keysyourself.core.enums.Regex" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./assets/css/style.css" rel="stylesheet">
     <link href="./assets/css/custom.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 <jsp:include page="WEB-INF/include/header.jsp" />
@@ -15,7 +16,7 @@
 
         <div class="col-lg-4 col-md-7 field col-sm-12 center">
             <div class="row">
-                <img class="loginLogo" src="assets/images/registrati.png">
+                <img class="loginLogo" src="assets/images/registrati.png" alt="Registrati">
             </div>
 
             <jsp:include page="WEB-INF/include/errorAlert.jsp" />

@@ -8,7 +8,6 @@ public class CreditCard {
     private String cardNumber;
     private String expirationDate;
     private String cvv;
-    private double balance;
 
     public CreditCard() {
     }
@@ -37,14 +36,6 @@ public class CreditCard {
         this.cvv = cvv;
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
     public boolean isExpired() {
         LocalDate today = LocalDate.now();
         return today.isAfter(parseIntoLocalDate());
@@ -67,7 +58,6 @@ public class CreditCard {
                 "cardNumber='" + cardNumber + '\'' +
                 ", expirationDate=" + expirationDate +
                 ", cvv=" + cvv +
-                ", balance=" + balance +
                 '}';
     }
 }

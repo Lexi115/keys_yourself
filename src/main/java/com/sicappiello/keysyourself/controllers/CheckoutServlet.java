@@ -1,7 +1,6 @@
 package com.sicappiello.keysyourself.controllers;
 
 import com.sicappiello.keysyourself.core.database.Database;
-import com.sicappiello.keysyourself.core.interfaces.Validator;
 import com.sicappiello.keysyourself.models.beans.*;
 import com.sicappiello.keysyourself.models.dao.OrderDAO;
 import com.sicappiello.keysyourself.models.validators.CreditCardValidator;

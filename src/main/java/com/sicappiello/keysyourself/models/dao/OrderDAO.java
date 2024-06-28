@@ -169,11 +169,6 @@ public class OrderDAO implements DAO<Order> {
     }
 
     @Override
-    public int delete(Order entity) {
-        return delete(entity.getId());
-    }
-
-    @Override
     public int delete(int id) {
         int rowsAffected = 0;
         database.connect();

@@ -62,7 +62,7 @@ public class AutoLoginFilter implements Filter {
             } else {
                 //non può entrare, redirect a login
                 List<String> errors = new ArrayList<>();
-                errors.add("Si nu scem.... ma ddo t avvij"); //awjhbdahjwadbjhwkldabwhjkdbawjhkebawhjebawhjbeawjkhbedakbhwjdkbhjawejbeawbjkheawkjaewbawebjkawebjhabwhjejaewbkawekawebjaehwkbjhkawejbhkeawjb
+                errors.add("Accesso negato.");
                 session.setAttribute("error",errors);
                 res.sendRedirect(req.getContextPath() + "/login");
             }

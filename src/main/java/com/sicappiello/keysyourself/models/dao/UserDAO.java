@@ -160,11 +160,6 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public int delete(User entity) {
-        return delete(entity.getUid());
-    }
-
-    @Override
     public int delete(int id) {
         int rowsDeleted = 0;
         database.connect();

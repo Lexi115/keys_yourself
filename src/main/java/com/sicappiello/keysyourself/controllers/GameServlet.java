@@ -2,7 +2,6 @@ package com.sicappiello.keysyourself.controllers;
 
 import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Genre;
-import com.sicappiello.keysyourself.models.beans.ShoppingCart;
 import com.sicappiello.keysyourself.models.dao.GameDAO;
 import com.sicappiello.keysyourself.util.Functions;
 import jakarta.servlet.RequestDispatcher;
@@ -14,7 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 @WebServlet("/game")
 public class GameServlet extends HttpServlet {
@@ -32,7 +30,7 @@ public class GameServlet extends HttpServlet {
     }
 
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response){
         // aggiungi nuovo gioco
     }
 

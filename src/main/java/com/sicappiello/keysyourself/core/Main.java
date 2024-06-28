@@ -11,9 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import org.apache.tomcat.jdbc.pool.DataSource;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Main extends HttpServlet {
 

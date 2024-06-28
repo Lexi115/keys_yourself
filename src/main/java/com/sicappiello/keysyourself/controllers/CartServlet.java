@@ -24,7 +24,7 @@ public class CartServlet extends HttpServlet {
         rd.forward(request,response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         synchronized (session) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");

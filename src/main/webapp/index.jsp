@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./assets/css/style.css" rel="stylesheet">
     <link href="./assets/css/custom.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/favicon.ico">
 </head>
 <body>
 <jsp:include page="WEB-INF/include/header.jsp" />

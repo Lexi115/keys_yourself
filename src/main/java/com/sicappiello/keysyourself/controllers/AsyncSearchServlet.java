@@ -3,7 +3,6 @@ package com.sicappiello.keysyourself.controllers;
 import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.dao.GameDAO;
 import com.sicappiello.keysyourself.util.Functions;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ import java.util.List;
 
 @WebServlet("/AsyncSearch")
 public class AsyncSearchServlet extends HttpServlet {
-
+    @SuppressWarnings("all")
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String query = req.getParameter("q");
         GameDAO gameDAO = new GameDAO(Functions.getContextDatabase(this));

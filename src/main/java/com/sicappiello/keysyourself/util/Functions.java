@@ -7,8 +7,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
@@ -38,7 +36,6 @@ public class Functions {
         response.addCookie(cookie);
         return Functions.hash(token);
     }
-
     public static void clearAuthenticationToken(HttpServletResponse response) {
         Cookie cookie = new Cookie("auth_token", "");
         cookie.setSecure(true); // solo HTTPS
@@ -58,23 +55,6 @@ public class Functions {
         }
 
         return null;
-    }
-
-    public static String getFullURL(HttpServletRequest request) {
-        // Ottieni URL (senza parametri GET)
-        StringBuilder fullURL = new StringBuilder(request.getRequestURL().toString());
-
-        // Ottieni parametri GET
-        String queryString = request.getQueryString();
-
-        if (queryString != null && !queryString.isEmpty()) {
-            queryString = URLEncoder.encode(queryString, StandardCharsets.UTF_8);
-
-            // Combinali nell'URL completo
-            fullURL.append('?').append(queryString);
-        }
-
-        return fullURL.toString();
     }
 
     //generate code string

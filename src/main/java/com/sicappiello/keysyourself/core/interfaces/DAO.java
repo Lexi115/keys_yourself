@@ -16,8 +16,6 @@ public interface DAO<T> {
 
     int saveOrUpdate(T entity);
 
-    int delete(T entity);
-
     int delete(int id);
 
     List<T> fetch(ResultSet rs) throws SQLException;

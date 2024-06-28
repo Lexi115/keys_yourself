@@ -101,7 +101,7 @@ public class AddGameServlet extends HttpServlet {
         long fileSize = filePart.getSize();
 
         if(fileSize > FileSize.MIN && fileSize <= FileSize.MAX) {
-            // E' un'immagine?
+            // È un'immagine?
             BufferedImage image = ImageIO.read(filePart.getInputStream());
             if (image != null) {
                 //E' un .jpg?

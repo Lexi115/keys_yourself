@@ -3,7 +3,7 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-md-12 flexHorizontal">
                         <a href="${pageContext.request.contextPath}/">
-                            <img class="logo" src="${pageContext.request.contextPath}/assets/images/logo.png">
+                            <img class="logo" src="${pageContext.request.contextPath}/assets/images/logo.png" alt="Logo del sito">
                         </a>
                     </div>
 

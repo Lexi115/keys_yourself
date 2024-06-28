@@ -8,7 +8,7 @@ public class ShoppingCart {
     double total;
 
     public ShoppingCart() {
-        this.games = new HashSet<Game>();
+        this.games = new HashSet<>();
         this.total = 0;
     }
 
