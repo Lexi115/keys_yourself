@@ -46,7 +46,7 @@
         <param-name>dbPort</param-name>
         <param-value>3306</param-value>
     </context-param>
-    
+
     <!-- Pagina di errore -->
     <error-page>
         <location>/WEB-INF/error/error.jsp</location>

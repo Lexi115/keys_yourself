@@ -41,13 +41,17 @@ public class GameDAO implements DAO<Game> {
     }
 
     public List<Game> getByName(String name) {
+        return getByName(name, 12, 0);
+    }
+
+    public List<Game> getByName(String name, int limit, int offset) {
         database.connect();
         List<Game> games = new ArrayList<>();
 
-        String query = "SELECT * FROM giochi g WHERE g.nome LIKE ?";
+        String query = "SELECT * FROM giochi g WHERE g.nome LIKE ? LIMIT ? OFFSET ?";
 
         try {
-            ResultSet rs = database.executeQuery(query, "%" + name + "%");
+            ResultSet rs = database.executeQuery(query, "%" + name + "%", limit, offset);
             games = fetch(rs);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,6 +61,23 @@ public class GameDAO implements DAO<Game> {
         return games;
     }
 
+    public int getByNameCount(String name) {
+        database.connect();
+        int count = 0;
+
+        String query = "SELECT COUNT(*) AS cnt FROM giochi g WHERE g.nome LIKE ?";
+        try {
+            ResultSet rs = database.executeQuery(query,"%" + name + "%");
+            if (rs.next()) {
+                count = rs.getInt("cnt");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        database.close();
+        return count;
+    }
 
     @Override
     public List<Game> getAll() {

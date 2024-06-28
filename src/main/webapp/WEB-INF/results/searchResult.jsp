@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<jsp:include page="../include/header.jsp" />
+<jsp:include page="../include/header.jsp"/>
 <main>
 
     <div class="container w-90">
@@ -25,6 +25,7 @@
             </c:if>
             <h1></h1>
         </div>
+
         <div class="row" id="search-result">
             <c:forEach items="${requestScope.games}" var="game">
                 <div class="col-lg-4 col-md-6 col-sm-12 flexHorizontal p-2">
@@ -45,13 +46,31 @@
 
                         </div>
                     </a>
-
                 </div>
             </c:forEach>
             <c:if test="${empty requestScope.games}">
                 <div class="sub-lead center">Nessun risultato pertinente</div>
             </c:if>
         </div>
+
+        <c:if test="${not empty requestScope.games}">
+        <!-- Div di cambio pagina -->
+        <div class="row flexHorizontal" style="align-items: center" id="pagination">
+            <div class="col-lg-1 col-md-2 col-sm-3 ${not requestScope.isLeftAvailable ? "disabled" : ""}">
+                <button ${not requestScope.isLeftAvailable ? 'disabled' : ''} onclick="location.href = '${pageContext.request.contextPath}/search?query=${param.query}&p=${requestScope.pageNumber - 1}';" class="center mb-3 mt-3 fieldButton ${not requestScope.isLeftAvailable ? '' : 'clickableNoShadow'}">
+                    <i class="bi bi-caret-left-fill"></i>
+                </button>
+            </div>
+            <div class="col-lg-10 col-md-8 col-sm-6 center">
+                ${requestScope.pageNumber}/${requestScope.totalPages}
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-3 ${not requestScope.isRightAvailable ? "disabled" : ""}">
+                <button ${not requestScope.isRightAvailable ? 'disabled' : ''} onclick="location.href = '${pageContext.request.contextPath}/search?query=${param.query}&p=${requestScope.pageNumber + 1}';" class="center mb-3 mt-3 fieldButton ${not requestScope.isRightAvailable ? '' : 'clickableNoShadow'}">
+                    <i class="bi bi-caret-right-fill"></i>
+                </button>
+            </div>
+        </div>
+        </c:if>
     </div>
 </main>
 <script>
@@ -61,14 +80,19 @@
     let searchBarMobile = document.getElementById('searchBarMobile');
     searchResult = document.getElementById('search-result');
     let queryStringSpan = document.getElementById('queryStringSpan');
+    let pagination = document.getElementById('pagination');
 
     searchBar.focus();
 
-    searchBar.oninput = function () {fetchAjaxSearch(searchBar.value)};
-    searchBarMobile.oninput = function () {fetchAjaxSearch(searchBarMobile.value)};
+    searchBar.oninput = function () {fetchAjaxSearch(searchBar.value);};
+    searchBarMobile.oninput = function () {fetchAjaxSearch(searchBarMobile.value);};
 
 
     function fetchAjaxSearch(value) {
+        // Nascondi tasti paginazione quando si fa ricerca AJAX
+        if (pagination)
+            pagination.style.display = 'none';
+
         fetch('AsyncSearch?q=' + value)
             .then(response => response.json())
             .then(json => {

@@ -14,7 +14,8 @@
                         <form action="${pageContext.request.contextPath}/search" method="get">
                             <div class="row">
                                 <div class="col-lg-10">
-                                    <input type="text" name="query" class="searchbar" id="searchBar" value="${param.query}" placeholder="Cerca qui!">
+                                    <input type="text" name="query" class="searchbar" id="searchBar" value="${param.query}" maxlength="150" placeholder="Cerca qui!">
+                                    <input type="hidden" name="p" value="1">
                                 </div>
                                 <div class="col-lg-2 clickable">
                                     <button class="searchbutton" type="submit" title="Cerca"><i class="bi bi-search"></i></button>
@@ -46,7 +47,7 @@
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <div class="center clickableNoShadow">
-                                    <button id="searchbutton" class="searchbutton" type="button" title="Cerca" style="border-radius: 30px" onclick="location.href = '${pageContext.request.contextPath}/search?query=';"><i class="bi bi-search"></i></button>
+                                    <button id="searchbutton" class="searchbutton" type="button" title="Cerca" style="border-radius: 30px" onclick="location.href = '${pageContext.request.contextPath}/search?p=1&query=';"><i class="bi bi-search"></i></button>
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4">
@@ -61,13 +62,14 @@
             <!-- Search bar per mobile -->
             <div class="row" id="row-searchBar" style="display: none">
                 <div class="col-lg-0 col-md-12 col-sm-12">
-                    <form action="search" method="get">
+                    <form action="${pageContext.request.contextPath}/search" method="get">
                         <div class="row">
                             <div class="col-lg-0 col-md-1 col-sm-2">
                                 <button class="searchbutton" type="button" title="Home" onclick="location.href = '${pageContext.request.contextPath}/';"><i class="bi bi-house"></i></button>
                             </div>
                             <div class="col-lg-0 col-md-10 col-sm-8">
-                                <input type="text" name="query" class="searchbar center" id="searchBarMobile" value="${param.query}" placeholder="Cerca qui!">
+                                <input type="text" name="query" class="searchbar center" id="searchBarMobile" value="${param.query}" maxlength="150" placeholder="Cerca qui!">
+                                <input type="hidden" name="p" value="1">
                             </div>
                             <div class="col-lg-0 col-md-1 col-sm-2">
                                 <button class="searchbutton" type="submit" title="Cerca"><i class="bi bi-search"></i></button>
@@ -87,7 +89,7 @@
                 searchBar.onfocus = function () {
                     // reindirizza alla pagina di ricerca
                     if(!searchResult){
-                        location.href = "${pageContext.request.contextPath}/search?query=";
+                        location.href = "${pageContext.request.contextPath}/search?p=1&query=";
                     }
                 }
 
