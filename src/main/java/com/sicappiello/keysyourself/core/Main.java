@@ -32,13 +32,11 @@ public class Main extends HttpServlet {
             // Aggiungi generi giochi al servlet context
             List<Genre> genreList = getGenres();
             ctx.setAttribute("genreList", genreList);
-            System.out.println("Generi caricati: " + genreList);
 
             //Imposto come attributo del ServletContext i giochi del giorno
             GameDAO gameDAO = new GameDAO(database);
             List<Game> randomGames = gameDAO.get3RandomGames(gameDAO.getAll());
             ctx.setAttribute("gamesOfTheDay",randomGames);
-            System.out.println(randomGames);
 
             super.init();
     }

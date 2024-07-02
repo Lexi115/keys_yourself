@@ -44,17 +44,26 @@
                     <div class="lead mb-2">€ <fmt:formatNumber value="${game.price}" minFractionDigits="2" /></div>
                         <jsp:include page="../include/infoAlert.jsp" />
                         <jsp:include page="../include/errorAlert.jsp" />
-                        <c:if test="${user.admin}">
-                        <button onclick="location.href='removeGame?id=${game.id}'" class="fieldButton clickableNoShadow mb-2">
-                            Rimuovi gioco
-                        </button >
-                        </c:if>
                         <form method="post" action="cart">
                             <input type="hidden" name="id" value="${game.id}">
-                        <button class="fieldButton clickableNoShadow" type="submit">
-                            Aggiungi al carrello
-                        </button>
-                    </form>
+                            <button class="fieldButton clickableNoShadow" type="submit">
+                                <i class="bi bi-cart-plus"></i> Aggiungi al carrello
+                            </button>
+                        </form>
+                        <c:if test="${user.admin}">
+                            <div class="row mt-2">
+                                <div class="col-lg-5 col-md-12 col-sm-12">
+                                    <button onclick="location.href='${pageContext.request.contextPath}/admin/removeGame?id=${game.id}'" class="fieldButton clickableNoShadow mb-2">
+                                        <i class="bi bi-trash3"></i> Rimuovi gioco
+                                    </button >
+                                </div>
+                                <div class="col-lg-5 col-md-12 col-sm-12 offset-lg-2">
+                                    <button onclick="location.href='${pageContext.request.contextPath}/admin/editGame?id=${game.id}'" class="fieldButton clickableNoShadow mb-2">
+                                        <i class="bi bi-gear-wide-connected"></i> Modifica gioco
+                                    </button >
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
                 </div>

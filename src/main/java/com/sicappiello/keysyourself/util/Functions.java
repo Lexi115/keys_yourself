@@ -2,12 +2,17 @@ package com.sicappiello.keysyourself.util;
 
 import com.google.common.hash.Hashing;
 import com.sicappiello.keysyourself.core.database.Database;
+import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.User;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Random;
 
 public class Functions {
@@ -84,5 +89,79 @@ public class Functions {
         } catch(NumberFormatException e){
             return false;
         }
+    }
+
+    public static boolean isImageValid(Part filePart,List<String> errors,boolean required) throws IOException {
+        //Non hai caricato nessun'immagine?
+        if(filePart == null){
+            if(required){
+                //Non hai il permesso di non uploadare un'immagine
+                return false;
+            } else {
+                //Utilizzi l'immagine già presente
+                return true;
+            }
+        }
+
+        // Controllo dimensioni appropriate
+        long fileSize = filePart.getSize();
+        if(fileSize <= FileSize.MIN ) {
+            errors.add("Nessuna immagine caricata.");
+            return false;
+        }
+        if (fileSize > FileSize.MAX) {
+            errors.add("Immagine troppo grande <b>(Max " + FileSize.MAX_MB + " MB)</b>");
+            return false;
+        }
+
+        // È un'immagine?
+        BufferedImage image = ImageIO.read(filePart.getInputStream());
+        if (image == null) {
+            errors.add("File non è un immagine.");
+            return false;
+        }
+
+        //E' un .jpg?
+        String fileName = filePart.getSubmittedFileName().toLowerCase();
+        if (!fileName.endsWith(".jpg") && !fileName.endsWith(".jpeg")) {
+            errors.add("Non è un .jpg / .jpeg.");
+            return false;
+        }
+
+        // L'aspect ratio è valido?
+        double aspectRatio = Functions.getAspectRatio(image);
+        double minAr = 1.8;
+        double maxAr = 2.2;
+
+        if (!isRatioValid(minAr, maxAr, aspectRatio)) {
+            errors.add("Aspect ratio non valido.");
+            return false;
+        }
+
+        return true;
+    }
+
+
+    public static void uploadImage(HttpServletRequest request, ServletContext context, int gameId) throws ServletException, IOException {
+        // Cartella dove caricare le immagini
+        String relativePath = "/assets/images/games";
+        String imageDirectory = context.getRealPath(relativePath);
+
+        //upload dell'immagine sul server
+        for (Part part : request.getParts()) {
+            part.write(imageDirectory + "/" + gameId + ".jpg");
+        }
+    }
+
+    public static boolean nameAlreadyUsed(List<Game> games, String name){
+        return !games.isEmpty() && games.get(0).getName().equalsIgnoreCase(name);
+    }
+
+    public static double getAspectRatio(BufferedImage image) {
+        return (double) image.getWidth() / image.getHeight();
+    }
+
+    public static boolean isRatioValid(double minAr, double maxAr, double aspectRatio) {
+        return aspectRatio>=minAr && aspectRatio<=maxAr;
     }
 }

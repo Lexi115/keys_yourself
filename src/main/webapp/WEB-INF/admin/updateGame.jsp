@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Aggiungi gioco</title>
+    <title>Modifica gioco</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/custom.css" rel="stylesheet">
@@ -15,10 +15,10 @@
 <main>
     <div class="container w-90">
         <div class="row">
-            <p class="lead">Aggiungi gioco</p>
+            <p class="lead">Modifica gioco</p>
         </div>
 
-        <form action="addGame" method="post" id="myForm" enctype="multipart/form-data">
+        <form action="editGame?id=${game.id}" method="post" id="myForm" enctype="multipart/form-data">
             <div class="row">
                 <!-- Colonna dati del gioco -->
                 <div class="col-lg-7 col-md-12 col-sm-12 p-6">
@@ -28,22 +28,22 @@
                         <h4>Dettagli gioco</h4>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 p-1">
-                                <input name="name" type="text" class="input" id="name" placeholder="Nome" value="${param.name}" pattern=".{1,150}" required>
+                                <input name="name" type="text" class="input" id="name" placeholder="Nome" value="${game.name}" pattern=".{1,150}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 p-1">
-                                <input name="producer" type="text" class="input" id="producer" placeholder="Produttore" value="${param.producer}" pattern=".{1,50}" required>
+                                <input name="producer" type="text" class="input" id="producer" placeholder="Produttore" value="${game.producer}" pattern=".{1,50}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 p-1">
-                                <textarea name="description" class="input" id="description" placeholder="Descrizione del gioco qui..." minlength="5" maxlength="2000" required>${param.description}</textarea>
+                                <textarea name="description" class="input" id="description" placeholder="Descrizione del gioco qui..." minlength="5" maxlength="2000" required>${game.description}</textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-                                <input name="price" type="number" step="0.01" class="input" id="price" placeholder="Prezzo" min="0" value="${param.price}" pattern="^\d{1,10}.\d{2}$" required>
+                                <input name="price" type="number" step="0.01" class="input" id="price" placeholder="Prezzo" min="0" value="${game.price}" pattern="^\d{1,10}.\d{2}$" required>
                             </div>
                         </div>
                     </div>
@@ -72,10 +72,10 @@
 
                 <!-- Colonna aggiunta immagine -->
                 <div class="col-lg-5 col-md-12 col-sm-12 p-6">
-                    <h4>Aggiungi immagine gioco</h4>
+                    <h4>Modifica immagine gioco</h4>
                     <div class="riepilogoContainer">
                         <div class="thumbnail">
-                            <img id="imagePreview" src="../assets/images/games/tmp.jpg" alt="Anteprima immagine">
+                            <img id="imagePreview" src="../assets/images/games/${game.id}.jpg" alt="Anteprima immagine">
                         </div>
                         <input type="file" class="input" style="display: none;" name="image" id="imageField">
                         <button class="fieldButton clickableNoShadow" type="button" id="btnFile"><i class="bi bi-cloud-upload"></i> Carica immagine</button>
@@ -83,7 +83,7 @@
                     </div>
 
                     <button type="submit" class="mt-6 fieldButton clickableNoShadow">
-                        <i class="bi bi-plus-lg"></i> Aggiungi gioco
+                        <i class="bi bi-gear-wide-connected"></i> Modifica gioco
                     </button>
                 </div>
             </div>
@@ -92,6 +92,7 @@
 </main>
 <script>
     let genreList = [];
+
     let genresSelect = document.getElementById("genresSelect");
     let genreListUl = document.getElementById("genreListUl");
     let genreInput = document.getElementById("genreInput");
@@ -114,7 +115,7 @@
             return false;
         }
 
-        // Se non è un immagine, scarta
+        // Se non è un'immagine, scarta
         if (!photo.type.startsWith('image')) {
             alert('Il file caricato non è un\'immagine');
             imageField.value = null;
@@ -160,7 +161,7 @@
 
     function printGenreList() {
         genreListUl.innerHTML = "";
-        
+
         genreList.forEach(genre => {
             let li = document.createElement('li');
             let xSpan = document.createElement('span');
@@ -208,7 +209,8 @@
         }
         printGenreList();
     }
-    function genresToString(){
+
+    function genresToString() {
         let resultString = "";
         for (let i = 0; i < genreList.length; i++) {
             resultString += genreList[i].id + ",";
@@ -217,7 +219,15 @@
         genreInput.value = resultString;
     }
 
+    // Stampa generi del gioco già inseriti
+    <c:forEach items="${game.genres}" var="genre">
+    genreList.push({
+        id: ${genre.id},
+        name: "${genre.name}"
+    });
+    </c:forEach>
 
+    printGenreList();
 </script>
 </body>
 </html>

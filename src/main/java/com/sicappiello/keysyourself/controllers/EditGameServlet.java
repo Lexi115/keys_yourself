@@ -16,16 +16,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/admin/addGame")
+@WebServlet("/admin/editGame")
 @MultipartConfig(
         maxFileSize = FileSize.MAX_REAL,      // 20 MB in caso di emergenza
         maxRequestSize = FileSize.REQUEST_MAX   // 20 MB
 )
-public class AddGameServlet extends HttpServlet {
+public class EditGameServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+
+        // Verifichiamo se il gioco da modificare esiste
+        GameDAO gameDAO = new GameDAO(Functions.getContextDatabase(this));
+        Game game = gameDAO.getById(id);
+        if (game == null) {
+            throw new RuntimeException("Gioco con id " + id + " non trovato!");
+        } else {
+            req.setAttribute("game", game);
+        }
+
         //redirect alla pagina aggiungi gioco
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/addGame.jsp");
-        rd.forward(req,res);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/admin/updateGame.jsp");
+        rd.forward(req, res);
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -39,10 +50,10 @@ public class AddGameServlet extends HttpServlet {
 
         //controllo se esiste già il gioco nel database
         List<Game> gamesCheck = gameDAO.getByName(name);
-        if(Functions.nameAlreadyUsed(gamesCheck,name)){
+        if (Functions.nameAlreadyUsed(gamesCheck, name)) {
             errors.add("Il gioco " + name + " esiste già");
             session.setAttribute("error", errors);
-            doGet(req,res);
+            doGet(req, res);
             return;
         }
 
@@ -55,8 +66,7 @@ public class AddGameServlet extends HttpServlet {
         String genresString = req.getParameter("genres");
         if (genresString == null || genresString.isEmpty()) {
             errors.add("Aggiungere almeno un genere!");
-        }
-        else {
+        } else {
             String[] genresId = genresString.split(",");
             List<Genre> genres = new ArrayList<>();
             for (String s : genresId) {
@@ -73,18 +83,18 @@ public class AddGameServlet extends HttpServlet {
 
             //Controllo immagine
             Part filePart = req.getPart("image");
-            boolean imageValid = Functions.isImageValid(filePart,errors,true);
+            boolean imageValid = Functions.isImageValid(filePart,errors,false);
 
             if (gameValid && imageValid) {
                 //è valido, lo aggiungo al database
                 GameDAO dao = new GameDAO(Functions.getContextDatabase(this));
-                int gameId = dao.saveOrUpdate(newGame);
+                int rows = dao.update(newGame);
 
                 // Carica immagine di anteprima
-                if (gameId != -1) {
-                    Functions.uploadImage(req, getServletContext(), gameId);
-                    session.setAttribute("info", "Gioco aggiunto correttamente");
-                    res.sendRedirect(req.getContextPath() + "/game?id=" + gameId);
+                if (rows > 1) {
+                    Functions.uploadImage(req, getServletContext(), rows);
+                    session.setAttribute("info", "Gioco modificato correttamente");
+                    res.sendRedirect(req.getContextPath() + "/game?id=" + rows);
                     return;
                 }
 
@@ -94,6 +104,6 @@ public class AddGameServlet extends HttpServlet {
 
         //non è valido, ritorno gli errori e lo rimando alla addpage
         session.setAttribute("error", errors);
-        doGet(req,res);
+        doGet(req, res);
     }
 }

@@ -85,8 +85,14 @@
 
     searchBar.focus();
 
-    searchBar.oninput = function () {fetchAjaxSearch(searchBar.value);};
-    searchBarMobile.oninput = function () {fetchAjaxSearch(searchBarMobile.value);};
+    searchBar.oninput = function () {
+        searchBarMobile.value = searchBar.value;
+        fetchAjaxSearch(searchBar.value);
+    };
+    searchBarMobile.oninput = function () {
+        searchBar.value = searchBarMobile.value;
+        fetchAjaxSearch(searchBarMobile.value);
+    };
 
 
     function fetchAjaxSearch(value) {

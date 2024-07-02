@@ -29,7 +29,6 @@ public class CheckoutServlet extends HttpServlet {
             res.sendRedirect(req.getContextPath() + "/");
             return;
         }
-        System.out.println(req.getParameter("firstName"));
 
         //in caso nel cart ci sta qualcosa
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/checkout.jsp");
@@ -40,7 +39,6 @@ public class CheckoutServlet extends HttpServlet {
     //clicca checkout
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        System.out.println(req.getParameter("firstName"));
         synchronized (session) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             if (cart.getGames().isEmpty()) {

@@ -107,7 +107,7 @@
 
             function switchBars() {
 
-                const mediaQuery = window.matchMedia('(max-width: 768px)')
+                const mediaQuery = window.matchMedia('(max-width: 1024px)')
 
                 if(mediaQuery.matches){
 

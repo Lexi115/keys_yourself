@@ -55,7 +55,6 @@ public class RegisterServlet extends HttpServlet {
                     } else {
                         errors.add("Si è verificato un errore lato server");
                     }
-
                 }
             } else {
                 //Utente esiste

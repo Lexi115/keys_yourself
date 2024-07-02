@@ -51,7 +51,7 @@ public class GameDAO implements DAO<Game> {
         String query = "SELECT * FROM giochi g WHERE g.nome LIKE ? LIMIT ? OFFSET ?";
 
         try {
-            ResultSet rs = database.executeQuery(query, "%" + name + "%", limit, offset);
+            ResultSet rs = database.executeQuery(query, name, limit, offset);
             games = fetch(rs);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class GameDAO implements DAO<Game> {
 
         String query = "SELECT COUNT(*) AS cnt FROM giochi g WHERE g.nome LIKE ?";
         try {
-            ResultSet rs = database.executeQuery(query,"%" + name + "%");
+            ResultSet rs = database.executeQuery(query,name);
             if (rs.next()) {
                 count = rs.getInt("cnt");
             }
@@ -123,8 +123,8 @@ public class GameDAO implements DAO<Game> {
 
 
             Object[] genreParams = new Object[]{
-                key,
-                genre.getId(),
+                    key,
+                    genre.getId(),
             };
 
             try {
@@ -146,21 +146,49 @@ public class GameDAO implements DAO<Game> {
     public int update(Game entity) {
         int rowsAffected = 0;
         database.connect();
-        String query = "UPDATE giochi SET id = ?, nome = ?, prezzo = ?," +
-                " descrizione = ?, produttore = ?";
+        String query = "UPDATE giochi SET nome = ?, prezzo = ?," +
+                " descrizione = ?, produttore = ? WHERE id = ?";
+
+        String deleteOldGenresQuery = "DELETE FROM giochi_generi WHERE gioco = ?";
+
+        String addNewGenresQuery = "INSERT INTO giochi_generi(gioco,genere) VALUES (?, ?)";
 
         Object[] params = new Object[]{
-                entity.getId(),
                 entity.getName(),
                 entity.getPrice(),
                 entity.getDescription(),
                 entity.getProducer(),
+                entity.getId()
         };
 
         try {
             rowsAffected = database.executeUpdate(query, params);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+
+        //aggiorno i generi, prima elimino i passati
+
+        try {
+            rowsAffected += database.executeUpdate(deleteOldGenresQuery, entity.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //ora aggiungo i nuovi
+        for(Genre genre : entity.getGenres()) {
+
+            Object[] genreParams = new Object[]{
+                    entity.getId(),
+                    genre.getId(),
+            };
+
+            try {
+                rowsAffected += database.executeUpdate(addNewGenresQuery, genreParams);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
 
         database.close();
@@ -233,7 +261,7 @@ public class GameDAO implements DAO<Game> {
 
         return games;
     }
-    
+
     public List<Genre> getGenresByGameId(int id){
         database.connect();
         List<Genre> genres = new ArrayList<>();

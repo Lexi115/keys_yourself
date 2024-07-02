@@ -21,7 +21,7 @@ public class AsyncSearchServlet extends HttpServlet {
         String query = req.getParameter("q");
         GameDAO gameDAO = new GameDAO(Functions.getContextDatabase(this));
 
-        List<Game> gamesList = gameDAO.getByName(query);
+        List<Game> gamesList = gameDAO.getByName("%" + query + "%");
         JSONArray games = new JSONArray();
         if(!gamesList.isEmpty()){
             for(Game game : gamesList){

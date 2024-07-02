@@ -45,8 +45,8 @@ public class SearchServlet extends HttpServlet {
         int offset = (page - 1) * 12;
         //limit = solo 12 risultati per pagina
         int limit = 12;
-        List<Game> games = gameDao.getByName(query, limit, offset);
-        int gameCount = gameDao.getByNameCount(query);
+        List<Game> games = gameDao.getByName("%" + query + "%", limit, offset);
+        int gameCount = gameDao.getByNameCount("%" + query + "%");
         int totalPages = getTotalPages(gameCount);
 
         req.setAttribute("games",games);
