@@ -60,7 +60,7 @@ public class OrderDAO implements DAO<Order> {
         database.connect();
         List<Order> orders = new ArrayList<>();
       
-        String query = "SELECT * FROM ordini WHERE utente = ?";
+        String query = "SELECT * FROM ordini WHERE utente = ? ORDER BY id DESC";
         try {
             ResultSet rs = database.executeQuery(query, user.getUid());
             orders = fetch(rs);

@@ -26,12 +26,12 @@
                 <form action="login" method="post">
                     <div class="row center mb-4">
                         <div class="col-12">
-                        <input class="input" type="text" name="email" placeholder="E-mail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required>
+                        <input class="input" type="text" name="email" placeholder="E-mail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" value="${param.email}" required>
                         </div>
                     </div>
                     <div class="row center mb-4">
                         <div class="col-12">
-                        <input class="input" type="password" name="password" placeholder="Password" required> <!-- password! -->
+                        <input class="input" type="password" name="password" placeholder="Password" value="${param.password}" required> <!-- password! -->
                         </div>
                     </div>
                     <div class="row mb-3">
