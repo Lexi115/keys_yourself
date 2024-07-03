@@ -43,24 +43,24 @@ public class EditGameServlet extends HttpServlet {
         List<String> errors = new ArrayList<>();
 
         //riceviamo i dati del gioco, convalidiamoli
-        Game newGame = new Game();
         HttpSession session = req.getSession();
         GameDAO gameDAO = new GameDAO(Functions.getContextDatabase(this));
+        Game editedGame = gameDAO.getById(Integer.parseInt(req.getParameter("id")));
         String name = req.getParameter("name").trim();
-
+        
         //controllo se esiste già il gioco nel database
         List<Game> gamesCheck = gameDAO.getByName(name);
-        if (Functions.nameAlreadyUsed(gamesCheck, name)) {
+        if (!name.equalsIgnoreCase(editedGame.getName()) && Functions.nameAlreadyUsed(gamesCheck, name)) {
             errors.add("Il gioco " + name + " esiste già");
             session.setAttribute("error", errors);
             doGet(req, res);
             return;
         }
 
-        newGame.setName(name);
-        newGame.setDescription(req.getParameter("description"));
-        newGame.setPrice(Double.parseDouble(req.getParameter("price")));
-        newGame.setProducer(req.getParameter("producer"));
+        editedGame.setName(name);
+        editedGame.setDescription(req.getParameter("description"));
+        editedGame.setPrice(Double.parseDouble(req.getParameter("price")));
+        editedGame.setProducer(req.getParameter("producer"));
 
         //recupero la lista di id di generi per abbinarli al gioco
         String genresString = req.getParameter("genres");
@@ -75,11 +75,11 @@ public class EditGameServlet extends HttpServlet {
                 genres.add(genre);
             }
 
-            newGame.setGenres(genres);
+            editedGame.setGenres(genres);
 
             //valido il gioco appena inserito
             GameValidator validator = new GameValidator();
-            boolean gameValid = validator.validate(newGame, errors);
+            boolean gameValid = validator.validate(editedGame, errors);
 
             //Controllo immagine
             Part filePart = req.getPart("image");
@@ -88,13 +88,13 @@ public class EditGameServlet extends HttpServlet {
             if (gameValid && imageValid) {
                 //è valido, lo aggiungo al database
                 GameDAO dao = new GameDAO(Functions.getContextDatabase(this));
-                int rows = dao.update(newGame);
+                int rows = dao.update(editedGame);
 
                 // Carica immagine di anteprima
                 if (rows > 1) {
-                    Functions.uploadImage(req, getServletContext(), rows);
+                    Functions.uploadImage(req, getServletContext(), editedGame.getId());
                     session.setAttribute("info", "Gioco modificato correttamente");
-                    res.sendRedirect(req.getContextPath() + "/game?id=" + rows);
+                    res.sendRedirect(req.getContextPath() + "/game?id=" + editedGame.getId());
                     return;
                 }
 

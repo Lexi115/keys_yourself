@@ -93,7 +93,7 @@ public class Functions {
 
     public static boolean isImageValid(Part filePart,List<String> errors,boolean required) throws IOException {
         //Non hai caricato nessun'immagine?
-        if(filePart == null){
+        if(filePart.getSize()==0){
             if(required){
                 //Non hai il permesso di non uploadare un'immagine
                 return false;
@@ -148,13 +148,20 @@ public class Functions {
         String imageDirectory = context.getRealPath(relativePath);
 
         //upload dell'immagine sul server
-        for (Part part : request.getParts()) {
-            part.write(imageDirectory + "/" + gameId + ".jpg");
+        if (request.getPart("image").getSize() > 0) {
+            for (Part part : request.getParts()) {
+                part.write(imageDirectory + "/" + gameId + ".jpg");
+            }
         }
     }
 
-    public static boolean nameAlreadyUsed(List<Game> games, String name){
-        return !games.isEmpty() && games.get(0).getName().equalsIgnoreCase(name);
+    public static boolean nameAlreadyUsed(List<Game> games, String name) {
+        for (Game game : games) {
+            if (game.getName().equalsIgnoreCase(name))
+                return true;
+        }
+
+        return false;
     }
 
     public static double getAspectRatio(BufferedImage image) {

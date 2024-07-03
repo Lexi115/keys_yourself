@@ -58,7 +58,7 @@
             </div>
             <div class="col-12">
                 <a href="${not empty sessionScope.cart.games ? 'checkout' : '#'}">
-                    <button class="fieldButton ${empty sessionScope.cart.games ? 'disabled' : 'clickableNoShadow'}">
+                    <button class="mb-2 fieldButton ${empty sessionScope.cart.games ? 'disabled' : 'clickableNoShadow'}">
                         <i class="bi bi-bag-check-fill"></i> Pagamento
                     </button>
                 </a>
