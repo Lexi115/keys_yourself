@@ -20,6 +20,7 @@
 
 
             <jsp:include page="WEB-INF/include/errorAlert.jsp" />
+            <jsp:include page="WEB-INF/include/infoAlert.jsp" />
 
 
             <div class="row">

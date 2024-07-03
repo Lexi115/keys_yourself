@@ -45,7 +45,7 @@ public class CreditCard {
         String[] expirationDateString = expirationDate.split("/");
         int year = Integer.parseInt(expirationDateString[1]);
         int month = Integer.parseInt(expirationDateString[0]);
-        //prendi l'ultimo mese del mese
+        //prendi l'ultimo giorno del mese
         YearMonth yearMonth = YearMonth.of(year, month);
         int lastDay = yearMonth.lengthOfMonth();
 

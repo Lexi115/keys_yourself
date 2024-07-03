@@ -4,7 +4,6 @@ import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.core.interfaces.DAO;
 import com.sicappiello.keysyourself.models.beans.Game;
 import com.sicappiello.keysyourself.models.beans.Genre;
-import jakarta.servlet.ServletContext;
 
 import java.io.File;
 import java.sql.ResultSet;
@@ -98,7 +97,7 @@ public class GameDAO implements DAO<Game> {
 
     @Override
     public int save(Game entity) {
-        int key = 0;
+        int key;
         database.connect();
         String query = "INSERT INTO giochi(id,nome,prezzo,descrizione,produttore) VALUES (?, ?, ?, ?, ?)";
 
@@ -222,6 +221,7 @@ public class GameDAO implements DAO<Game> {
         return rowsAffected;
     }
 
+    //Rimuove sia il gioco sia l'immagine
     public int delete(int id, String imagePath) {
         int rowsAffected = 0;
         database.connect();
@@ -305,11 +305,12 @@ public class GameDAO implements DAO<Game> {
         List<Game> selectedGames = new ArrayList<>();
         Random random = new Random();
 
-        for(int i = 0; i < 3; i++){
-            int randomNumber = random.nextInt(gameList.size());
-            selectedGames.add(gameList.get(randomNumber));
-            gameList.remove(randomNumber);
-        }
+        if (gameList.size() >= 3)
+            for(int i = 0; i < 3; i++){
+                int randomNumber = random.nextInt(gameList.size());
+                selectedGames.add(gameList.get(randomNumber));
+                gameList.remove(randomNumber);
+            }
 
         return selectedGames;
     }

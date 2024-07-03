@@ -20,6 +20,7 @@
             </div>
 
             <jsp:include page="WEB-INF/include/errorAlert.jsp" />
+            <jsp:include page="WEB-INF/include/infoAlert.jsp" />
 
         <div class="row">
             <form action="register" method="post">
@@ -33,7 +34,7 @@
                     <div class="col-5 col-sm-12 mb-2">
                         <button type="submit" class="fieldButton clickableNoShadow"><i class="bi bi-person-plus"></i></button>
                     </div>
-                    <div class="col-5 col-sm-12 offset-2">
+                    <div class="col-5 col-sm-12 offset-lg-2 offset-md-2 offset-sm-0">
                         <button type="reset" class="fieldButton clickableNoShadow"><i class="bi bi-arrow-clockwise"></i></button>
                     </div>
                 </div>

@@ -62,7 +62,6 @@ public class SearchServlet extends HttpServlet {
     }
 
     private int getTotalPages(int gameCount) {
-        System.out.println(gameCount);
         return (int) (Math.ceil(gameCount / 12.0));
     }
 }

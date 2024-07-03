@@ -80,7 +80,6 @@
 
     let searchBarMobile = document.getElementById('searchBarMobile');
     searchResult = document.getElementById('search-result');
-    let queryStringSpan = document.getElementById('queryStringSpan');
     let pagination = document.getElementById('pagination');
 
     searchBar.focus();

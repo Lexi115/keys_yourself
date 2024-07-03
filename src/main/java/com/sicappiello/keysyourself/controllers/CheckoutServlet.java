@@ -2,6 +2,7 @@ package com.sicappiello.keysyourself.controllers;
 
 import com.sicappiello.keysyourself.core.database.Database;
 import com.sicappiello.keysyourself.models.beans.*;
+import com.sicappiello.keysyourself.models.dao.GameDAO;
 import com.sicappiello.keysyourself.models.dao.OrderDAO;
 import com.sicappiello.keysyourself.models.validators.CreditCardValidator;
 import com.sicappiello.keysyourself.models.validators.OrderValidator;
@@ -17,23 +18,53 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @WebServlet("/checkout")
 public class CheckoutServlet extends HttpServlet {
 
+    private Set<Game> getInvalidGames(Set<Game> games)
+    {
+        Set<Game> invalidGames = new HashSet<>();
+        GameDAO gameDAO = new GameDAO(Functions.getContextDatabase(this));
+        for (Game g : games) {
+            if (gameDAO.getById(g.getId()) == null) {
+                invalidGames.add(g);
+            }
+        }
+
+        return invalidGames;
+    }
+
     //clicca procedi al pagamento
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if (((ShoppingCart) session.getAttribute("cart")).getGames().isEmpty()) {
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        Set<Game> gamesInCart = cart.getGames();
+
+
+        Set<Game> invalidGames = getInvalidGames(gamesInCart);
+
+        //Per evitare il checkout fantasma (con giochi che non esistono più)
+        //Rimuovi giochi non più esistenti
+        if(!invalidGames.isEmpty()) {
+            for (Game g : invalidGames) {
+                cart.removeGame(g);
+            }
+            session.setAttribute("total", String.format("%.2f",cart.getTotal()));
+            session.setAttribute("info", "Sono stati rimossi dei giochi invalidi (" + invalidGames.size() + ")");
+        }
+
+        //Il cart è vuoto? Rimanda alla home page
+        if (gamesInCart.isEmpty()){
             res.sendRedirect(req.getContextPath() + "/");
             return;
         }
 
-        //in caso nel cart ci sta qualcosa
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/checkout.jsp");
         rd.forward(req,res);
-
     }
 
     //clicca checkout
@@ -41,7 +72,9 @@ public class CheckoutServlet extends HttpServlet {
         HttpSession session = req.getSession();
         synchronized (session) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-            if (cart.getGames().isEmpty()) {
+            Set<Game> gamesInCart = cart.getGames();
+
+            if (gamesInCart.isEmpty()) {
                 res.sendRedirect(req.getContextPath() + "/");
                 return;
             }
@@ -85,8 +118,14 @@ public class CheckoutServlet extends HttpServlet {
 
             boolean isValidOrder = orderValidator.validate(order,errors);
             boolean isValidCreditCard = creditCardValidator.validate(creditCard,errors);
-            if((isValidOrder)&&(isValidCreditCard)) {
+                if((!isValidOrder)||(!isValidCreditCard)) {
+                    //torna alla pagine del checkout
+                    session.setAttribute("error", errors);
+                    doGet(req, res);
+                    return;
+                }
 
+                //Formatting del totale
                 String total = (String) session.getAttribute("total");
                 total = total.replace(",", ".");
                 order.setPrice(Double.parseDouble(total));
@@ -112,12 +151,6 @@ public class CheckoutServlet extends HttpServlet {
 
                 RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/results/thanks.jsp");
                 rd.forward(req, res);
-            } else {
-
-                //torna alla pagine del checkout
-                session.setAttribute("error", errors);
-                doGet(req, res);
             }
         }
     }
-}

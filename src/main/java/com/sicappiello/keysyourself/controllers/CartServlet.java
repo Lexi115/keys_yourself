@@ -41,7 +41,6 @@ public class CartServlet extends HttpServlet {
                 if( cart.addGame(selectedGame) ){
                     //gioco non era presente
                     session.setAttribute("info", selectedGame.getName() + " aggiunto al carrello!");
-                    cart.setTotal(Math.abs(cart.getTotal() + selectedGame.getPrice()));
                     session.setAttribute("total", String.format("%.2f",cart.getTotal()));
                 } else {
                     //gioco è già presente
@@ -54,7 +53,6 @@ public class CartServlet extends HttpServlet {
             } else {
                 //gioco non esiste
                 errors.add("Gioco non esistente");
-                //response.sendRedirect(request.getContextPath() + "/");
                 response.sendRedirect(request.getContextPath() + "/");
             }
         }

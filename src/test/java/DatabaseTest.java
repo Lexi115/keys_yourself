@@ -55,10 +55,7 @@ public class DatabaseTest {
     }
 
 
-    public static void main(String[] args) throws SQLException {
-        //queryTest();
-        //insertTest();
-
+    public static void main(String[] args){
         LocalDate date = LocalDate.of(2020, 1, 25);
         System.out.println(date);
     }

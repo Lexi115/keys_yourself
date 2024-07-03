@@ -23,6 +23,7 @@ public class ShoppingCart {
     public boolean addGame(Game game) {
         if (containsGame(game.getId()) == null) {
             this.games.add(game);
+            setTotal(Math.abs(this.total + game.getPrice()));
             return true;
         }
 
@@ -33,6 +34,7 @@ public class ShoppingCart {
         for (Game g : games) {
             if (g.getId() == game.getId()) {
                 this.games.remove(game);
+                setTotal(Math.abs(this.total - game.getPrice()));
                 return;
             }
         }

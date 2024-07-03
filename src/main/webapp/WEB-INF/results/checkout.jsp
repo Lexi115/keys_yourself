@@ -23,6 +23,7 @@
         <div class="row">
             <!-- Colonna indirizzi di fatturazione -->
             <div class="col-lg-8 col-md-12 col-sm-12 p-6">
+                <jsp:include page="/WEB-INF/include/infoAlert.jsp" />
                 <jsp:include page="/WEB-INF/include/errorAlert.jsp" />
                 <div>
                     <h4>Indirizzo di Fatturazione</h4>

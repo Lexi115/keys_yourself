@@ -28,22 +28,22 @@
                         <h4>Dettagli gioco</h4>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 p-1">
-                                <input name="name" type="text" class="input" id="name" placeholder="Nome" value="${game.name}" pattern=".{1,150}" required>
+                                <input name="name" type="text" class="input" id="name" placeholder="Nome" value="${empty param.name ? game.name : param.name}" pattern=".{1,150}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 p-1">
-                                <input name="producer" type="text" class="input" id="producer" placeholder="Produttore" value="${game.producer}" pattern=".{1,50}" required>
+                                <input name="producer" type="text" class="input" id="producer" placeholder="Produttore" value="${empty param.producer ? game.producer : param.producer}" pattern=".{1,50}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 p-1">
-                                <textarea name="description" class="input" id="description" placeholder="Descrizione del gioco qui..." minlength="5" maxlength="2000" required>${game.description}</textarea>
+                                <textarea name="description" class="input" id="description" placeholder="Descrizione del gioco qui..." minlength="5" maxlength="2000" required>${empty param.description ? game.description : param.description}</textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-                                <input name="price" type="number" step="0.01" class="input" id="price" placeholder="Prezzo" min="0" value="${game.price}" pattern="^\d{1,10}.\d{2}$" required>
+                                <input name="price" type="number" step="0.01" class="input" id="price" placeholder="Prezzo" min="0" value="${empty param.price ? game.price : param.price}" pattern="^\d{1,10}.\d{2}$" required>
                             </div>
                         </div>
                     </div>

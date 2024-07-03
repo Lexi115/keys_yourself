@@ -15,7 +15,7 @@ import java.util.List;
 
 @WebServlet("/cartremove")
 public class CartRemoveServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         synchronized (session) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
@@ -27,7 +27,6 @@ public class CartRemoveServlet extends HttpServlet {
             Game game = cart.containsGame(gameId);
             if (game != null) {
                 cart.removeGame(game);
-                cart.setTotal(Math.abs(cart.getTotal() - game.getPrice()));
                 session.setAttribute("total", String.format("%.2f",cart.getTotal()));
             }
         }

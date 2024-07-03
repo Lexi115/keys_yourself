@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="gamePageThumbnail col-lg-7 col-md-12 col-sm-12">
-                <img src="assets/images/games/${game.id}.jpg">
+                <img src="assets/images/games/${game.id}.jpg" alt="Immagine del gioco">
             </div>
             <div class="col-4 col-md-12 col-sm-12 offset-1 offset-md-0 offset-sm-0" style="padding:0px 17px">
                 <div class="mb-11 mt-6 row">
