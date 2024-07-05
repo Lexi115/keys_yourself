@@ -1,6 +1,10 @@
 package com.sicappiello.keysyourself.models.beans;
 
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,6 +118,11 @@ public class Order {
 
     public LocalDate getOrderDate() {
         return orderDate;
+    }
+
+    public String getOrderDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return orderDate.format(formatter);
     }
 
     public void setOrderDate(LocalDate orderDate) {

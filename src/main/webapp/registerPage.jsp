@@ -24,7 +24,7 @@
 
         <div class="row">
             <form action="register" method="post">
-                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="email" value="${param.email}" placeholder="E-mail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="email" name="email" value="${param.email}" placeholder="E-mail" required></div></div>
                 <div class="row center mb-4"> <div class="col-12"> <input class="input" id="password" type="password" name="password" value="${param.password}" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%_*#?&])[A-Za-z\d@$!%_*#?&]{8,}$" required></div></div>
                 <div class="row center mb-4 card" id="password-rules" style="display: none;">
                     <div class="col-12">

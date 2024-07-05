@@ -114,13 +114,11 @@
                     // è un dispositivo mobile
                     mobileSearchBar.style.display = 'flex';
                     menuBar.style.display = 'none';
-                    console.log(" matches");
                 }
                 else {
                     // NON è un dispositivo mobile
                     mobileSearchBar.style.display = 'none';
                     menuBar.style.display = 'flex';
-                    console.log("not matches");
                 }
             }
         </script>

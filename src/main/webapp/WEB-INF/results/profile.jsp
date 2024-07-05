@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -37,13 +38,13 @@
                 <div class="col-12 mb-4">
                     <div class="card" style="width: 100%;">
                         <div class="row">
-                            <p class="sub-lead">Ordine #${order.id}</p>
+                            <span class="sub-lead">Ordine #${order.id}</span> | ${order.orderDateString}
                             <ul>
                                 <c:forEach items="${order.games}" var="game">
-                                    <li>${game.gameName}</li>
+                                    <li>${game.gameName} - ${game.gameCode}</li>
                                 </c:forEach>
                             </ul>
-                            <p class="price">€ <span class="sub-lead">${order.price}</span></p>
+                            <p class="price">€ <span class="sub-lead"><fmt:formatNumber value="${order.price}" minFractionDigits="2" /></span></p>
                         </div>
                     </div>
                 </div>

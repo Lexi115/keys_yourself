@@ -29,23 +29,23 @@
                     <h4>Indirizzo di Fatturazione</h4>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input name="firstName" type="text" class="input" id="firstName" placeholder="Nome" value="${param.firstName}" pattern=".{1,150}" required>
+                                <input name="firstName" type="text" class="input" id="firstName" placeholder="Nome" value="${not empty user.name ? user.name : param.firstName}" pattern=".{1,150}" required>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input name="lastName" type="text" class="input" id="lastName" placeholder="Cognome" value="${param.lastName}" pattern=".{1,50}" required>
+                                <input name="lastName" type="text" class="input" id="lastName" placeholder="Cognome" value="${not empty user.surname ? user.surname : param.lastName}" pattern=".{1,50}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input name="email" type="email" class="input" id="email" placeholder="Email" value="${param.email}" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required>
+                                <input name="email" type="email" class="input" id="email" placeholder="Email" value="${not empty user.email ? user.email : param.email}" required>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 p-1">
-                                <input name="phoneNumber" type="tel" class="input" id="phone" placeholder="Telefono" value="${param.phoneNumber}" pattern="^\+\d{2,6}\s?[\d\s]{10,16}$" required>
+                                <input name="phoneNumber" type="tel" class="input" id="phone" placeholder="Telefono" value="${not empty user.phoneNumber ? user.phoneNumber : param.phoneNumber}" pattern="^\+\d{2,6}\s?[\d\s]{10,16}$" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-8 col-md-12 col-sm-12 p-1">
-                                <input name="address" type="text" class="input" id="address" placeholder="Indirizzo" value="${param.address}" pattern=".{1,100}" required>
+                                <input name="address" type="text" class="input" id="address" placeholder="Indirizzo" value="${not empty user.address ? user.address : param.address}" pattern=".{1,100}" required>
                             </div>
                             <div class="col-lg-4 col-md-12 col-sm-12 p-1">
                                 <input name="city" type="text" class="input" id="city" placeholder="Città" value="${param.city}" pattern=".{1,100}" required>

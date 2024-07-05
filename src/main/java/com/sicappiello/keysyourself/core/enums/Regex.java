@@ -24,7 +24,7 @@ public abstract class Regex {
     //Regex per order
     public static final String ORDER_FIRST_NAME = "^.{1,150}$";
     public static final String ORDER_LAST_NAME = "^.{1,50}$";
-    public static final String ORDER_EMAIL = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+    public static final String ORDER_EMAIL = "^[a-zA-Z0-9._%+-]{1,160}@[a-zA-Z0-9.-]{1,149}\\.[a-zA-Z]{2,7}$";
     public static final String ORDER_PHONE_NUMBER = "^\\+\\d{2,6}\\s?[\\d\\s]{10,16}$";
     public static final String ORDER_ADDRESS = "^.{1,100}$";
     public static final String ORDER_CITY = "^.{1,100}$";
