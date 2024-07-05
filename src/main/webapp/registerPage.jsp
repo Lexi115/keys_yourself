@@ -25,7 +25,19 @@
         <div class="row">
             <form action="register" method="post">
                 <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="email" value="${param.email}" placeholder="E-mail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required></div></div>
-                <div class="row center mb-4"> <div class="col-12"> <input class="input" type="password" name="password" value="${param.password}" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%_*#?&])[A-Za-z\d@$!%_*#?&]{8,}$" required></div></div>
+                <div class="row center mb-4"> <div class="col-12"> <input class="input" id="password" type="password" name="password" value="${param.password}" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%_*#?&])[A-Za-z\d@$!%_*#?&]{8,}$" required></div></div>
+                <div class="row center mb-4 card" id="password-rules" style="display: none;">
+                    <div class="col-12">
+                        <div>
+                            <ul>
+                                <li>Minimo <b>8 caratteri</b></li>
+                                <li>Almeno <b>una lettera <br>maiuscola</b></li>
+                                <li>Almeno <b>un numero</b></li>
+                                <li>Almeno <b>un carattere <br>speciale</b> (@$!%_*#?&)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="name" value="${param.name}" placeholder="Nome" pattern=".{1,200}" required></div></div>
                 <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="surname" value="${param.surname}" placeholder="Cognome" pattern=".{1,50}" required></div></div>
                 <div class="row center mb-4"> <div class="col-12"> <input class="input" type="text" name="address" value="${param.address}" placeholder="Indirizzo" pattern=".{1,100}" required></div></div>
@@ -46,7 +58,18 @@
 
 </main>
 
+<script>
+    let passwordField = document.getElementById("password");
+    let passwordRules = document.getElementById("password-rules");
 
+    passwordField.onfocus = function () {
+        passwordRules.style.display = "block";
+    }
+
+    passwordField.addEventListener('focusout', function () {
+        passwordRules.style.display = "none";
+    })
+</script>
 
 </body>
 </html>

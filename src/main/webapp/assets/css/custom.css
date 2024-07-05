@@ -202,6 +202,16 @@ header .searchbutton:active,header .fieldButton:active {
 
 /*PAGINA DI LOGIN/REGISTRAZIONE -------------------------------------------*/
 
+#password-rules {
+    text-align: left;
+    background-color: #ead2f3;
+    border: 2px solid gray;
+}
+
+#password-rules li {
+    padding-bottom: 5px;
+}
+
 .field, .gameContainer, .gameContainerCheckout, .riepilogoContainer, .mainPageGameContainer {
     box-shadow: 10px 10px 0 darkorchid;
     flex-direction: column;
