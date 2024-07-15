@@ -27,7 +27,7 @@
                 <form action="login" method="post">
                     <div class="row center mb-4">
                         <div class="col-12">
-                        <input class="input" type="text" name="email" placeholder="E-mail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" value="${param.email}" required>
+                        <input class="input" type="email" name="email" placeholder="E-mail" value="${param.email}" required>
                         </div>
                     </div>
                     <div class="row center mb-4">

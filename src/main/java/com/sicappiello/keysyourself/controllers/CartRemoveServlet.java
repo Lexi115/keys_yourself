@@ -22,7 +22,7 @@ public class CartRemoveServlet extends HttpServlet {
             List<String> errors = new ArrayList<>();
             session.setAttribute("error",errors);
 
-            //Recupero il gioco dal database in base all'id fornito dal form
+            //Recupero il gioco in base all'id fornito dal form
             int gameId = Integer.parseInt(request.getParameter("id"));
             Game game = cart.containsGame(gameId);
             if (game != null) {

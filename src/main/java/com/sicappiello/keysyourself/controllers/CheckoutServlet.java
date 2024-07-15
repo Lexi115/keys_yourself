@@ -79,6 +79,20 @@ public class CheckoutServlet extends HttpServlet {
                 return;
             }
 
+            Set<Game> invalidGames = getInvalidGames(gamesInCart);
+
+            //Per evitare il checkout fantasma (con giochi che non esistono più)
+            //Rimuovi giochi non più esistenti
+            if(!invalidGames.isEmpty()) {
+                for (Game g : invalidGames) {
+                    cart.removeGame(g);
+                }
+                session.setAttribute("total", String.format("%.2f",cart.getTotal()));
+                session.setAttribute("info", "Sono stati rimossi dei giochi invalidi (" + invalidGames.size() + ")");
+                res.sendRedirect(req.getContextPath() + "/");
+                return;
+            }
+
             Order order = new Order();
             CreditCard creditCard = new CreditCard();
 
@@ -119,7 +133,7 @@ public class CheckoutServlet extends HttpServlet {
             boolean isValidOrder = orderValidator.validate(order,errors);
             boolean isValidCreditCard = creditCardValidator.validate(creditCard,errors);
                 if((!isValidOrder)||(!isValidCreditCard)) {
-                    //torna alla pagine del checkout
+                    //torna alla pagina del checkout
                     session.setAttribute("error", errors);
                     doGet(req, res);
                     return;

@@ -1,6 +1,7 @@
 package com.sicappiello.keysyourself.controllers;
 
 import com.sicappiello.keysyourself.core.database.Database;
+import com.sicappiello.keysyourself.core.enums.Role;
 import com.sicappiello.keysyourself.models.beans.User;
 import com.sicappiello.keysyourself.models.dao.UserDAO;
 import com.sicappiello.keysyourself.models.validators.UserValidator;
@@ -86,7 +87,7 @@ public class RegisterServlet extends HttpServlet {
         u.setPhoneNumber(phoneNumber);
 
         // Imposta ruolo default (utente)
-        u.setRoleId(0);
+        u.setRoleId(Role.USER);
 
         return u;
     }

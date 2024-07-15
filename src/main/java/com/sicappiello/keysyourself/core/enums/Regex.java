@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public abstract class Regex {
     // Regex per utente
     public static final String USER_EMAIL = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-    public static final String USER_PASSWORD = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%_*#?&])[A-Za-z\\d@$!%_*#?&]{8,}$";
+    public static final String USER_PASSWORD = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%_*#?&])[A-Za-z\\d@$!%_*#?&]{8,100}$";
     public static final String USER_FIRST_NAME = "^.{1,200}$";
     public static final String USER_LAST_NAME = "^.{1,50}$";
     public static final String USER_ADDRESS = "^.{1,100}$";

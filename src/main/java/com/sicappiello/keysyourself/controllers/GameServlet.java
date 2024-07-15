@@ -29,11 +29,6 @@ public class GameServlet extends HttpServlet {
         rd.forward(request,response);
     }
 
-
-    public void doPost(HttpServletRequest request, HttpServletResponse response){
-        // aggiungi nuovo gioco
-    }
-
     private String getGenreString(Game game)
     {
         List<Genre> genreList = game.getGenres();

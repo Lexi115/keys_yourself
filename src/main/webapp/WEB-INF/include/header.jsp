@@ -81,8 +81,8 @@
         </header>
         <script>
             let searchResult = document.getElementById('search-result');
-            let mobileSearchBar = document.getElementById("row-searchBar");
-            let menuBar = document.getElementById("row-menu");
+            let mobileSearchBar = document.getElementById("row-searchBar"); // searchbar mobile
+            let menuBar = document.getElementById("row-menu"); // navbar desktop
 
             window.onload = function () {
                 let searchBar = document.getElementById("searchBar");

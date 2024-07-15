@@ -22,7 +22,7 @@
 
     <filter-mapping>
         <filter-name>AutoLoginFilter</filter-name>
-        <url-pattern>/*</url-pattern> <!-- Apply to all URLs -->
+        <url-pattern>/*</url-pattern> <!-- Si applica filter a tutto il sito -->
     </filter-mapping>
 
     <!-- Credenziali per accesso al database -->
