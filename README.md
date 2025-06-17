@@ -3,7 +3,7 @@
   <br>
 </p>
 
-# 🔑 KeysYourself - Sito per compravendita di chiavi videoludiche
+# 🔑 KeysYourself 💸
 
 [![Java](https://img.shields.io/badge/java-17-red?logo=java)](https://www.oracle.com/java/)
 [![JSP/Servlet](https://img.shields.io/badge/servlet--jsp-enabled-green)](https://jakarta.ee/specifications/servlet/)
